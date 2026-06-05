@@ -1,7 +1,6 @@
 add_executable(mainLauncher
         mainLauncher.cpp
 )
-
 target_link_options(mainLauncher PRIVATE
         -Wl,-force_load,$<TARGET_FILE:lib_engine>
         -Wl,-force_load,$<TARGET_FILE:lib_assets>
