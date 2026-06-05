@@ -11,6 +11,7 @@
     </Parameters>
 
     <EntryState label="Idle"/>
+
     <Tree>
         <Animation label="Idle" startx="0" starty="-1" length="2" frameDuration="300" loop="true" breakable="true">
             <Transition to="Move">

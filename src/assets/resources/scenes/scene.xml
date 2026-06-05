@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- In order ot add a Background / Foreground create a gameobject with a Renderer component attached -->
+<!-- In order to add a Background / Foreground create a gameobject with a Renderer component attached -->
 <!-- Possible to make prefabs for bg / fg -->
 <Scene>
     <Prefab src="resources/prefabs/player.xml" x="200" y="200" angle="0" sx="1" sy="1" active="true"/>

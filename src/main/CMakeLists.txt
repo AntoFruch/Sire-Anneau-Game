@@ -2,8 +2,11 @@ add_executable(mainLauncher
         mainLauncher.cpp
 )
 
-
-target_link_libraries(mainLauncher PUBLIC lib_engine pugixml sfml-graphics)
+target_link_options(mainLauncher PRIVATE
+        -Wl,-force_load,$<TARGET_FILE:lib_engine>
+        -Wl,-force_load,$<TARGET_FILE:lib_assets>
+)
+target_link_libraries(mainLauncher PUBLIC lib_engine lib_assets pugixml sfml-graphics)
 
 add_custom_target(copy-resources ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory

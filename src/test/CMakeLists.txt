@@ -11,7 +11,7 @@ target_link_libraries(unitTests PUBLIC GTest::gtest_main lib_engine pugixml sfml
 
 add_custom_command(TARGET unitTests POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/src/assets/resources
+        ${CMAKE_SOURCE_DIR}/resources
         $<TARGET_FILE_DIR:unitTests>/resources
 )
 

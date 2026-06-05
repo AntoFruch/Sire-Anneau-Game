@@ -29,6 +29,7 @@ FetchContent_Declare(
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(src/engine)
+add_subdirectory(src/assets)
 add_subdirectory(src/main)
 
 FetchContent_MakeAvailable(pugixml)
