@@ -30,8 +30,6 @@ namespace {
         return true;
     }();
 }
-// Dummy function to force the linker to include this translation unit
-extern "C" void force_link_Animator() {}
 // --------------------------
 
 ```
