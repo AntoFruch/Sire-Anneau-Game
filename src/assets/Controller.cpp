@@ -37,7 +37,6 @@ void Controller::Start()
 {
     CharacterController::Start();
     moveAction = InputManager::findAction("Move");
-    createSlimeAction = InputManager::findAction("createSlime");
     animator = gameObject->getComponent<Animator>();
 }
 
@@ -57,10 +56,5 @@ void Controller::Update(const sf::Time& elapsedTime)
         animator->setParam("moving", true);
         animator->setParam("forwardWalk", rawDir.y);
         animator->setParam("sideWalk", rawDir.x);
-    }
-
-    if (createSlimeAction->wasPerformedThisFrame())
-    {
-        SceneManager::instantiate("resources/prefabs/slime.xml");
     }
 }

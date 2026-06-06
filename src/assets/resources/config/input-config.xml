@@ -10,8 +10,4 @@
             <right bind="D"/>
         </binding>
     </Action>
-    <!-- Test -->
-    <Action label="createSlime" type="Button">
-        <binding bind="P"/>
-    </Action>
 </InputActions>
