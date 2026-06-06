@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject label="Player" x="0" y="0" angle="0" sx="2.5" sy="2.5">
     <Components>
-        <Component name="Controller" colliderX="0" colliderY="3" colliderW="14" colliderH="8"/>
+        <Component name="Controller" colliderX="0" colliderY="3" colliderW="8" colliderH="8"/>
         <Component name="Renderer" src="resources/textures/characters/RedSoldier.png" sprite_w="32" sprite_h="32"/>
         <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
     </Components>

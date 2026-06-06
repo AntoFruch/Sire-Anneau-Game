@@ -8,6 +8,7 @@
 
 class Controller : public CharacterController {
     InputAction* moveAction;
+    InputAction* createSlimeAction;
     Animator* animator;
 
     float speed{100};

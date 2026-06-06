@@ -36,9 +36,9 @@ Controller::Controller(const sf::Vector2f& colliderPos, const sf::Vector2f& coll
 void Controller::Start()
 {
     CharacterController::Start();
-    std::cout << "start Controller" << std::endl;
     moveAction = InputManager::findAction("Move");
-    animator=gameObject->getComponent<Animator>();
+    createSlimeAction = InputManager::findAction("createSlime");
+    animator = gameObject->getComponent<Animator>();
 }
 
 void Controller::Update(const sf::Time& elapsedTime)
@@ -57,5 +57,10 @@ void Controller::Update(const sf::Time& elapsedTime)
         animator->setParam("moving", true);
         animator->setParam("forwardWalk", rawDir.y);
         animator->setParam("sideWalk", rawDir.x);
+    }
+
+    if (createSlimeAction->wasPerformedThisFrame())
+    {
+        SceneManager::instantiate("resources/prefabs/slime.xml");
     }
 }
