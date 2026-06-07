@@ -5,23 +5,6 @@
     <Prefab src="resources/prefabs/maps/theatre.xml" x="0" y="0" angle="0" sx="1.2" sy="1.2"/>
 
     <Prefab src="resources/prefabs/player.xml" x="0" y="160" angle="0" sx="1" sy="1" active="true"/>
-    <GameObject label="Player" x="0" y="190" angle="0" sx="2.5" sy="2.5">
-        <Components>
-            <Component name="PlayerController" colliderX="0" colliderY="0" colliderW="8" colliderH="8"/>
-            <Component name="Renderer" src="resources/textures/characters/Archer-Purple.png" anchorX="0" anchorY="3" sprite_w="32" sprite_h="32"/>
-            <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
-        </Components>
-        <GameObject label="MainCamera" x="0" y="0" angle="0" sx="3" sy="3" active="true">
-            <Components>
-                <Component name="Camera"/>
-            </Components>
-        </GameObject>
-        <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1">
-            <Components>
-                <Component name="Collider" x="0" y="0" width="8" height="8" trigger="true"/>
-            </Components>
-        </GameObject>
-    </GameObject>
 
     <Prefab src="resources/prefabs/maps/theatre_fg.xml" x="0" y="0" angle="0" sx="1.2" sy="1.2"/>
 </Scene>

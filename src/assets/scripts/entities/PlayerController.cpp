@@ -37,8 +37,12 @@ void PlayerController::Start()
     CharacterController::Start();
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
-    animator = gameObject->getComponent<Animator>();
     attackTriggerGO = gameObject->getChild("AttackTrigger");
+
+    animator = gameObject->getComponent<Animator>();
+    animator->registerAnimationEvent("Slash", 3, [this]() {
+        this->endAttack();
+    });
 }
 
 void PlayerController::Update(const sf::Time& elapsedTime)
@@ -60,25 +64,27 @@ void PlayerController::Update(const sf::Time& elapsedTime)
     if (attackAction->wasPerformedThisFrame())
     {
         attack();
-    } else
-    {
-        attackTriggerGO->transform.set_position({0,0});
-        attackTriggerGO->getComponent<Collider>()->setTriggerActivationState(false);
     }
-}
-
-void PlayerController::attack()
-{
-    animator->setParam("attack", true);
-    attackTriggerGO->transform.set_position({
-        facing.x * gameObject->getComponent<Collider>()->getSize().x,
-        facing.y * gameObject->getComponent<Collider>()->getSize().y,
-    });
-    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
-    attackTriggerGO->getComponent<Collider>()->setTriggerActivationState(true);
 }
 
 void PlayerController::takeDamage()
 {
     std::cout << "damage taken !" << std::endl;
 }
+
+void PlayerController::attack()
+{
+    animator->setParam("attack", true);
+    attackTriggerGO->setActive(true);
+    attackTriggerGO->transform.set_position({
+        facing.x * gameObject->getComponent<Collider>()->getSize().x,
+        facing.y * gameObject->getComponent<Collider>()->getSize().y,
+    });
+    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
+}
+
+void PlayerController::endAttack() {
+    attackTriggerGO->setActive(false);
+    std::cout << "end of attack" << std::endl;
+}
+

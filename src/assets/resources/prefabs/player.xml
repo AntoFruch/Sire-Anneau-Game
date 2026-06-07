@@ -10,7 +10,7 @@
             <Component name="Camera"/>
         </Components>
     </GameObject>
-    <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1">
+    <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1" active="false">
         <Components>
             <Component name="Collider" x="0" y="0" width="8" height="8" trigger="true"/>
         </Components>
