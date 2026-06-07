@@ -4,7 +4,7 @@
         <Parameter label="moving" default="false" type="Bool"/>
         <Parameter label="forwardWalk" default="0" type="Float"/>
         <Parameter label="sideWalk" default="0" type="Float"/>
-        <Parameter label="slash" default="false" type="Trigger"/>
+        <Parameter label="attack" default="false" type="Trigger"/>
     </Parameters>
 
     <EntryState label="Idle"/>
@@ -15,7 +15,7 @@
                 <Condition parameter="moving" value="true"/>
             </Transition>
             <Transition to="Slash">
-                <Condition parameter="slash" value="true"/>
+                <Condition parameter="attack" value="true"/>
             </Transition>
         </Animation>
 
@@ -24,11 +24,11 @@
                 <Condition parameter="moving" value="false"/>
             </Transition>
             <Transition to="Slash">
-                <Condition parameter="slash" value="true"/>
+                <Condition parameter="attack" value="true"/>
             </Transition>
         </BlendTree>
 
-        <Animation label="Slash" startx="5" starty="-1" length="4" frameDuration="80" loop="false" breakable="false">
+        <Animation label="Slash" startx="4" starty="-1" length="4" frameDuration="80" loop="false" breakable="false">
             <Transition to="Idle">
                 <Condition parameter="moving" value="false"/>
             </Transition>

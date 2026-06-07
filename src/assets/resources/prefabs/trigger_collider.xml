@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<GameObject label="triggerArea" x="0" y="0" angle="0" sx="1" sy="1" active="true">
+<GameObject x="0" y="0" angle="0" sx="1" sy="1" active="true">
     <Components>
-        <Component name="Collider" trigger="true" width="10" height="10"/>
+        <Component name="Collider" x="0" y="0" width="10" height="10" trigger="true"/>
+        <Component name="Renderer" sprite_w="16" sprite_h="16"/>
     </Components>
 </GameObject>

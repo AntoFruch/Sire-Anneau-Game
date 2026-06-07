@@ -2,6 +2,5 @@
 <GameObject label="foreground" x="0" y="0" angle="0" sx="1" sy="1">
     <Components>
         <Component name="Renderer" src="resources/textures/maps/theater_fg.png" sprite_w="640" sprite_h="640"/>
-        <Component name="Collider" x="0" y="-233" width="376" height="174"/>
     </Components>
 </GameObject>

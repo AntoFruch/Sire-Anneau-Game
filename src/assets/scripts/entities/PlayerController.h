@@ -5,17 +5,24 @@
 #ifndef COMPONENT_BASED_ARCH_CONTROLLER_H
 #define COMPONENT_BASED_ARCH_CONTROLLER_H
 #include "Engine.h"
+#include "EntityController.h"
 
-class Controller : public CharacterController {
+class PlayerController : public EntityController {
     InputAction* moveAction;
+    InputAction* attackAction;
     Animator* animator;
 
-    float speed{100};
+    GameObject* attackTriggerGO;
 public:
-    Controller(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize);
-    ~Controller() override = default;
+    PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize);
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
+
+    void takeDamage() override;
+
+private:
+    void attack();
+
 };
 
 

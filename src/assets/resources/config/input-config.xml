@@ -10,4 +10,7 @@
             <right bind="D"/>
         </binding>
     </Action>
+    <Action label="Attack" type="Button">
+        <binding bind="P"/>
+    </Action>
 </InputActions>
