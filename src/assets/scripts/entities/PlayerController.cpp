@@ -76,7 +76,7 @@ void PlayerController::attack()
 {
     animator->setParam("attack", true);
     attackTriggerGO->setActive(true);
-    attackTriggerGO->transform.set_position({
+    attackTriggerGO->transform.setLocalPosition({
         facing.x * gameObject->getComponent<Collider>()->getSize().x,
         facing.y * gameObject->getComponent<Collider>()->getSize().y,
     });
