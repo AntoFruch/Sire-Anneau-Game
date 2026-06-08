@@ -1,9 +1,10 @@
 //
 // Created by Antonin Fruchet on 25/05/2026.
 //
-#include "myMain.h"
+#include "Engine.h"
 
 int main() {
-    myMain();
+    Game game("resources/scenes/main_menu.xml");
+    game.run();
     return 0;
 }

@@ -13,7 +13,8 @@ endif()
 set (BUILD_SHARED_LIBS FALSE)
 
 cmake_policy(SET CMP0135 NEW) # This cmake_policy avoids warning by cmake when we fetch contents based on URL
-FetchContent_Declare( sfml
+FetchContent_Declare(
+        sfml
         URL https://github.com/SFML/SFML/archive/refs/tags/3.0.1.tar.gz
 )
 option(SFML_BUILD_AUDIO "Build audio" OFF)
@@ -24,6 +25,15 @@ FetchContent_Declare(
         pugixml
         URL https://github.com/zeux/pugixml/releases/download/v1.15/pugixml-1.15.tar.gz
 )
+FetchContent_MakeAvailable(pugixml)
+
+FetchContent_Declare(
+        TGUI
+        URL https://github.com/texus/TGUI/archive/refs/tags/v1.12.1.tar.gz
+)
+set(TGUI_BACKEND "SFML_GRAPHICS" CACHE STRING "TGUI backend" FORCE)
+FetchContent_MakeAvailable(TGUI)
+
 
 
 set(CMAKE_CXX_STANDARD 20)
@@ -32,7 +42,6 @@ add_subdirectory(src/engine)
 add_subdirectory(src/assets)
 add_subdirectory(src/main)
 
-FetchContent_MakeAvailable(pugixml)
 
 #
 # Include GoogleTest
