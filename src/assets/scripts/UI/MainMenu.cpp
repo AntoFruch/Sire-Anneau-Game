@@ -4,7 +4,7 @@
 
 #include "MainMenu.h"
 
-#include "TGUI/Widgets/BitmapButton.hpp"
+#include "TGUI/Widgets/Button.hpp"
 #include "TGUI/Widgets/Picture.hpp"
 
 // --- ENREGISTREMENT AUTOMATIQUE ---
@@ -19,15 +19,6 @@ namespace {
     }();
 }
 // --------------------------
-
-MainMenu::MainMenu()
-{
-}
-
-MainMenu::~MainMenu()
-{
-    gui->removeAllWidgets();
-}
 
 void MainMenu::createPlayButton()
 {
@@ -62,7 +53,7 @@ void MainMenu::createPlayButton()
     });
 
 
-    gui->add(playButton,"Play");
+    addElement(playButton,"Play");
 }
 
 void MainMenu::createQuitButton()
@@ -97,7 +88,7 @@ void MainMenu::createQuitButton()
         quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
-    gui->add(quitButton,"Quit");
+    addElement(quitButton,"Quit");
 }
 
 void MainMenu::createTitle()
@@ -105,7 +96,7 @@ void MainMenu::createTitle()
     auto title = tgui::Picture::create("resources/UI/MainMenu/Title.png");
     title->setSize(104*8,42*8);
     title->setPosition("50% - width*0.5", "7%");
-    gui->add(title);
+    addElement(title, "Title");
 }
 
 void MainMenu::createBackground()
@@ -114,26 +105,23 @@ void MainMenu::createBackground()
     bg->getRenderer()->setOpacity(0.3);
     bg->setSize("100%", "100%");
     bg->setPosition(0,0);
-    gui->add(bg);
+    addElement(bg, "Background");
 }
 
 void MainMenu::Start()
 {
-    Component::Start();
-    gui = SceneManager::getGui();
+    UIDocument::Start();
 
     createBackground();
     createTitle();
     createPlayButton();
     createQuitButton();
-
-
 }
 
 
 void MainMenu::Update(const sf::Time& elapsedTime)
 {
-    Component::Update(elapsedTime);
+    UIDocument::Update(elapsedTime);
 }
 
 

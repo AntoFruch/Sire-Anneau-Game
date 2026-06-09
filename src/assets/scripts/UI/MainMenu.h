@@ -8,13 +8,9 @@
 
 #include "Engine.h"
 
-class MainMenu : public Component {
-    tgui::Gui* gui;
-
-    tgui::Font customFont{"resources/fonts/PixelifySans-VariableFont_wght.ttf"};
+class MainMenu : public UIDocument {
 public:
-    MainMenu();
-    ~MainMenu();
+    MainMenu() = default;
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 

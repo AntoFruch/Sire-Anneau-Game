@@ -13,4 +13,7 @@
     <Action label="Attack" type="Button">
         <binding bind="P"/>
     </Action>
+    <Action label="Pause" type="Button">
+        <binding bind="Escape"/>
+    </Action>
 </InputActions>
