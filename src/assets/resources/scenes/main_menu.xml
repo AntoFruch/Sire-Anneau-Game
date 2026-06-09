@@ -2,7 +2,7 @@
 <Scene>
     <GameObject label="MainMenuController">
         <Components>
-            <Component name="MainMenuUI"/>
+            <Component name="MainMenu"/>
         </Components>
     </GameObject>
 </Scene>
