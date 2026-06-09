@@ -7,6 +7,7 @@
 #include "Managers/Input/InputManager.h"
 #include "TGUI/Widgets/Button.hpp"
 #include "TGUI/Widgets/Panel.hpp"
+#include "TGUI/Widgets/Picture.hpp"
 
 // --- ENREGISTREMENT AUTOMATIQUE ---
 // On crée une variable globale/statique anonyme.
@@ -29,6 +30,7 @@ void PauseMenu::Start()
     createBackGround();
     createResumeButton();
     createQuitButton();
+    createTitle();
 
     hide();
 }
@@ -123,6 +125,19 @@ void PauseMenu::createBackGround()
     bg->getRenderer()->setBackgroundColor(sf::Color::Black);
     bg->getRenderer()->setOpacity(0.75);
     addElement(bg,"Background");
+
+    auto overlay = tgui::Picture::create("resources/UI/MainMenu/FondMenuOverlaySimple.png");
+    overlay->setSize("100%", "100%");
+    overlay->setPosition(0,0);
+    addElement(overlay, "OverLay");
+
+}
+void PauseMenu::createTitle()
+{
+    auto title = tgui::Picture::create("resources/UI/Pause.png");
+    title->setSize(78*8,21*8);
+    title->setPosition("50% - width*0.5", "15%");
+    addElement(title, "Title");
 }
 
 void PauseMenu::hide()

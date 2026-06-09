@@ -21,6 +21,7 @@ private:
     void createResumeButton();
     void createQuitButton();
     void createBackGround();
+    void createTitle();
 
     void hide();
     void show();
