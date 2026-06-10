@@ -18,7 +18,7 @@ public:
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 
-    void takeDamage() override;
+    void takeDamage(int amount) override;
 
 private:
     void attack();

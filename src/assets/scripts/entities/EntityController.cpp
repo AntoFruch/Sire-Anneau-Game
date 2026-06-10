@@ -6,17 +6,17 @@
 
 #include <iostream>
 
-EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed)
-    : CharacterController(colliderPos, colliderSize), speed(speed)
+EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength)
+    : CharacterController(colliderPos, colliderSize), speed(speed), max_hp(max_hp), current_hp(max_hp), strength(strength)
 {
-    attackCallback = [](const std::vector<Collider*>& hits, Collider* trigger)
+    attackCallback = [this](const std::vector<Collider*>& hits, Collider* trigger)
     {
         for (const auto& hit : hits)
         {
             if (auto controller = hit->gameObject->getComponent<EntityController>())
             {
-                std::cout << hit->gameObject->getLabel() << std::endl;
-                controller->takeDamage(); // tester si ça marche avec des ennemis
+                std::cout << "Attacker : " << hit->gameObject->getLabel() << std::endl;
+                controller->takeDamage(this->strength); // tester si ça marche avec des ennemis
             }
         }
     };
@@ -43,4 +43,8 @@ void EntityController::moveEntity(const sf::Vector2f& rawDir, const sf::Time& el
     auto delta = rawDir != sf::Vector2f{0,0} ?
     rawDir.normalized()*elapsedTime.asSeconds()*speed: sf::Vector2f{0,0};
     move(delta);
+}
+
+void EntityController::takeDamage(int amount) {
+    current_hp -= amount;
 }

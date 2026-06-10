@@ -29,12 +29,12 @@ namespace {
 // --------------------------
 
 PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize)
-    : EntityController(colliderPos, colliderSize, 100)
+    : EntityController(colliderPos, colliderSize, 100, 100, 20)
 {}
 
 void PlayerController::Start()
 {
-    CharacterController::Start();
+    EntityController::Start();
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
     attackTriggerGO = gameObject->getChild("AttackTrigger");
@@ -47,7 +47,7 @@ void PlayerController::Start()
 
 void PlayerController::Update(const sf::Time& elapsedTime)
 {
-    CharacterController::Update(elapsedTime);
+    EntityController::Update(elapsedTime);
     auto rawDir = moveAction->ReadValue<sf::Vector2f>();
     moveEntity(rawDir, elapsedTime);
 
@@ -67,9 +67,12 @@ void PlayerController::Update(const sf::Time& elapsedTime)
     }
 }
 
-void PlayerController::takeDamage()
+void PlayerController::takeDamage(int amount)
 {
-    std::cout << "damage taken !" << std::endl;
+    EntityController::takeDamage(amount); // la logique des dégâts subis
+
+    // this->current_hp -= amount; Ceci est mis dans le EntityController
+    std::cout << amount << " damage taken ! " << std::endl;
 }
 
 void PlayerController::attack()
