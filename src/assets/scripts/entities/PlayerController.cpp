@@ -80,9 +80,6 @@ void PlayerController::Update(const sf::Time& elapsedTime)
 void PlayerController::takeDamage(int amount)
 {
     EntityController::takeDamage(amount); // la logique des dégâts subis
-
-    // this->current_hp -= amount; Ceci est mis dans le EntityController
-    std::cout << amount << " damage taken ! " << std::endl;
 }
 
 void PlayerController::attack()

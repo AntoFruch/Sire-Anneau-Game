@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2.5" sy="2.5">
+    <Components>
+        <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
+        <Component name="Renderer" src="resources/textures/characters/RedSoldier.png"
+                   sprite_w="32" sprite_h="3"
+                   anchorX="0" anchorY="3"/>
+        <Component name="EnemyController"
+                   colliderX="0" colliderY="0"
+                   colliderW="8" colliderH="8"
+                   speed="100"
+                   max_hp="60"
+                   strength="20"/>
+    </Components>
+</GameObject>

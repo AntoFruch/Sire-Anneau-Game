@@ -15,7 +15,7 @@ EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Ve
         {
             if (auto controller = hit->gameObject->getComponent<EntityController>())
             {
-                std::cout << "Attacker : " << hit->gameObject->getLabel() << std::endl;
+                std::cout << "Attacker : " << trigger->gameObject->getLabel() << std::endl;
                 controller->takeDamage(this->strength); // tester si ça marche avec des ennemis
             }
         }
@@ -47,4 +47,5 @@ void EntityController::moveEntity(const sf::Vector2f& rawDir, const sf::Time& el
 
 void EntityController::takeDamage(int amount) {
     current_hp -= amount;
+    std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
 }
