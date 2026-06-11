@@ -3,6 +3,7 @@
 //
 
 #include "PlayerController.h"
+#include "../HUD/HUDManager.h"
 
 #include <iostream>
 
@@ -42,6 +43,8 @@ void PlayerController::Start()
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
     attackTriggerGO = gameObject->getChild("AttackTrigger");
+
+    HUDManager::registerPlayer(this);
 
     animator = gameObject->getComponent<Animator>();
     animator->registerAnimationEvent("Slash", 3, [this]() {

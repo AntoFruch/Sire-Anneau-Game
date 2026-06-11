@@ -3,6 +3,7 @@
     <GameObject>
         <Components>
             <Component name="PauseMenu"/>
+            <Component name="HealthBar"/>
         </Components>
     </GameObject>
     <Prefab src="resources/prefabs/maps/theatre.xml" x="0" y="0" angle="0" sx="1.2" sy="1.2"/>
