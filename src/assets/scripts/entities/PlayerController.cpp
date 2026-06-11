@@ -22,20 +22,24 @@ namespace {
                 sf::Vector2f{
                     node.attribute("colliderW").as_float(),
                     node.attribute("colliderH").as_float()
-                });
+                },
+                node.attribute("speed").as_float(),
+                node.attribute("max_hp").as_int(),
+                node.attribute("strength").as_int()
+                );
         });
         return true;
     }();
 }
 // --------------------------
 
-PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize)
-    : EntityController(colliderPos, colliderSize, 100)
+PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength)
+    : EntityController(colliderPos, colliderSize, speed, max_hp, strength)
 {}
 
 void PlayerController::Start()
 {
-    CharacterController::Start();
+    EntityController::Start();
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
     attackTriggerGO = gameObject->getChild("AttackTrigger");
@@ -53,7 +57,7 @@ void PlayerController::Start()
 
 void PlayerController::Update(const sf::Time& elapsedTime)
 {
-    CharacterController::Update(elapsedTime);
+    EntityController::Update(elapsedTime);
     auto rawDir = moveAction->ReadValue<sf::Vector2f>();
     moveEntity(rawDir, elapsedTime);
 
@@ -73,9 +77,12 @@ void PlayerController::Update(const sf::Time& elapsedTime)
     }
 }
 
-void PlayerController::takeDamage()
+void PlayerController::takeDamage(int amount)
 {
-    std::cout << "damage taken !" << std::endl;
+    EntityController::takeDamage(amount); // la logique des dégâts subis
+
+    // this->current_hp -= amount; Ceci est mis dans le EntityController
+    std::cout << amount << " damage taken ! " << std::endl;
 }
 
 void PlayerController::attack()

@@ -5,19 +5,24 @@
 #ifndef COMPONENT_BASED_ARCH_ENTITYCONTROLLER_H
 #define COMPONENT_BASED_ARCH_ENTITYCONTROLLER_H
 #include "Engine.h"
+#include <functional>
 
 
 class EntityController : public CharacterController {
     float speed;
+    int max_hp;
+    int strength;
+    int current_hp;
 
 protected:
     sf::Vector2f facing{0,1}; // facing bottom by default
 
     // Callback called when attacking successfully
-    void(*attackCallback)(const std::vector<Collider*>&, Collider*);
+    // void(*attackCallback)(const std::vector<Collider*>&, Collider*);
+    std::function<void(const std::vector<Collider*>&, Collider*)> attackCallback;
 
 public:
-    EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed);
+    EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 
@@ -31,7 +36,7 @@ public:
     /**
      * A voir si c'est necessaire le pure virtual
      */
-    virtual void takeDamage() = 0;
+    virtual void takeDamage(int amount) = 0;
 };
 
 
