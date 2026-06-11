@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "Managers/Input/InputManager.h"
+#include "scripts/GameManager.h"
 #include "scripts/Maps/LoadingZoneManager.h"
 // --- ENREGISTREMENT AUTOMATIQUE ---
 // On crée une variable globale/statique anonyme.
@@ -51,11 +52,7 @@ void PlayerController::Start()
     }
 
     HUDManager::registerPlayer(this);
-
-    animator = gameObject->getComponent<Animator>();
-    animator->registerAnimationEvent("Slash", 3, [this]() {
-        this->endAttack();
-    });
+    GameManager::registerPlayer(this);
 }
 
 void PlayerController::Update(const sf::Time& elapsedTime)
@@ -63,16 +60,6 @@ void PlayerController::Update(const sf::Time& elapsedTime)
     EntityController::Update(elapsedTime);
     auto rawDir = moveAction->ReadValue<sf::Vector2f>();
     moveEntity(rawDir, elapsedTime);
-
-    if (rawDir == sf::Vector2f{0,0})
-    {
-        animator->setParam("moving", false);
-    } else
-    {
-        animator->setParam("moving", true);
-        animator->setParam("forwardWalk", rawDir.y);
-        animator->setParam("sideWalk", rawDir.x);
-    }
 
     if (attackAction->wasPerformedThisFrame())
     {
@@ -87,17 +74,6 @@ void PlayerController::takeDamage(int amount)
 
 void PlayerController::attack()
 {
-    animator->setParam("attack", true);
-    attackTriggerGO->setActive(true);
-    attackTriggerGO->transform.setLocalPosition({
-        facing.x * gameObject->getComponent<Collider>()->getSize().x,
-        facing.y * gameObject->getComponent<Collider>()->getSize().y,
-    });
-    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
-}
-
-void PlayerController::endAttack() {
-    attackTriggerGO->setActive(false);
-    std::cout << "end of attack" << std::endl;
+    EntityController::attack();
 }
 

@@ -46,7 +46,4 @@ void EnemyController::Update(const sf::Time& elapsedTime)
 void EnemyController::takeDamage(int amount)
 {
     EntityController::takeDamage(amount);
-
-    // gerer animator
 }
-

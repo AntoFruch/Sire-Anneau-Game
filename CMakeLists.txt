@@ -34,8 +34,6 @@ FetchContent_Declare(
 set(TGUI_BACKEND "SFML_GRAPHICS" CACHE STRING "TGUI backend" FORCE)
 FetchContent_MakeAvailable(TGUI)
 
-
-
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(src/engine)

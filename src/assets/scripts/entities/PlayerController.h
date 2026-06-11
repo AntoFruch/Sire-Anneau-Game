@@ -10,9 +10,6 @@
 class PlayerController : public EntityController {
     InputAction* moveAction;
     InputAction* attackAction;
-    Animator* animator;
-
-    GameObject* attackTriggerGO;
 public:
     PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
     void Start() override;
@@ -21,8 +18,7 @@ public:
     void takeDamage(int amount) override;
 
 private:
-    void attack();
-    void endAttack();
+    void attack() override;
 };
 
 

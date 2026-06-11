@@ -17,9 +17,13 @@ class EntityController : public CharacterController {
 protected:
     sf::Vector2f facing{0,1}; // facing bottom by default
 
+    Animator* animator;
+
     // Callback called when attacking successfully
     // void(*attackCallback)(const std::vector<Collider*>&, Collider*);
     std::function<void(const std::vector<Collider*>&, Collider*)> attackCallback;
+
+    GameObject* attackTriggerGO;
 
 public:
     EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
@@ -33,6 +37,8 @@ public:
      */
     void moveEntity(const sf::Vector2f& rawDir, const sf::Time& elapsedTime);
 
+    virtual void attack();
+    void endAttack();
     /**
      * A voir si c'est necessaire le pure virtual
      */

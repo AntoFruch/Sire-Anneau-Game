@@ -24,6 +24,10 @@ EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Ve
 void EntityController::Start()
 {
     CharacterController::Start();
+    animator = gameObject->getComponent<Animator>();
+    animator->registerAnimationEvent("Slash", 3, [this]() {
+        this->endAttack();
+    });
 }
 
 void EntityController::Update(const sf::Time& elapsedTime)
@@ -40,9 +44,35 @@ void EntityController::moveEntity(const sf::Vector2f& rawDir, const sf::Time& el
         facing.y = rawDir.y == 0 ? 0 : rawDir.y / abs(rawDir.y);
     }
 
+    if (rawDir == sf::Vector2f{0,0})
+    {
+        animator->setParam("moving", false);
+    } else
+    {
+        animator->setParam("moving", true);
+        animator->setParam("forwardWalk", rawDir.y);
+        animator->setParam("sideWalk", rawDir.x);
+    }
+
     auto delta = rawDir != sf::Vector2f{0,0} ?
     rawDir.normalized()*elapsedTime.asSeconds()*speed: sf::Vector2f{0,0};
     move(delta);
+}
+
+void EntityController::attack()
+{
+    animator->setParam("attack", true);
+    attackTriggerGO->setActive(true);
+    attackTriggerGO->transform.setLocalPosition({
+        facing.x * gameObject->getComponent<Collider>()->getSize().x,
+        facing.y * gameObject->getComponent<Collider>()->getSize().y,
+    });
+    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
+}
+
+void EntityController::endAttack() {
+    attackTriggerGO->setActive(false);
+    std::cout << "end of attack" << std::endl;
 }
 
 void EntityController::takeDamage(int amount) {

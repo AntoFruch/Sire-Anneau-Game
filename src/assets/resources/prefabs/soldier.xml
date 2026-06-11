@@ -3,7 +3,7 @@
     <Components>
         <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
         <Component name="Renderer" src="resources/textures/characters/RedSoldier.png"
-                   sprite_w="32" sprite_h="3"
+                   sprite_w="32" sprite_h="32"
                    anchorX="0" anchorY="3"/>
         <Component name="EnemyController"
                    colliderX="0" colliderY="0"
