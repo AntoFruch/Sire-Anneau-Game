@@ -48,3 +48,9 @@ void EntityController::moveEntity(const sf::Vector2f& rawDir, const sf::Time& el
 void EntityController::takeDamage(int amount) {
     current_hp -= amount;
 }
+
+float EntityController::getHealthRatio() const {
+    // On s'assure d'éviter une division par zéro au cas où max_hp serait mal initialisé
+    if (max_hp <= 0) return 0.0f;
+    return static_cast<float>(current_hp) / max_hp;
+}
