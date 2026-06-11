@@ -43,7 +43,7 @@ void MainMenu::createPlayButton()
     playButton->setTextSize(40);
 
     playButton->onPress([this]() {
-        SceneManager::requestLoading("resources/scenes/scene.xml");
+        SceneManager::requestLoading("resources/scenes/outside.xml");
     });
     playButton->onMouseEnter([playButton]() {
         playButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");

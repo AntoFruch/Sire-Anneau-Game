@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<GameObject label="background" x="0" y="0" angle="0" sx="1" sy="1">
+<GameObject label="Theater" x="0" y="0" angle="0" sx="1" sy="1">
     <Components>
         <Component name="Renderer" src="resources/textures/maps/theater.png" sprite_w="640" sprite_h="640"/>
         <Component name="Collider" x="0" y="-233" width="376" height="174"/>
@@ -9,4 +9,10 @@
         <Component name="Collider" x="320" y="0" width="32" height="640"/>
         <Component name="Collider" x="-320" y="0" width="32" height="640"/>
     </Components>
+    <GameObject label="DoorTrigger" x="0" y="310">
+        <Components>
+            <Component name="Collider" x="0" y="0" width="40" height="20" trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/outside.xml" targetDoorId="1" doorId="1" spawnX="0" spawnY="-80"/>
+        </Components>
+    </GameObject>
 </GameObject>

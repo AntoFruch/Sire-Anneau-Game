@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "Managers/Input/InputManager.h"
+#include "scripts/Maps/LoadingZoneManager.h"
 // --- ENREGISTREMENT AUTOMATIQUE ---
 // On crée une variable globale/statique anonyme.
 // Son seul but est de s'exécuter AVANT le début du jeu pour enregistrer le composant.
@@ -38,6 +39,11 @@ void PlayerController::Start()
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
     attackTriggerGO = gameObject->getChild("AttackTrigger");
+
+    if (!LoadingZoneManager::defaultSpawn())
+    {
+        gameObject->transform.setLocalPosition(LoadingZoneManager::getSpawnPointFromCurrentDoorId());
+    }
 
     animator = gameObject->getComponent<Animator>();
     animator->registerAnimationEvent("Slash", 3, [this]() {

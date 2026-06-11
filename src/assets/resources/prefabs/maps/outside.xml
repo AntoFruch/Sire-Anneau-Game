@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2" sy="2">
+    <Components>
+        <Component name="Renderer" src="resources/textures/maps/City.png" sprite_w="640" sprite_h="640"/>
+    </Components>
+    <GameObject label="Theater" x="-186" y="-213" sx="1" sy="1">
+        <Components>
+            <Component name="Renderer" src="" sprite_w="144" sprite_h="67"/>
+            <Component name="Collider" x="0" y="0" width="144" height="67" trigger="false"/>
+        </Components>
+        <GameObject label="DoorTrigger" x="0" y="35">
+            <Components>
+                <Component name="Collider" x="0" y="0" width="20" height="10" trigger="true"/>
+                <Component name="LoadingZone" sceneToLoad="resources/scenes/theater.xml" targetDoorId="1" doorId="1" spawnX="0" spawnY="60"/>
+            </Components>
+        </GameObject>
+    </GameObject>
+</GameObject>

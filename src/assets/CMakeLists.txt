@@ -6,6 +6,10 @@ add_library(lib_assets
         scripts/UI/MainMenu.h
         scripts/UI/MainMenu.cpp
         scripts/UI/PauseMenu.cpp
+        scripts/Maps/LoadingZone.h
+        scripts/Maps/LoadingZone.cpp
+        scripts/Maps/LoadingZoneManager.cpp
+        scripts/Maps/LoadingZoneManager.h
 )
 target_include_directories(lib_assets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(lib_assets PUBLIC lib_engine pugixml sfml-graphics)

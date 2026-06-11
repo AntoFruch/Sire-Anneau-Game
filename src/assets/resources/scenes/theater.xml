@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scene>
+    <GameObject>
+        <Components>
+            <Component name="PauseMenu"/>
+        </Components>
+    </GameObject>
+    <Prefab src="resources/prefabs/maps/theatre.xml" x="0" y="0" angle="0" sx="1.2" sy="1.2"/>
+
+    <Prefab src="resources/prefabs/player.xml" x="0" y="330" angle="0" sx="1" sy="1" active="true"/>
+
+    <GameObject label="foreground" x="0" y="0" angle="0" sx="1.2" sy="1.2">
+        <Components>
+            <Component name="Renderer" src="resources/textures/maps/theater_fg.png" sprite_w="640" sprite_h="640"/>
+        </Components>
+    </GameObject>
+</Scene>

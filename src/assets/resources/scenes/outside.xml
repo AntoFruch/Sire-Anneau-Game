@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scene>
+    <GameObject>
+        <Components>
+            <Component name="PauseMenu"/>
+        </Components>
+    </GameObject>
+    <Prefab src="resources/prefabs/maps/outside.xml" sx="1" sy="1"/>
+    <Prefab src="resources/prefabs/player.xml" x="0" y="0" angle="0" sx="1" sy="1" active="true"/>
+</Scene>
