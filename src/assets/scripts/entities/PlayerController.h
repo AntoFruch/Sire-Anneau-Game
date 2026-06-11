@@ -14,7 +14,7 @@ class PlayerController : public EntityController {
 
     GameObject* attackTriggerGO;
 public:
-    PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize);
+    PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject label="Player" x="0" y="0" angle="0" sx="2.5" sy="2.5">
     <Components>
-        <Component name="PlayerController" colliderX="0" colliderY="0" colliderW="8" colliderH="8"/>
+        <Component name="PlayerController" colliderX="0" colliderY="0" colliderW="8" colliderH="8" speed="100" max_hp="100" strength="20"/>
         <Component name="Renderer" src="resources/textures/characters/Archer-Purple.png" anchorX="0" anchorY="3" sprite_w="32" sprite_h="32"/>
         <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
     </Components>

@@ -21,15 +21,19 @@ namespace {
                 sf::Vector2f{
                     node.attribute("colliderW").as_float(),
                     node.attribute("colliderH").as_float()
-                });
+                },
+                node.attribute("speed").as_float(),
+                node.attribute("max_hp").as_int(),
+                node.attribute("strength").as_int()
+                );
         });
         return true;
     }();
 }
 // --------------------------
 
-PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize)
-    : EntityController(colliderPos, colliderSize, 100, 100, 20)
+PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength)
+    : EntityController(colliderPos, colliderSize, speed, max_hp, strength)
 {}
 
 void PlayerController::Start()
