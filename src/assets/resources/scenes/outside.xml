@@ -3,6 +3,7 @@
     <GameObject>
         <Components>
             <Component name="PauseMenu"/>
+            <Component name="HealthBar"/>
         </Components>
     </GameObject>
     <Prefab src="resources/prefabs/maps/outside.xml" sx="1" sy="1"/>
