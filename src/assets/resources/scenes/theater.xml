@@ -7,6 +7,7 @@
     </GameObject>
     <Prefab src="resources/prefabs/maps/theatre.xml" x="0" y="0" angle="0" sx="1.2" sy="1.2"/>
 
+    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="0" y="100" sx="1" sy="1" active="true"/>
     <Prefab src="resources/prefabs/player.xml" x="0" y="330" angle="0" sx="1" sy="1" active="true"/>
 
     <GameObject label="foreground" x="0" y="0" angle="0" sx="1.2" sy="1.2">

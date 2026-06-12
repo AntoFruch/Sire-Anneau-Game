@@ -44,7 +44,6 @@ void PlayerController::Start()
     EntityController::Start();
     moveAction = InputManager::findAction("Move");
     attackAction = InputManager::findAction("Attack");
-    attackTriggerGO = gameObject->getChild("AttackTrigger");
 
     if (!LoadingZoneManager::defaultSpawn())
     {

@@ -10,6 +10,15 @@
 #include "EntityController.h"
 
 class EnemyController : public EntityController {
+    enum State { Wander, Chasing, Attack };
+    State currentState {Wander};
+
+    float wanderClock;
+    float wanderTime{2.f};
+    sf::Vector2f headingDirection;
+    float chasingDistance{100};
+    float attackDistance{40 };
+
 public:
     EnemyController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
     void Start() override;

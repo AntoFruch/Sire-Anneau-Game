@@ -4,6 +4,10 @@
 
 #include "EnemyController.h"
 
+#include <random>
+
+#include "scripts/GameManager.h"
+
 // --- ENREGISTREMENT AUTOMATIQUE ---
 // On crée une variable globale/statique anonyme.
 // Son seul but est de s'exécuter AVANT le début du jeu pour enregistrer le composant.
@@ -38,9 +42,44 @@ void EnemyController::Start()
 {
     EntityController::Start();
 }
+
+sf::Vector2f random_vector2f_minus1_to_1() {
+    static std::random_device rd;
+    static std::default_random_engine engine(rd());
+    // On génère des entiers -1, 0 ou 1
+    static std::uniform_int_distribution<int> distribution(-1, 1);
+
+    // SFML convertit automatiquement les int en float dans le constructeur de sf::Vector2f
+    return sf::Vector2f(distribution(engine), distribution(engine));
+}
+
 void EnemyController::Update(const sf::Time& elapsedTime)
 {
     EntityController::Update(elapsedTime);
+    sf::Vector2f toPlayer = GameManager::getPlayer()->gameObject->transform.getWorldPosition() - gameObject->transform.getWorldPosition();
+    float distanceSquared = toPlayer.x*toPlayer.x + toPlayer.y*toPlayer.y;
+    switch (currentState)
+    {
+    case Wander:
+        wanderClock+=elapsedTime.asSeconds();
+        if (wanderClock >= wanderTime)
+        {
+            wanderClock = 0;
+            headingDirection = random_vector2f_minus1_to_1();
+        }
+        moveEntity(headingDirection, elapsedTime);
+        if (distanceSquared <= chasingDistance*chasingDistance) currentState = Chasing;
+        break;
+    case Chasing:
+        moveEntity(toPlayer, elapsedTime);
+        if (distanceSquared <= attackDistance*attackDistance) currentState = Attack;
+        if (distanceSquared > chasingDistance*chasingDistance) currentState = Wander;
+        break;
+    case Attack:
+        attack();
+        if (distanceSquared > attackDistance*attackDistance) currentState = Chasing;
+        break;
+    }
 }
 
 void EnemyController::takeDamage(int amount)
