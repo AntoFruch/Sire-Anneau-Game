@@ -14,8 +14,6 @@ add_library(lib_assets
         scripts/Maps/LoadingZoneManager.h
         scripts/HUD/HealthBar.cpp
         scripts/HUD/HealthBar.h
-        scripts/HUD/HUDManager.cpp
-        scripts/HUD/HUDManager.h
         scripts/GameManager.cpp
         scripts/GameManager.h
 )

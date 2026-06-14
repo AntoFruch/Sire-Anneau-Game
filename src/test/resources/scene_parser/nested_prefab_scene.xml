@@ -1,0 +1,5 @@
+<Scene>
+    <GameObject label="Spawner">
+        <Prefab src="resources/scene_parser/prefabs/base_prefab.xml" label="ChildPrefab" />
+    </GameObject>
+</Scene>

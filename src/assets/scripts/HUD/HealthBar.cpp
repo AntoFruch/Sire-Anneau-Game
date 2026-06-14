@@ -4,8 +4,8 @@
 
 #include "HealthBar.h"
 
-#include "HUDManager.h"
-#include "../entities/PlayerController.h"
+#include "scripts/entities/PlayerController.h"
+#include "scripts/GameManager.h"
 #include "TGUI/Widgets/Panel.hpp"
 
 // --- ENREGISTREMENT AUTOMATIQUE ---
@@ -44,7 +44,7 @@ void HealthBar::Start()
 void HealthBar::Update(const sf::Time& elapsedTime)
 {
     UIDocument::Update(elapsedTime);
-    if (PlayerController* playerTarget = HUDManager::getPlayer()) { setHealthRatio(playerTarget->getHealthRatio()); }
+    if (PlayerController* playerTarget = GameManager::getPlayer()) { setHealthRatio(playerTarget->getHealthRatio()); }
 }
 
 void HealthBar::setHealthRatio(float ratio)

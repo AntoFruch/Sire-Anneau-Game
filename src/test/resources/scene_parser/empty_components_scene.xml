@@ -1,0 +1,5 @@
+<Scene>
+    <GameObject label="Entity">
+        <Components />
+    </GameObject>
+</Scene>

@@ -3,7 +3,6 @@
 //
 
 #include "PlayerController.h"
-#include "../HUD/HUDManager.h"
 
 #include <iostream>
 
@@ -50,7 +49,6 @@ void PlayerController::Start()
         gameObject->transform.setLocalPosition(LoadingZoneManager::getSpawnPointFromCurrentDoorId());
     }
 
-    HUDManager::registerPlayer(this);
     GameManager::registerPlayer(this);
 }
 
