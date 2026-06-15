@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scene>
-    <GameObject>
-        <Components>
-            <Component name="PauseMenu"/>
-            <Component name="HealthBar"/>
-        </Components>
-    </GameObject>
+    <Prefab src="resources/prefabs/HUD.xml"/>
     <Prefab src="resources/prefabs/maps/outside.xml" sx="1" sy="1"/>
     <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="0" y="100" sx="1" sy="1" active="true"/>
     <Prefab label="Player" src="resources/prefabs/player.xml" x="0" y="0" angle="0" sx="1" sy="1" active="true"/>

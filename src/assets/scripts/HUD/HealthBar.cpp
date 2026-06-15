@@ -8,17 +8,6 @@
 #include "scripts/GameManager.h"
 #include "TGUI/Widgets/Panel.hpp"
 
-// --- ENREGISTREMENT AUTOMATIQUE ---
-namespace {
-    const bool registered = []() {
-        ComponentFactory::Register("HealthBar", [](const pugi::xml_node& node) {
-            return std::make_unique<HealthBar>();
-        });
-        return true;
-    }();
-}
-// ----------------------------------
-
 void HealthBar::Start()
 {
     UIDocument::Start();

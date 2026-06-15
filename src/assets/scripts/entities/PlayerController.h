@@ -5,6 +5,7 @@
 #ifndef COMPONENT_BASED_ARCH_CONTROLLER_H
 #define COMPONENT_BASED_ARCH_CONTROLLER_H
 #include "Engine.h"
+#include "Managers/Scene/ComponentFactory.h"
 #include "EntityController.h"
 
 class PlayerController : public EntityController {
@@ -19,6 +20,22 @@ public:
 
 private:
     void attack() override;
+
+    static inline bool s_registered = ComponentFactory::Register("PlayerController", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
+        return std::make_unique<PlayerController>(
+            sf::Vector2f{
+                node.attribute("colliderX").as_float(),
+                node.attribute("colliderY").as_float()
+            },
+            sf::Vector2f{
+                node.attribute("colliderW").as_float(),
+                node.attribute("colliderH").as_float()
+            },
+            node.attribute("speed").as_float(),
+            node.attribute("max_hp").as_int(),
+            node.attribute("strength").as_int()
+        );
+    });
 };
 
 

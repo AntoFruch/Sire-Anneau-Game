@@ -6,6 +6,7 @@
 #define COMPONENT_BASED_ARCH_HEALTHBAR_H
 
 #include "Engine.h"
+#include "Managers/Scene/ComponentFactory.h"
 #include "../entities/PlayerController.h" // N'oublie pas l'include
 #include "TGUI/Widgets/Panel.hpp"
 
@@ -23,6 +24,11 @@ public:
     void Update(const sf::Time& elapsedTime) override;
 
     void setHealthRatio(float ratio);
+
+private:
+    static inline bool s_registered = ComponentFactory::Register("HealthBar", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
+        return std::make_unique<HealthBar>();
+    });
 };
 
 #endif //COMPONENT_BASED_ARCH_HEALTHBAR_H

@@ -7,19 +7,6 @@
 #include "TGUI/Widgets/Button.hpp"
 #include "TGUI/Widgets/Picture.hpp"
 
-// --- ENREGISTREMENT AUTOMATIQUE ---
-// On crée une variable globale/statique anonyme.
-// Son seul but est de s'exécuter AVANT le début du jeu pour enregistrer le composant.
-namespace {
-    const bool registered = []() {
-        ComponentFactory::Register("MainMenu", [](const pugi::xml_node& node) {
-            return std::make_unique<MainMenu>();
-        });
-        return true;
-    }();
-}
-// --------------------------
-
 void MainMenu::createPlayButton()
 {
     auto playButton = tgui::Button::create();
@@ -123,5 +110,4 @@ void MainMenu::Update(const sf::Time& elapsedTime)
 {
     UIDocument::Update(elapsedTime);
 }
-
 
