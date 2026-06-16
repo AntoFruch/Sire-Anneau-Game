@@ -10,8 +10,8 @@
 #include "scripts/GameManager.h"
 #include "scripts/Maps/LoadingZoneManager.h"
 
-PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength)
-    : EntityController(colliderPos, colliderSize, speed, max_hp, strength)
+PlayerController::PlayerController(float speed, int max_hp, int strength)
+    : EntityController(speed, max_hp, strength)
 {}
 
 PlayerController::~PlayerController()

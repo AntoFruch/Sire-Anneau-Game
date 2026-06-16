@@ -6,8 +6,8 @@
 
 #include <iostream>
 
-EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength)
-    : CharacterController(colliderPos, colliderSize), speed(speed), max_hp(max_hp), current_hp(max_hp), strength(strength)
+EntityController::EntityController(float speed, int max_hp, int strength)
+    : speed(speed), max_hp(max_hp), current_hp(max_hp), strength(strength)
 {
     attackCallback = [this](const std::vector<Collider*>& hits, Collider* trigger)
     {

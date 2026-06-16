@@ -6,11 +6,10 @@
                    sprite_w="32" sprite_h="32"
                    anchorX="0" anchorY="3"/>
         <Component name="EnemyController"
-                   colliderX="0" colliderY="0"
-                   colliderW="8" colliderH="8"
                    speed="60"
                    max_hp="60"
                    strength="20"/>
+        <Component name="Collider" x="0" y="0" width="8" height="8"/>
     </Components>
     <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1" active="false">
         <Components>

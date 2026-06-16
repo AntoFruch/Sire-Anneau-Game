@@ -30,7 +30,7 @@ protected:
     GameObject* attackTriggerGO;
 
 public:
-    EntityController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
+    EntityController(float speed, int max_hp, int strength);
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 

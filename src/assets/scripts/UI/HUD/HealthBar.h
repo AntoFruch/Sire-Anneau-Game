@@ -7,11 +7,10 @@
 
 #include "Engine.h"
 #include "Managers/Scene/ComponentFactory.h"
-#include "../entities/PlayerController.h" // N'oublie pas l'include
+#include "scripts/entities/PlayerController.h"
 #include "TGUI/Widgets/Panel.hpp"
 
 class HealthBar : public UIDocument {
-    tgui::Panel::Ptr backgroundBar;
     tgui::Panel::Ptr foregroundBar;
 
     // --- Nouveaux attributs pour le Polling ---

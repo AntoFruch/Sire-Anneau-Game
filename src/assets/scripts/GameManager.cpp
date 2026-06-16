@@ -47,6 +47,7 @@ void GameManager::setFlag(const std::string& flagName)
     if (flags.contains(flagName))
     {
         flags[flagName] = true;
+        std::cout << std::format("{} flag now set on {}", flagName, flags[flagName]) << std::endl;
     }
 }
 

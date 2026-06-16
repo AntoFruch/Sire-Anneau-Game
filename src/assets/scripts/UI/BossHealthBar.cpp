@@ -1,42 +1,49 @@
 //
-// Created by hugo on 11/06/2026.
+// Created by Antonin Fruchet on 16/06/2026.
 //
 
-#include "HealthBar.h"
+#include "BossHealthBar.h"
 
-#include "scripts/entities/PlayerController.h"
-#include "scripts/GameManager.h"
-#include "TGUI/Widgets/Panel.hpp"
+BossHealthBar::BossHealthBar()
+{
+}
 
-void HealthBar::Start()
+void BossHealthBar::Start()
 {
     UIDocument::Start();
+    target = gameObject->getComponent<BossController>();
 
     // 1. Barre de fond configurée en % (15% de la largeur, 2.5% de la hauteur de l'écran)
-    backgroundBar = tgui::Panel::create();
-    backgroundBar->setSize("15%", "2.5%");
-    backgroundBar->setPosition("2%", "2%"); // Placé à 2% des bords haut/gauche
+    auto backgroundBar = tgui::Panel::create();
+    backgroundBar->setSize("80%", "3%");
+    backgroundBar->setPosition("50% - width/2", "90%");
     backgroundBar->getRenderer()->setBackgroundColor(sf::Color(60, 60, 60)); // Fond gris si vide
     backgroundBar->getRenderer()->setBorders(3); // Bordure épaisse gérée par TGUI
     backgroundBar->getRenderer()->setBorderColor(sf::Color::Black);
-    addElement(backgroundBar, "HP_Background");
+    addElement(backgroundBar, "Boss_HP_Background");
+
+    auto bossName = tgui::Label::create(std::string{gameObject->getLabel()});
+    bossName->setTextSize(25);
+    bossName->getRenderer()->setFont(customFont);
+    bossName->setPosition("Boss_HP_Background.left", "Boss_HP_Background.top - height - 4");
+    bossName->getRenderer()->setTextColor(sf::Color::White);
+    addElement(bossName, "Boss_HP_Name");
 
     // 2. Jauge rouge : copie conforme du fond via le système de chaînes de TGUI
     // On applique un décalage de 3px pour s'insérer parfaitement à l'intérieur de la bordure
     foregroundBar = tgui::Panel::create();
-    foregroundBar->setPosition("HP_Background.left + 3", "HP_Background.top + 3");
-    foregroundBar->setSize("HP_Background.width - 6", "HP_Background.height - 6");
+    foregroundBar->setPosition("Boss_HP_Background.left + 3", "Boss_HP_Background.top + 3");
+    foregroundBar->setSize("Boss_HP_Background.width - 6", "Boss_HP_Background.height - 6");
     foregroundBar->getRenderer()->setBackgroundColor(sf::Color::Red);
-    addElement(foregroundBar, "HP_Foreground");
+    addElement(foregroundBar, "Boss_HP_Foreground");
 }
-
-void HealthBar::Update(const sf::Time& elapsedTime)
+void BossHealthBar::Update(const sf::Time& elapsedTime)
 {
     UIDocument::Update(elapsedTime);
-    if (PlayerController* playerTarget = GameManager::getPlayer()) { setHealthRatio(playerTarget->getHealthRatio()); }
+    if (target) { setHealthRatio(target->getHealthRatio()); }
 }
 
-void HealthBar::setHealthRatio(float ratio)
+void BossHealthBar::setHealthRatio(float ratio)
 {
     // --- 1. GUARD CLAUSE (Le Dirty Flag) ---
     // Si rien n'a changé, on coupe immédiatement l'exécution de la fonction
@@ -51,7 +58,7 @@ void HealthBar::setHealthRatio(float ratio)
 
     // --- 3. AFFICHAGE TGUI ---
     foregroundBar->setSize(
-        ("(HP_Background.width - 6) * " + std::to_string(ratio)).c_str(), "HP_Background.height - 6");
+        ("(Boss_HP_Background.width - 6) * " + std::to_string(ratio)).c_str(), "Boss_HP_Background.height - 6");
 
     if (ratio < 0.3f) {
         foregroundBar->getRenderer()->setBackgroundColor(sf::Color(200, 0, 0));

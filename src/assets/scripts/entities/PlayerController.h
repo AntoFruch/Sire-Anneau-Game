@@ -12,7 +12,7 @@ class PlayerController : public EntityController {
     InputAction* moveAction;
     InputAction* attackAction;
 public:
-    PlayerController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
+    PlayerController(float speed, int max_hp, int strength);
     ~PlayerController();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
@@ -24,14 +24,6 @@ private:
 
     static inline bool s_registered = ComponentFactory::Register("PlayerController", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
         return std::make_unique<PlayerController>(
-            sf::Vector2f{
-                node.attribute("colliderX").as_float(),
-                node.attribute("colliderY").as_float()
-            },
-            sf::Vector2f{
-                node.attribute("colliderW").as_float(),
-                node.attribute("colliderH").as_float()
-            },
             node.attribute("speed").as_float(),
             node.attribute("max_hp").as_int(),
             node.attribute("strength").as_int()
