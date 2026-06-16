@@ -17,11 +17,16 @@ class EnemyController : public EntityController {
     float wanderClock;
     float wanderTime{2.f};
     sf::Vector2f headingDirection;
+
     float chasingDistance{100};
+
+    float attackClock;
+    float attackTime{0.6f};
     float attackDistance{40 };
 
 public:
     EnemyController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);
+    ~EnemyController();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 

@@ -13,7 +13,7 @@ EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Ve
     {
         for (const auto& hit : hits)
         {
-            if (auto controller = hit->gameObject->getComponent<EntityController>())
+            if (auto controller = hit->gameObject->getComponent<EntityController>(); controller && controller != this)
             {
                 std::cout << "Attacker : " << trigger->gameObject->getLabel() << std::endl;
                 controller->takeDamage(this->strength); // tester si ça marche avec des ennemis
@@ -25,15 +25,14 @@ void EntityController::Start()
 {
     CharacterController::Start();
     attackTriggerGO = gameObject->getChild("AttackTrigger");
+    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
+
     animator = gameObject->getComponent<Animator>();
     animator->registerAnimationEvent("Slash", 3, [this]() {
         this->endAttack();
     });
-    animator->registerAnimationEvent("Hit", 0, [this]() {
+    animator->registerAnimationEvent("Hit", 1, [this]() {
         this->invulnerable = false;
-    });
-    animator->registerAnimationEvent("Death", 3, [this]() {
-        gameObject->destroySelf();
     });
 }
 
@@ -79,7 +78,6 @@ void EntityController::attack()
         facing.x * gameObject->getComponent<Collider>()->getSize().x,
         facing.y * gameObject->getComponent<Collider>()->getSize().y,
     });
-    attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
 }
 
 void EntityController::endAttack() {
@@ -97,6 +95,7 @@ void EntityController::takeDamage(int amount) {
     // vérification de mort
     if (current_hp<=0) { // Player est mort !
         std::cout << "Player is dead !" << std::endl;
+        dead=true;
         animator->setParam("dead", true);
 
     }

@@ -14,6 +14,10 @@ PlayerController::PlayerController(const sf::Vector2f& colliderPos, const sf::Ve
     : EntityController(colliderPos, colliderSize, speed, max_hp, strength)
 {}
 
+PlayerController::~PlayerController()
+{
+    GameManager::unregisterPlayer(this);
+}
 void PlayerController::Start()
 {
     EntityController::Start();
@@ -31,6 +35,8 @@ void PlayerController::Start()
 void PlayerController::Update(const sf::Time& elapsedTime)
 {
     EntityController::Update(elapsedTime);
+    if (dead) return;
+
     auto rawDir = moveAction->ReadValue<sf::Vector2f>();
     moveEntity(rawDir, elapsedTime);
 

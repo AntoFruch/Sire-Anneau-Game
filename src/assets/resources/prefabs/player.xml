@@ -3,7 +3,7 @@
     <Components>
         <Component name="PlayerController" colliderX="0" colliderY="0" colliderW="8" colliderH="8" speed="200" max_hp="100" strength="20"/>
         <Component name="Renderer" src="resources/textures/characters/Archer-Purple.png" anchorX="0" anchorY="3" sprite_w="32" sprite_h="32"/>
-        <Component name="Animator" src="resources/animations/character/characterAnimationTree.xml"/>
+        <Component name="Animator" src="resources/animations/player/PlayerAnimationTree.xml"/>
     </Components>
     <GameObject label="MainCamera" x="0" y="0" angle="0" sx="3" sy="3" active="true">
         <Components>

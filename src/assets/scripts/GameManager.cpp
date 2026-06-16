@@ -8,22 +8,51 @@
 PlayerController* GameManager::player;
 std::vector<EnemyController*> GameManager::enemies{};
 
+std::unordered_map<std::string, bool> GameManager::flags{
+    {"theater", false},
+    {"balcony", false},
+    {"other", false},
+};
+
 void GameManager::registerPlayer(PlayerController* player)
 {
     GameManager::player = player;
 }
 
-void GameManager::registerEnemy(EnemyController* ennemy)
+void GameManager::unregisterPlayer(PlayerController*player)
 {
-    enemies.push_back(ennemy);
+    if (GameManager::player == player)
+    {
+        GameManager::player = nullptr;
+    }
 }
 
-void GameManager::unregisterEnemy(EnemyController* ennemy)
+void GameManager::registerEnemy(EnemyController* enemy)
 {
-    std::erase_if(enemies, [&ennemy](EnemyController* e){return e==ennemy; });
+    enemies.push_back(enemy);
+}
+
+void GameManager::unregisterEnemy(const EnemyController* enemy)
+{
+    std::erase_if(enemies, [&enemy](const EnemyController* e){return e==enemy; });
 }
 
 PlayerController* GameManager::getPlayer()
 {
     return player;
 }
+
+void GameManager::setFlag(const std::string& flagName)
+{
+    if (flags.contains(flagName))
+    {
+        flags[flagName] = true;
+    }
+}
+
+bool GameManager::checkFlag(const std::string& flagName)
+{
+    return flags[flagName];
+}
+
+

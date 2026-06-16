@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<AnimationTree label="CharacterAnimator">
+<AnimationTree label="EnemyAnimator">
     <Parameters>
         <Parameter label="moving" default="false" type="Bool"/>
         <Parameter label="forwardWalk" default="0" type="Float"/>
@@ -27,7 +27,7 @@
             </Transition>
         </Animation>
 
-        <BlendTree label="Move" src="resources/animations/character/moveBlendTree.xml">
+        <BlendTree label="Move" src="resources/animations/enemy/EnemyMoveBlendTree.xml">
             <Transition to="Idle">
                 <Condition parameter="moving" value="false"/>
             </Transition>
@@ -42,7 +42,7 @@
             </Transition>
         </BlendTree>
 
-        <Animation label="Slash" startx="4" starty="-1" length="4" frameDuration="80" loop="false" breakable="false">
+        <Animation label="Slash" startx="5" starty="-1" length="4" frameDuration="80" loop="false" breakable="false">
             <Transition to="Idle">
                 <Condition parameter="moving" value="false"/>
             </Transition>
@@ -57,7 +57,7 @@
             </Transition>
         </Animation>
 
-        <Animation label="Hit" startx="19" starty="-1" length="1" frameDuration="320" loop="false" breakable="false">
+        <Animation label="Hit" startx="19" starty="-1" length="2" frameDuration="320" loop="false" breakable="false">
             <Transition to="Idle">
                 <Condition parameter="moving" value="false"/>
             </Transition>
@@ -72,7 +72,7 @@
             </Transition>
         </Animation>
 
-        <Animation label="Death" startx="20" starty="-1" length="4" frameDuration="800" loop="false" breakable="false">
+        <Animation label="Death" startx="19" starty="-1" length="5" frameDuration="600" loop="false" breakable="false">
 
         </Animation>
     </Tree>

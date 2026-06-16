@@ -13,9 +13,12 @@ class EntityController : public CharacterController {
     int max_hp;
     int strength;
 
+
 protected:
     int current_hp;
     bool invulnerable = false;
+    bool dead{false};
+
     sf::Vector2f facing{0,1}; // facing bottom by default
 
     Animator* animator;
