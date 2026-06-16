@@ -5,6 +5,8 @@
         <Parameter label="forwardWalk" default="0" type="Float"/>
         <Parameter label="sideWalk" default="0" type="Float"/>
         <Parameter label="attack" default="false" type="Trigger"/>
+        <Parameter label="hit" default="false" type="Trigger"/>
+        <Parameter label="dead" default="false" type="Trigger"/>
     </Parameters>
 
     <EntryState label="Idle"/>
@@ -17,6 +19,12 @@
             <Transition to="Slash">
                 <Condition parameter="attack" value="true"/>
             </Transition>
+            <Transition to="Hit">
+                <Condition parameter="hit" value="true"/>
+            </Transition>
+            <Transition to="Death">
+                <Condition parameter="dead" value="true"/>
+            </Transition>
         </Animation>
 
         <BlendTree label="Move" src="resources/animations/character/moveBlendTree.xml">
@@ -25,6 +33,12 @@
             </Transition>
             <Transition to="Slash">
                 <Condition parameter="attack" value="true"/>
+            </Transition>
+            <Transition to="Hit">
+                <Condition parameter="hit" value="true"/>
+            </Transition>
+            <Transition to="Death">
+                <Condition parameter="dead" value="true"/>
             </Transition>
         </BlendTree>
 
@@ -35,6 +49,31 @@
             <Transition to="Move">
                 <Condition parameter="moving" value="true"/>
             </Transition>
+            <Transition to="Hit">
+                <Condition parameter="hit" value="true"/>
+            </Transition>
+            <Transition to="Death">
+                <Condition parameter="dead" value="true"/>
+            </Transition>
+        </Animation>
+
+        <Animation label="Hit" startx="19" starty="-1" length="1" frameDuration="320" loop="false" breakable="false">
+            <Transition to="Idle">
+                <Condition parameter="moving" value="false"/>
+            </Transition>
+            <Transition to="Move">
+                <Condition parameter="moving" value="true"/>
+            </Transition>
+            <Transition to="Slash">
+                <Condition parameter="attack" value="true"/>
+            </Transition>
+            <Transition to="Death">
+                <Condition parameter="dead" value="true"/>
+            </Transition>
+        </Animation>
+
+        <Animation label="Death" startx="20" starty="-1" length="4" frameDuration="800" loop="false" breakable="false">
+
         </Animation>
     </Tree>
 </AnimationTree>

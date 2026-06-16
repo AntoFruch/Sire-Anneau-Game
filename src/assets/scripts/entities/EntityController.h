@@ -12,9 +12,10 @@ class EntityController : public CharacterController {
     float speed;
     int max_hp;
     int strength;
-    int current_hp;
 
 protected:
+    int current_hp;
+    bool invulnerable = false;
     sf::Vector2f facing{0,1}; // facing bottom by default
 
     Animator* animator;

@@ -28,6 +28,12 @@ void EntityController::Start()
     animator->registerAnimationEvent("Slash", 3, [this]() {
         this->endAttack();
     });
+    animator->registerAnimationEvent("Hit", 0, [this]() {
+        this->invulnerable = false;
+    });
+    animator->registerAnimationEvent("Death", 3, [this]() {
+        gameObject->destroySelf();
+    });
 }
 
 void EntityController::Update(const sf::Time& elapsedTime)
@@ -73,11 +79,26 @@ void EntityController::attack()
 void EntityController::endAttack() {
     attackTriggerGO->setActive(false);
     std::cout << "end of attack" << std::endl;
+
 }
 
 void EntityController::takeDamage(int amount) {
-    current_hp -= amount;
-    std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
+    if (invulnerable) return;
+
+    if (current_hp <= 0) current_hp = 0 ;
+    else {current_hp -= amount;}
+
+    // vérification de mort
+    if (current_hp<=0) { // Player est mort !
+        std::cout << "Player is dead !" << std::endl;
+        animator->setParam("dead", true);
+
+    }
+    else {// Player encore en vie
+        std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
+        invulnerable = true;
+        animator->setParam("hit", true);
+    }
 }
 
 float EntityController::getHealthRatio() const {
