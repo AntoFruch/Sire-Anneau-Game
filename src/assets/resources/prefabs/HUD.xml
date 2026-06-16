@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject>
+    <Components>
+        <Component name="PauseMenu"/>
+        <Component name="HealthBar"/>
+    </Components>
+</GameObject>

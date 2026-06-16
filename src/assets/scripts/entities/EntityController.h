@@ -33,7 +33,7 @@ public:
 
     /**
      * @brief Handles the movement of the entity with the speed, from a direction only
-     * @param rawDir entity will move toward this direction
+     * @param rawDir entity will move toward this direction, direction is not needed to be normalized
      * @param elapsedTime time between last frame and this frame
      */
     void moveEntity(const sf::Vector2f& rawDir, const sf::Time& elapsedTime);

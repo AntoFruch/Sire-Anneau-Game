@@ -6,12 +6,16 @@
 
 add_executable(unitTests
         unitTests.cpp
+        SceneUnitTests.cpp
 )
 target_link_libraries(unitTests PUBLIC GTest::gtest_main lib_engine pugixml sfml-graphics)
+target_compile_definitions(unitTests PRIVATE
+        TEST_RESOURCES_DIR="${CMAKE_CURRENT_BINARY_DIR}/resources"
+)
 
 add_custom_command(TARGET unitTests POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/resources
+        ${CMAKE_SOURCE_DIR}/src/test/resources
         $<TARGET_FILE_DIR:unitTests>/resources
 )
 

@@ -7,6 +7,7 @@
 
 
 #include "Engine.h"
+#include "Managers/Scene/ComponentFactory.h"
 
 class MainMenu : public UIDocument {
 public:
@@ -19,6 +20,10 @@ private:
     void createQuitButton();
     void createTitle();
     void createBackground();
+
+    static inline bool s_registered = ComponentFactory::Register("MainMenu", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
+        return std::make_unique<MainMenu>();
+    });
 };
 
 

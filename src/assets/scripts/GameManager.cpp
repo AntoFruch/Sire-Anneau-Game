@@ -4,6 +4,7 @@
 
 #include "GameManager.h"
 
+
 PlayerController* GameManager::player;
 std::vector<EnemyController*> GameManager::enemies{};
 
@@ -20,4 +21,9 @@ void GameManager::registerEnemy(EnemyController* ennemy)
 void GameManager::unregisterEnemy(EnemyController* ennemy)
 {
     std::erase_if(enemies, [&ennemy](EnemyController* e){return e==ennemy; });
+}
+
+PlayerController* GameManager::getPlayer()
+{
+    return player;
 }

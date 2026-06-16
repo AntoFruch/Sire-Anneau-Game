@@ -16,6 +16,8 @@ public:
     static void registerPlayer(PlayerController*);
     static void registerEnemy(EnemyController*);
     static void unregisterEnemy(EnemyController*);
+
+    static PlayerController* getPlayer();
 };
 
 

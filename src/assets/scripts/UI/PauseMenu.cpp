@@ -9,19 +9,6 @@
 #include "TGUI/Widgets/Panel.hpp"
 #include "TGUI/Widgets/Picture.hpp"
 
-// --- ENREGISTREMENT AUTOMATIQUE ---
-// On crée une variable globale/statique anonyme.
-// Son seul but est de s'exécuter AVANT le début du jeu pour enregistrer le composant.
-namespace {
-    const bool registered = []() {
-        ComponentFactory::Register("PauseMenu", [](const pugi::xml_node& node) {
-            return std::make_unique<PauseMenu>();
-        });
-        return true;
-    }();
-}
-// --------------------------
-
 void PauseMenu::Start()
 {
     UIDocument::Start();

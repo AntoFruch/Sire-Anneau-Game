@@ -1,0 +1,5 @@
+<Scene>
+    <GameObject label="Parent">
+        <BadNode />
+    </GameObject>
+</Scene>

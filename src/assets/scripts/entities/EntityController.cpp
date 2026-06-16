@@ -24,6 +24,7 @@ EntityController::EntityController(const sf::Vector2f& colliderPos, const sf::Ve
 void EntityController::Start()
 {
     CharacterController::Start();
+    attackTriggerGO = gameObject->getChild("AttackTrigger");
     animator = gameObject->getComponent<Animator>();
     animator->registerAnimationEvent("Slash", 3, [this]() {
         this->endAttack();
@@ -44,24 +45,29 @@ void EntityController::Update(const sf::Time& elapsedTime)
 
 void EntityController::moveEntity(const sf::Vector2f& rawDir, const sf::Time& elapsedTime)
 {
-    if (rawDir!=sf::Vector2f{0,0})
+    auto nRawDir = rawDir == sf::Vector2f{0,0} ? sf::Vector2f{0,0} : rawDir.normalized();
+
+    // pour un ennemi, la direction n'est jamais vraiment 1, 0 il se retrouve donc
+    // toujours a marcher en diagonale si on met pas ce systeme d'epsilon.
+    static float const EPSILON = 0.25f;
+    if (std::abs(nRawDir.x) > EPSILON || std::abs(nRawDir.y) > EPSILON)
     {
-        facing.x = rawDir.x == 0 ? 0 : rawDir.x / abs(rawDir.x);
-        facing.y = rawDir.y == 0 ? 0 : rawDir.y / abs(rawDir.y);
+        facing.x = (std::abs(nRawDir.x) <= EPSILON) ? 0.0f : (nRawDir.x / std::abs(nRawDir.x));
+        facing.y = (std::abs(nRawDir.y) <= EPSILON) ? 0.0f : (nRawDir.y / std::abs(nRawDir.y));
     }
 
-    if (rawDir == sf::Vector2f{0,0})
+    if (nRawDir == sf::Vector2f{0,0})
     {
         animator->setParam("moving", false);
     } else
     {
         animator->setParam("moving", true);
-        animator->setParam("forwardWalk", rawDir.y);
-        animator->setParam("sideWalk", rawDir.x);
+        animator->setParam("forwardWalk", facing.y);
+        animator->setParam("sideWalk", facing.x);
     }
 
-    auto delta = rawDir != sf::Vector2f{0,0} ?
-    rawDir.normalized()*elapsedTime.asSeconds()*speed: sf::Vector2f{0,0};
+    auto delta = nRawDir != sf::Vector2f{0,0} ?
+    nRawDir*elapsedTime.asSeconds()*speed: sf::Vector2f{0,0};
     move(delta);
 }
 

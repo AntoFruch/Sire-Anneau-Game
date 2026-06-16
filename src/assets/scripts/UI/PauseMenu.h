@@ -7,6 +7,7 @@
 
 
 #include "Engine.h"
+#include "Managers/Scene/ComponentFactory.h"
 
 class PauseMenu : public UIDocument {
     InputAction* pauseAction;
@@ -25,6 +26,10 @@ private:
 
     void hide();
     void show();
+
+    static inline bool s_registered = ComponentFactory::Register("PauseMenu", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
+        return std::make_unique<PauseMenu>();
+    });
 };
 
 

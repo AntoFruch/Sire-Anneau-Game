@@ -1,0 +1,3 @@
+<Scene>
+    <Prefab src="resources/scene_parser/prefabs/missing_prefab.xml" />
+</Scene>
