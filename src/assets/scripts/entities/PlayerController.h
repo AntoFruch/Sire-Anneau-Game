@@ -8,6 +8,8 @@
 #include "Managers/Scene/ComponentFactory.h"
 #include "EntityController.h"
 
+std::unique_ptr<Component> create_player_controller(pugi::xml_node const& node);
+
 class PlayerController : public EntityController {
     InputAction* moveAction;
     InputAction* attackAction;
@@ -22,14 +24,17 @@ public:
 private:
     void attack() override;
 
-    static inline bool s_registered = ComponentFactory::Register("PlayerController", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<PlayerController>(
-            node.attribute("speed").as_float(),
-            node.attribute("max_hp").as_int(),
-            node.attribute("strength").as_int()
-        );
-    });
+    static inline bool s_registered = ComponentFactory::Register("PlayerController", create_player_controller);
 };
+
+inline std::unique_ptr<Component> create_player_controller(pugi::xml_node const& node)
+{
+    return std::make_unique<PlayerController>(
+        node.attribute("speed").as_float(),
+        node.attribute("max_hp").as_int(),
+        node.attribute("strength").as_int()
+    );
+}
 
 
 

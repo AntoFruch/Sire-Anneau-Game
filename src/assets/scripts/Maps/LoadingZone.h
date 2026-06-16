@@ -9,6 +9,8 @@
 #include "Engine.h"
 #include "Managers/Scene/ComponentFactory.h"
 
+std::unique_ptr<Component> create_loading_zone(pugi::xml_node const& node);
+
 class LoadingZone : public Component
 {
     const std::string sceneToLoad;
@@ -26,16 +28,19 @@ public:
     const sf::Vector2f& getSpawnPoint() const;
 
 private:
-    static inline bool s_registered = ComponentFactory::Register("LoadingZone", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<LoadingZone>(
-            node.attribute("sceneToLoad").as_string(),
-            node.attribute("doorId").as_uint(),
-            node.attribute("targetDoorId").as_uint(),
-            node.attribute("spawnX").as_float(),
-            node.attribute("spawnY").as_float()
-        );
-    });
+    static inline bool s_registered = ComponentFactory::Register("LoadingZone", create_loading_zone);
 };
+
+inline std::unique_ptr<Component> create_loading_zone(pugi::xml_node const& node)
+{
+    return std::make_unique<LoadingZone>(
+        node.attribute("sceneToLoad").as_string(),
+        node.attribute("doorId").as_uint(),
+        node.attribute("targetDoorId").as_uint(),
+        node.attribute("spawnX").as_float(),
+        node.attribute("spawnY").as_float()
+    );
+}
 
 
 #endif //COMPONENT_BASED_ARCH_LOADINGZONE_H

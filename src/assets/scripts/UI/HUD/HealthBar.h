@@ -10,6 +10,8 @@
 #include "scripts/entities/PlayerController.h"
 #include "TGUI/Widgets/Panel.hpp"
 
+std::unique_ptr<Component> create_health_bar(pugi::xml_node const& node);
+
 class HealthBar : public UIDocument {
     tgui::Panel::Ptr foregroundBar;
 
@@ -25,9 +27,12 @@ public:
     void setHealthRatio(float ratio);
 
 private:
-    static inline bool s_registered = ComponentFactory::Register("HealthBar", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<HealthBar>();
-    });
+    static inline bool s_registered = ComponentFactory::Register("HealthBar", create_health_bar);
 };
+
+inline std::unique_ptr<Component> create_health_bar(pugi::xml_node const& node)
+{
+    return std::make_unique<HealthBar>();
+}
 
 #endif //COMPONENT_BASED_ARCH_HEALTHBAR_H

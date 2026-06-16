@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scene>
-    <GameObject label="MainMenuController">
+    <GameObject label="Menu">
         <Components>
             <Component name="MainMenu"/>
         </Components>

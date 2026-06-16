@@ -5,6 +5,8 @@
 ```C++
 ## Header file (.h)
 
+std::unique_ptr<Component> create_new_component(pugi::xml_node const& node);
+
 class NewComponent : public Component // Possible to inherit a class that already inherits Component
 {
 public:
@@ -13,9 +15,12 @@ public:
     void Update(const sf::Time& elapsedTime) override; // Executed every frame
 
 private:
-    static inline bool s_registered = ComponentFactory::Register("NewComponent", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<NewComponent>({extraction of the arguments in the xml node});
-    });
+    static inline bool s_registered = ComponentFactory::Register("NewComponent", create_new_component);
 };
+
+inline std::unique_ptr<Component> create_new_component(pugi::xml_node const& node)
+{
+    return std::make_unique<NewComponent>({extraction of the arguments in the xml node});
+}
 
 ```

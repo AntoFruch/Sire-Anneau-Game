@@ -9,6 +9,8 @@
 #include "Engine.h"
 #include "Managers/Scene/ComponentFactory.h"
 
+std::unique_ptr<Component> create_main_menu(pugi::xml_node const& node);
+
 class MainMenu : public UIDocument {
 public:
     MainMenu() = default;
@@ -21,10 +23,13 @@ private:
     void createTitle();
     void createBackground();
 
-    static inline bool s_registered = ComponentFactory::Register("MainMenu", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<MainMenu>();
-    });
+    static inline bool s_registered = ComponentFactory::Register("MainMenu", create_main_menu);
 };
+
+inline std::unique_ptr<Component> create_main_menu(pugi::xml_node const& node)
+{
+    return std::make_unique<MainMenu>();
+}
 
 
 

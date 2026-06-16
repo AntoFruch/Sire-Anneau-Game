@@ -9,6 +9,8 @@
 #include "EnemyController.h"
 #include "Engine.h"
 
+std::unique_ptr<Component> create_boss_controller(pugi::xml_node const& node);
+
 class BossController : public EnemyController
 {
 public:
@@ -20,17 +22,17 @@ public:
 
 
 private:
-    static inline bool s_registered =
-        ComponentFactory::Register("BossController",
-             [](const pugi::xml_node& node) -> std::unique_ptr<Component>
-             {
-                 return std::make_unique<BossController>(
-                    node.attribute("speed").as_float(),
-                    node.attribute("max_hp").as_int(),
-                    node.attribute("strength").as_int()
-                    );
-             });
+    static inline bool s_registered = ComponentFactory::Register("BossController", create_boss_controller);
 };
+
+inline std::unique_ptr<Component> create_boss_controller(pugi::xml_node const& node)
+{
+    return std::make_unique<BossController>(
+        node.attribute("speed").as_float(),
+        node.attribute("max_hp").as_int(),
+        node.attribute("strength").as_int()
+    );
+}
 
 
 #endif //COMPONENT_BASED_ARCH_BOSSCONTROLLER_H

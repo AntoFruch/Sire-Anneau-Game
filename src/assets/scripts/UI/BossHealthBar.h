@@ -11,6 +11,8 @@
 
 #include "TGUI/AllWidgets.hpp"
 
+std::unique_ptr<Component> create_boss_health_bar(pugi::xml_node const& node);
+
 class BossHealthBar : public UIDocument
 {
     tgui::Panel::Ptr foregroundBar;
@@ -25,12 +27,13 @@ public:
 private:
     void setHealthRatio(float ratio);
 
-    static inline bool s_registered = ComponentFactory::Register("BossHealthBar",
-        [](const pugi::xml_node& node) -> std::unique_ptr<Component>
-                     {
-                         return std::make_unique<BossHealthBar>();
-                     });
+    static inline bool s_registered = ComponentFactory::Register("BossHealthBar", create_boss_health_bar);
 };
+
+inline std::unique_ptr<Component> create_boss_health_bar(pugi::xml_node const& node)
+{
+    return std::make_unique<BossHealthBar>();
+}
 
 
 #endif //COMPONENT_BASED_ARCH_BOSSHEALTHBAR_H

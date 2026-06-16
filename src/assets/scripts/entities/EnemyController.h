@@ -10,6 +10,8 @@
 #include "Managers/Scene/ComponentFactory.h"
 #include "EntityController.h"
 
+std::unique_ptr<Component> create_enemy_controller(pugi::xml_node const& node);
+
 class EnemyController : public EntityController {
     enum State { Wander, Chasing, Attack };
     State currentState {Wander};
@@ -33,14 +35,17 @@ public:
     void takeDamage(int amount) override;
 
 private:
-    static inline bool s_registered = ComponentFactory::Register("EnemyController", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
-        return std::make_unique<EnemyController>(
-            node.attribute("speed").as_float(),
-            node.attribute("max_hp").as_int(),
-            node.attribute("strength").as_int()
-        );
-    });
+    static inline bool s_registered = ComponentFactory::Register("EnemyController", create_enemy_controller);
 };
+
+inline std::unique_ptr<Component> create_enemy_controller(pugi::xml_node const& node)
+{
+    return std::make_unique<EnemyController>(
+        node.attribute("speed").as_float(),
+        node.attribute("max_hp").as_int(),
+        node.attribute("strength").as_int()
+    );
+}
 
 
 
