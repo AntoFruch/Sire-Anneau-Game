@@ -22,7 +22,7 @@ void EnemyController::Start()
 {
     EntityController::Start();
     GameManager::registerEnemy(this);
-    animator->registerAnimationEvent("Death", 4, [this]() {
+    animator->registerAnimationEvent("Death", 3, [this]() {
         gameObject->destroySelf();
     });
 }

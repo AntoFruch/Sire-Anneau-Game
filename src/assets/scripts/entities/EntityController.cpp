@@ -31,7 +31,7 @@ void EntityController::Start()
     animator->registerAnimationEvent("Slash", 3, [this]() {
         this->endAttack();
     });
-    animator->registerAnimationEvent("Hit", 1, [this]() {
+    animator->registerAnimationEvent("Hit", 0, [this]() {
         this->invulnerable = false;
     });
 }

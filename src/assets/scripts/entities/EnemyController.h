@@ -21,8 +21,8 @@ class EnemyController : public EntityController {
     float chasingDistance{100};
 
     float attackClock;
-    float attackTime{0.6f};
-    float attackDistance{40 };
+    float attackTime{0.8f};
+    float attackDistance{40};
 
 public:
     EnemyController(const sf::Vector2f& colliderPos, const sf::Vector2f& colliderSize, float speed, int max_hp, int strength);

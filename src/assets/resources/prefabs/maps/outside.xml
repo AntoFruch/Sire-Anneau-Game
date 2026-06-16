@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject sx="2" sy="2">
     <Components>
-        <Component name="Renderer" src="resources/textures/maps/City.png" sprite_w="640" sprite_h="640"/>
+        <Component name="Renderer"
+                   src="resources/textures/maps/City.png"
+                   sprite_w="640" sprite_h="640"/>
     </Components>
-    <GameObject label="Theater" x="-186" y="-213" sx="1" sy="1">
+    <GameObject label="Theater"
+                x="-186" y="-213"
+                sx="1.3" sy="1.3">
         <Components>
-            <Component name="Renderer" src="resources/textures/debug.png" sprite_w="144" sprite_h="67"/>
-            <Component name="Collider" x="0" y="0" width="144" height="67" trigger="false"/>
+            <Component name="Renderer"
+                       src="resources/textures/maps/theatre_outside.png"
+                       sprite_w="128" sprite_h="128"/>
+            <Component name="Collider"
+                       x="0" y="3"
+                       width="128" height="121"
+                       trigger="false"/>
         </Components>
-        <GameObject label="DoorTrigger" x="0" y="35">
+        <GameObject label="DoorTrigger"
+                    x="0" y="60">
             <Components>
-                <Component name="Collider" x="0" y="0" width="20" height="10" trigger="true"/>
-                <Component name="LoadingZone" sceneToLoad="resources/scenes/theater.xml" targetDoorId="1" doorId="1" spawnX="0" spawnY="60"/>
+                <Component name="Collider" x="0" y="0"
+                           width="20" height="10"
+                           trigger="true"/>
+                <Component name="LoadingZone" sceneToLoad="resources/scenes/theater.xml"
+                           targetDoorId="1"
+                           doorId="1"
+                           spawnX="0" spawnY="60"/>
             </Components>
         </GameObject>
     </GameObject>

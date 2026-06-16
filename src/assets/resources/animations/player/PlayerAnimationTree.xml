@@ -57,7 +57,7 @@
             </Transition>
         </Animation>
 
-        <Animation label="Hit" startx="18" starty="-1" length="2" frameDuration="320" loop="false" breakable="false">
+        <Animation label="Hit" startx="19" starty="-1" length="1" frameDuration="400" loop="false" breakable="false">
             <Transition to="Idle">
                 <Condition parameter="moving" value="false"/>
             </Transition>
