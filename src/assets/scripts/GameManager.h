@@ -19,6 +19,7 @@ public:
     static void unregisterPlayer(PlayerController*);
     static void registerEnemy(EnemyController*);
     static void unregisterEnemy(const EnemyController*);
+    static std::vector<EnemyController*> getEnemies();
 
     static void setFlag(const std::string& flagName);
     static bool checkFlag(const std::string& flagName);

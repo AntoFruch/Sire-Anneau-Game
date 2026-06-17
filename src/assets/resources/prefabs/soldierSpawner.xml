@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject label="SoldierSpawner" sx="2" sy="2">
+    <Components>
+        <Component name="EnnemySpawner"
+                   ennemyName="resources/prefabs/soldier.xml"
+                   intervalle="4.0"
+        />
+        <Component name="Collider"
+                   x="0"
+                   y="0"
+                   width="8"
+                   height="8"
+                   trigger="true"
+        />
+    </Components>
+</GameObject>
