@@ -14,7 +14,6 @@ BossController::BossController(float speed, int max_hp, int strength)
 
 BossController::~BossController()
 {
-    GameManager::setFlag("theater");
 }
 
 void BossController::Start()
@@ -26,3 +25,8 @@ void BossController::Update(const sf::Time& elapsedTime)
     EnemyController::Update(elapsedTime);
 }
 
+void BossController::die()
+{
+    EntityController::die();
+    GameManager::setFlag("theater");
+}

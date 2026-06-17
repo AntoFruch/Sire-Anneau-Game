@@ -39,6 +39,7 @@ void EntityController::Start()
 void EntityController::Update(const sf::Time& elapsedTime)
 {
     CharacterController::Update(elapsedTime);
+    if (dead) die();
 }
 
 
@@ -89,21 +90,18 @@ void EntityController::endAttack() {
 void EntityController::takeDamage(int amount) {
     if (invulnerable) return;
 
-    if (current_hp <= 0) current_hp = 0 ;
-    else {current_hp -= amount;}
+    current_hp -= amount;
 
-    // vérification de mort
-    if (current_hp<=0) { // Player est mort !
-        std::cout << "Player is dead !" << std::endl;
-        dead=true;
-        animator->setParam("dead", true);
+    std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
+    invulnerable = true;
+    animator->setParam("hit", true);
+    if (current_hp <= 0) dead=true;
+}
 
-    }
-    else {// Player encore en vie
-        std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
-        invulnerable = true;
-        animator->setParam("hit", true);
-    }
+void EntityController::die()
+{
+    std::cout << std::format("{} is dead !", gameObject->getLabel()) << std::endl;
+    animator->setParam("dead", true);
 }
 
 float EntityController::getHealthRatio() const {
