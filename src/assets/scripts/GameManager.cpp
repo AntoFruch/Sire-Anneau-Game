@@ -42,6 +42,10 @@ PlayerController* GameManager::getPlayer()
     return player;
 }
 
+std::vector<EnemyController*> GameManager::getEnemies() {
+    return enemies;
+}
+
 void GameManager::setFlag(const std::string& flagName)
 {
     if (flags.contains(flagName))
