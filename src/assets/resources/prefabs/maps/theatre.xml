@@ -2,7 +2,7 @@
 <GameObject label="Theater" x="0" y="0" angle="0" sx="1" sy="1">
     <Components>
         <Component name="TheaterBehavior"/>
-        <Component name="Renderer" src="resources/textures/maps/theater.png" sprite_w="640" sprite_h="640"/>
+        <Component name="Renderer" src="resources/textures/maps/theater/theater.png" sprite_w="640" sprite_h="640"/>
         <Component name="Collider" x="0" y="-233" width="376" height="174"/>
 
         <Component name="Collider" x="0" y="320" width="640" height="32"/>

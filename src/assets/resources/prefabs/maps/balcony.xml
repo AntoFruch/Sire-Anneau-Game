@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2" sy="2">
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/balcony/Balcony.png"
+                   sprite_w="320" sprite_h="320"/>
+    </Components>
+    <GameObject label="ExitDoor"
+                x="-150" y="0">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="20" height="40"
+                       trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/outside.xml"
+                       targetDoorId="2"
+                       doorId="1"
+                       spawnX="50" spawnY="0"/>
+        </Components>
+    </GameObject>
+
+    <GameObject label="House"
+                x="0" y="-100"
+                sx="2" sy="2">
+        <Components>
+            <Component name="Renderer"
+                       src="resources/textures/maps/balcony/balconyhouse.png"
+                       sprite_w="64" sprite_h="64"/>
+
+            <Component name="Collider"
+                       x="0" y="12"
+                       width="56" height="40"
+                       trigger="false"/>
+        </Components>
+    </GameObject>
+
+</GameObject>

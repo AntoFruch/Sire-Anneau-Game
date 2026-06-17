@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2" sy="2">
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/arras/Arras.png"
+                   sprite_w="320" sprite_h="320"/>
+    </Components>
+    <GameObject label="ExitDoor"
+                x="0" y="-130">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="40" height="20"
+                       trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/outside.xml"
+                       targetDoorId="3"
+                       doorId="1"
+                       spawnX="0" spawnY="50"/>
+        </Components>
+    </GameObject>
+
+</GameObject>
