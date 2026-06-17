@@ -20,6 +20,9 @@ add_library(lib_assets
         scripts/entities/BossController.cpp
         scripts/UI/BossHealthBar.cpp
         scripts/UI/BossHealthBar.h
+        scripts/Maps/TheaterBehavior.cpp
+        scripts/Maps/TheaterBehavior.h
+
 )
 target_include_directories(lib_assets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(lib_assets PUBLIC lib_engine pugixml sfml-graphics tgui)

@@ -18,7 +18,7 @@ class EnemyController : public EntityController {
     float wanderTime{2.f};
     sf::Vector2f headingDirection;
 
-    float chasingDistance{100};
+    float chasingDistance{200};
 
     float attackClock;
     float attackTime{0.8f};

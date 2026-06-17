@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<GameObject label="Boss" x="0" y="0" angle="0" sx="3" sy="3">
+<GameObject label="Comte de Valvert" x="0" y="0" angle="0" sx="3" sy="3">
     <Components>
         <Component name="BossController"
                    speed="100"
