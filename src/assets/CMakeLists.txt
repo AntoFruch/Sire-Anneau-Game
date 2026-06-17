@@ -24,6 +24,8 @@ add_library(lib_assets
         scripts/Maps/TheaterBehavior.h
         scripts/entities/EnnemySpawner.h
         scripts/entities/EnnemySpawner.cpp
+        scripts/UI/GameOverMenu.h
+        scripts/UI/GameOverMenu.cpp
 
 )
 target_include_directories(lib_assets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -11,6 +11,8 @@
 class PlayerController : public EntityController {
     InputAction* moveAction;
     InputAction* attackAction;
+
+    bool gameOver{false};
 public:
     PlayerController(float speed, int max_hp, int strength);
     ~PlayerController();
@@ -18,6 +20,11 @@ public:
     void Update(const sf::Time& elapsedTime) override;
 
     void takeDamage(int amount) override;
+
+    bool isGameOver() const
+    {
+        return gameOver;
+    }
 
 private:
     void attack() override;
