@@ -19,6 +19,7 @@ class LoadingZone : public Component
 
 public:
     LoadingZone(const std::string& sceneToLoad, unsigned int doorId, unsigned int targetDoorId, float spawnX, float spawnY);
+    ~LoadingZone();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 

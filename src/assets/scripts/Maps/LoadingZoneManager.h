@@ -21,6 +21,7 @@ public:
     void static requestLoading(std::string_view sceneToLoad, unsigned int targetDoorId);
     static const sf::Vector2f& getSpawnPointFromCurrentDoorId();
     static void registerLZ(LoadingZone* lz);
+    static void unregisterLZ(int doorId);
     static bool defaultSpawn();
 };
 

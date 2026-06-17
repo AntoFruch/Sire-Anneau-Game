@@ -12,6 +12,11 @@ LoadingZone::LoadingZone(const std::string& sceneToLoad, unsigned int doorId, un
 {
 }
 
+LoadingZone::~LoadingZone()
+{
+    LoadingZoneManager::unregisterLZ(doorId);
+}
+
 void LoadingZone::Start()
 {
     Component::Start();

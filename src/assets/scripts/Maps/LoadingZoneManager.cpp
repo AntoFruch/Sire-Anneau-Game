@@ -30,3 +30,8 @@ void LoadingZoneManager::registerLZ(LoadingZone* lz)
     loadingZones.try_emplace(lz->getDoorID(), lz);
 }
 
+void LoadingZoneManager::unregisterLZ(int doorId)
+{
+    loadingZones.erase(doorId);
+}
+
