@@ -22,7 +22,7 @@ void EnemyController::Start()
 {
     EntityController::Start();
     GameManager::registerEnemy(this);
-    animator->registerAnimationEvent("Death", 3, [this]() {
+    animator->registerAnimationEvent("Death", 2, [this]() {
         gameObject->destroySelf();
     });
 }
@@ -83,9 +83,4 @@ void EnemyController::Update(const sf::Time& elapsedTime)
         }
         break;
     }
-}
-
-void EnemyController::takeDamage(int amount)
-{
-    EntityController::takeDamage(amount);
 }

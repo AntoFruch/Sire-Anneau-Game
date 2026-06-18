@@ -43,10 +43,11 @@ public:
 
     virtual void attack();
     void endAttack();
+
     /**
      * A voir si c'est necessaire le pure virtual
      */
-    virtual void takeDamage(int amount)=0;
+    virtual void takeDamage(int amount);
     virtual void die();
     float getHealthRatio() const;
 };

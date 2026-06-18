@@ -72,7 +72,7 @@
             </Transition>
         </Animation>
 
-        <Animation label="Death" startx="20" starty="-1" length="4" frameDuration="600" loop="false" breakable="false">
+        <Animation label="Death" startx="21" starty="-1" length="3" frameDuration="600" loop="false" breakable="false">
 
         </Animation>
     </Tree>

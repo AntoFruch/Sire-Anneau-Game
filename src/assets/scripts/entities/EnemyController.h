@@ -26,11 +26,9 @@ class EnemyController : public EntityController {
 
 public:
     EnemyController(float speed, int max_hp, int strength);
-    ~EnemyController();
+    ~EnemyController() override;
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
-
-    void takeDamage(int amount) override;
 
 private:
     static inline bool s_registered = ComponentFactory::Register("EnemyController", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
