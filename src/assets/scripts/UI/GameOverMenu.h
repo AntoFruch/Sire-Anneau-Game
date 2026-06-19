@@ -23,9 +23,6 @@ private:
     void createBackGround();
     void createTitle();
 
-    void hide();
-    void show();
-
     static inline bool s_registered = ComponentFactory::Register("GameOverMenu", [](const pugi::xml_node& node) -> std::unique_ptr<Component> {
         return std::make_unique<GameOverMenu>();
     });

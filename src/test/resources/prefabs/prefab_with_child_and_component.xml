@@ -1,0 +1,6 @@
+<GameObject label="PrefabRoot">
+    <Components>
+        <Component name="SceneParserProbeComponent" value="42" />
+    </Components>
+    <GameObject label="PrefabChild" x="4" y="8" />
+</GameObject>

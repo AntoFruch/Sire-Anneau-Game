@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<InputActions>
+    <Action label="Move" type="Vector2D">
+        <binding>
+            <up bind="Z"/>
+            <down bind="S"/>
+            <left bind="Q"/>
+            <right bind="D"/>
+        </binding>
+    </Action>
+    <Action label="Attack" type="Button">
+        <binding bind="P"/>
+    </Action>
+    <Action label="Pause" type="Button">
+        <binding bind="Escape"/>
+    </Action>
+</InputActions>

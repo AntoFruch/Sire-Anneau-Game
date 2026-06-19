@@ -1,0 +1,5 @@
+<GameObject label="SizedCollider">
+    <Components>
+        <Component name="Collider" width="12" height="34" trigger="false" />
+    </Components>
+</GameObject>

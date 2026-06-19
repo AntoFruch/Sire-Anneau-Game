@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<InputActions>
+    <Action label="Dash" type="Axis">
+        <binding bind="P"/>
+    </Action>
+</InputActions>

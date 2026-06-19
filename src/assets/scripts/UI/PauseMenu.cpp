@@ -29,9 +29,11 @@ void PauseMenu::Update(const sf::Time& elapsedTime)
         if (hidden)
         {
             show();
+            SceneManager::freeze();
         } else
         {
             hide();
+            SceneManager::unfreeze();
         }
     }
 }
@@ -125,26 +127,4 @@ void PauseMenu::createTitle()
     title->setSize(78*8,21*8);
     title->setPosition("50% - width*0.5", "15%");
     addElement(title, "Title");
-}
-
-void PauseMenu::hide()
-{
-    hidden=true;
-    SceneManager::unfreeze();
-    for (auto& el : elements)
-    {
-        el->setVisible(false);
-        el->setEnabled(false);
-    }
-}
-
-void PauseMenu::show()
-{
-    hidden=false;
-    SceneManager::freeze();
-    for (auto& el : elements)
-    {
-        el->setVisible(true);
-        el->setEnabled(true);
-    }
 }

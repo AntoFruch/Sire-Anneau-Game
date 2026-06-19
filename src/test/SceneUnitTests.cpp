@@ -1,13 +1,3 @@
-// Généré entièrement par Codex avec les prompts suivants :
-//   >> Regarde le parsing de Scene et donne moi une liste de cas à tester pour
-//      vérifier qu'il n'y a pas de crash pas voulu, que ça retourne les bonnes exceptions etc.
-//
-//   >> ok ecris les tests pour ça dans un fichier SceneUnitTests, créé des resources spéciales pour
-//      les tests aussi n'hésite pas si tu penses que certains endroits dans le code devrait
-//      retourner des exceptions ou des choses comme ça à le mettre dans les tests et expliquer pourquoi.
-//
-// Le dossier de resources de test scene_parser a aussi entièrement été généré par Codex.
-
 #include <filesystem>
 #include <string>
 
@@ -15,11 +5,32 @@
 
 #include "Managers/Scene/ComponentFactory.h"
 #include "Managers/Scene/Scene.h"
+#include "Components/Component.h"
 #include "exceptions/IllegalOperationException.h"
 
 namespace {
 
 constexpr auto kRoot = TEST_RESOURCES_DIR "/scene_parser/";
+
+class SceneParserProbeComponent : public Component {
+    int value;
+
+public:
+    explicit SceneParserProbeComponent(int value) : value(value)
+    {}
+
+    int getValue() const
+    {
+        return value;
+    }
+};
+
+[[maybe_unused]] const bool kProbeRegistered = ComponentFactory::Register(
+    "SceneParserProbeComponent",
+    [](const pugi::xml_node& node) -> std::unique_ptr<Component>
+    {
+        return std::make_unique<SceneParserProbeComponent>(node.attribute("value").as_int());
+    });
 
 Scene makeScene()
 {
@@ -221,4 +232,87 @@ TEST(SceneParsing, RequestInstantiateEmptyPathThrows)
     expectIllegalOperationWithMessage(
         [&] { scene.requestInstantiate(""); },
         "Prefab path must be non-empty");
+}
+
+TEST(SceneParsing, GameObjectTransformXmlAttributesAreApplied)
+{
+    auto scene = makeScene();
+
+    GameObject* instantiated = nullptr;
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/transform_prefab.xml"));
+    ASSERT_NE(instantiated, nullptr);
+
+    EXPECT_EQ(instantiated->getLabel(), "TransformedPrefab");
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalPosition().x, 12.5f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalPosition().y, -3.25f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalRotation().asDegrees(), 45.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalScale().x, 2.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalScale().y, 0.5f);
+}
+
+TEST(SceneParsing, GameObjectMissingXmlAttributesUseDefaults)
+{
+    auto scene = makeScene();
+
+    GameObject* instantiated = nullptr;
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/default_gameobject_prefab.xml"));
+    ASSERT_NE(instantiated, nullptr);
+
+    EXPECT_EQ(instantiated->getLabel(), "DefaultsOnly");
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalPosition().x, 0.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalPosition().y, 0.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalRotation().asDegrees(), 0.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalScale().x, 1.f);
+    EXPECT_FLOAT_EQ(instantiated->transform.getLocalScale().y, 1.f);
+}
+
+TEST(SceneParsing, PrefabKeepsItsChildrenAndComponents)
+{
+    auto scene = makeScene();
+
+    GameObject* instantiated = nullptr;
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/prefab_with_child_and_component.xml"));
+    ASSERT_NE(instantiated, nullptr);
+
+    auto probe = instantiated->getComponent<SceneParserProbeComponent>();
+    ASSERT_NE(probe, nullptr);
+    EXPECT_EQ(probe->gameObject, instantiated);
+    EXPECT_EQ(probe->getValue(), 42);
+
+    GameObject* child = instantiated->getChild("PrefabChild");
+    ASSERT_NE(child, nullptr);
+    EXPECT_FLOAT_EQ(child->transform.getLocalPosition().x, 4.f);
+    EXPECT_FLOAT_EQ(child->transform.getLocalPosition().y, 8.f);
+}
+
+TEST(SceneParsing, RequestInstantiateAddsObjectOnlyOnNextUpdate)
+{
+    auto scene = makeScene();
+
+    ASSERT_EQ(scene.dump(), "Scene :\n");
+
+    GameObject* instantiated = nullptr;
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/base_prefab.xml"));
+    ASSERT_NE(instantiated, nullptr);
+    EXPECT_EQ(scene.dump(), "Scene :\n");
+
+    scene.Update(sf::Time::Zero);
+    EXPECT_NE(scene.dump().find("- BasePrefab"), std::string::npos);
+}
+
+TEST(SceneParsing, UnloadMustBeCalledBeforeLoadingAReplacementScene)
+{
+    auto scene = makeScene();
+
+    ASSERT_NO_THROW(scene.load(std::string{kRoot} + "single_gameobject_scene.xml"));
+    ASSERT_NE(scene.dump().find("- Player"), std::string::npos);
+
+    ASSERT_NO_THROW(scene.load(std::string{kRoot} + "empty_scene.xml"));
+    EXPECT_NE(scene.dump().find("- Player"), std::string::npos);
+
+    scene.unload();
+    EXPECT_EQ(scene.dump(), "Scene :\n");
+
+    ASSERT_NO_THROW(scene.load(std::string{kRoot} + "empty_scene.xml"));
+    EXPECT_EQ(scene.dump(), "Scene :\n");
 }

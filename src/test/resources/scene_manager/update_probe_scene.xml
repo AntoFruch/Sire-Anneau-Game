@@ -1,0 +1,7 @@
+<Scene>
+    <GameObject label="UpdateProbeObject">
+        <Components>
+            <Component name="SceneManagerUpdateProbe" />
+        </Components>
+    </GameObject>
+</Scene>

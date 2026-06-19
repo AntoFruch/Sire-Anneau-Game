@@ -5,8 +5,14 @@
 # Note: include(GoogleTest)and enable_testing() already done in top CMakeLists.txt
 
 add_executable(unitTests
-        unitTests.cpp
         SceneUnitTests.cpp
+        GameObjectUnitTests.cpp
+        TransformUnitTests.cpp
+        ComponentFactoryUnitTests.cpp
+        SceneManagerUnitTests.cpp
+        InputUnitTests.cpp
+        CollisionUnitTests.cpp
+        UIDocumentUnitTests.cpp
 )
 target_link_libraries(unitTests PUBLIC GTest::gtest_main lib_engine pugixml sfml-graphics)
 target_compile_definitions(unitTests PRIVATE

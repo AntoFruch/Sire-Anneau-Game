@@ -19,6 +19,7 @@ void GameOverMenu::Start()
     createTitle();
 
     hide();
+    SceneManager::unfreeze();
 }
 
 void GameOverMenu::Update(const sf::Time& elapsedTime)
@@ -29,6 +30,7 @@ void GameOverMenu::Update(const sf::Time& elapsedTime)
         if (PlayerController* player = GameManager::getPlayer(); player && player->isGameOver())
         {
             show();
+            SceneManager::freeze();
         }
     }
 }
@@ -124,27 +126,6 @@ void GameOverMenu::createTitle()
     title->setSize(142*8,21*8);
     title->setPosition("50% - width*0.5", "15%");
     addElement(title, "GO_Title");
-}
-
-void GameOverMenu::hide()
-{
-    hidden=true;
-    for (auto& el : elements)
-    {
-        el->setVisible(false);
-        el->setEnabled(false);
-    }
-}
-
-void GameOverMenu::show()
-{
-    hidden=false;
-    SceneManager::freeze();
-    for (auto& el : elements)
-    {
-        el->setVisible(true);
-        el->setEnabled(true);
-    }
 }
 
 
