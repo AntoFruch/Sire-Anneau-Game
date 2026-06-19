@@ -68,11 +68,11 @@ TEST(GameObjectComponents, GetComponentReturnsExistingComponent)
     EXPECT_EQ(gameObject.getComponent<ProbeComponent>(), rawComponent);
 }
 
-TEST(GameObjectComponents, GetComponentThrowsWhenComponentIsMissing)
+TEST(GameObjectComponents, GetComponentReturnsNullptrWhenComponentIsMissing)
 {
     auto gameObject = makeGameObject();
 
-    EXPECT_THROW(static_cast<void>(gameObject.getComponent<ProbeComponent>()), std::exception);
+    EXPECT_EQ(gameObject.getComponent<ProbeComponent>(), nullptr);
 }
 
 TEST(GameObjectComponents, GetComponentReturnsFirstCompatibleComponent)

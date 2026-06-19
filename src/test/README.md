@@ -43,7 +43,7 @@ Déjà couvert en grande partie dans `SceneUnitTests.cpp`.
 
 - [x] Vérifier que `GameObject::addComponent` assigne bien le pointeur `gameObject` du composant. ([`GameObjectComponents.AddComponentAssignsParentGameObject`](GameObjectUnitTests.cpp#L50))
 - [x] Vérifier que `getComponent<T>()` retourne le bon composant quand il existe. ([`GameObjectComponents.GetComponentReturnsExistingComponent`](GameObjectUnitTests.cpp#L61))
-- [x] Vérifier que `getComponent<T>()` lève une exception quand le composant est absent. ([`GameObjectComponents.GetComponentThrowsWhenComponentIsMissing`](GameObjectUnitTests.cpp#L71))
+- [x] Vérifier que `getComponent<T>()` retourne nullptr quand le composant est absent. ([`GameObjectComponents.GetComponentReturnsNullptrWhenComponentIsMissing`](GameObjectUnitTests.cpp#L71))
 - [x] Vérifier que quand plusieurs composants compatibles avec le même type existent, le premier est retourné. ([`GameObjectComponents.GetComponentReturnsFirstCompatibleComponent`](GameObjectUnitTests.cpp#L78))
 - [x] Vérifier que `getComponents<T>()` retourne les bons composants quand ils existent. ([`GameObjectComponents.GetComponentsReturnsAllCompatibleComponents`](GameObjectUnitTests.cpp#L91))
 - [x] Vérifier que `getComponents<T>()` retourne une liste vide quand le composant est absent. ([`GameObjectComponents.GetComponentsReturnsEmptyListWhenComponentIsMissing`](GameObjectUnitTests.cpp#L110))
