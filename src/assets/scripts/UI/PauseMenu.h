@@ -11,7 +11,6 @@
 
 class PauseMenu : public UIDocument {
     InputAction* pauseAction;
-    bool hidden;
 
 public:
     PauseMenu()=default;

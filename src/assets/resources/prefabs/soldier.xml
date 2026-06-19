@@ -10,6 +10,7 @@
                    max_hp="60"
                    strength="20"/>
         <Component name="Collider" x="0" y="0" width="8" height="8"/>
+        <Component name="EnemyHealthBar"/>
     </Components>
     <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1" active="false">
         <Components>

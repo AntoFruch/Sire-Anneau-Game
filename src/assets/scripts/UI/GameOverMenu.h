@@ -10,8 +10,6 @@
 #include "Managers/Scene/ComponentFactory.h"
 
 class GameOverMenu : public UIDocument {
-    bool hidden;
-
 public:
     GameOverMenu()=default;
     void Start() override;

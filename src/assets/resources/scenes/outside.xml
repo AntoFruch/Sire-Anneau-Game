@@ -4,6 +4,8 @@
     <Prefab src="resources/prefabs/maps/outside.xml"
             sx="1" sy="1"/>
 
+    <Prefab src="resources/prefabs/soldier.xml" x="100"/>
+
     <Prefab label="Player" src="resources/prefabs/player.xml"
             x="0" y="0"
             angle="0"
