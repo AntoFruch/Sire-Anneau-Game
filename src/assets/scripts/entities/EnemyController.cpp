@@ -6,6 +6,7 @@
 
 #include <random>
 
+#include "BossFightManager.h"
 #include "scripts/GameManager.h"
 
 EnemyController::EnemyController(float speed, int max_hp, int strength)
@@ -15,13 +16,12 @@ EnemyController::EnemyController(float speed, int max_hp, int strength)
 
 EnemyController::~EnemyController()
 {
-    GameManager::unregisterEnemy(this);
+    BossFightManager::unregisterEnemy(this);
 }
 
 void EnemyController::Start()
 {
     EntityController::Start();
-    GameManager::registerEnemy(this);
     animator->registerAnimationEvent("Death", 2, [this]() {
         gameObject->destroySelf();
     });

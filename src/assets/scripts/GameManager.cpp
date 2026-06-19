@@ -6,7 +6,6 @@
 
 
 PlayerController* GameManager::player;
-std::vector<EnemyController*> GameManager::enemies{};
 TextBox* GameManager::textBox{nullptr};
 
 std::unordered_map<std::string, bool> GameManager::flags{
@@ -28,16 +27,6 @@ void GameManager::unregisterPlayer(PlayerController*player)
     }
 }
 
-void GameManager::registerEnemy(EnemyController* enemy)
-{
-    enemies.push_back(enemy);
-}
-
-void GameManager::unregisterEnemy(const EnemyController* enemy)
-{
-    std::erase_if(enemies, [&enemy](const EnemyController* e){return e==enemy; });
-}
-
 void GameManager::registerTB(TextBox* tb)
 {
     textBox = tb;
@@ -54,10 +43,6 @@ void GameManager::unregisterTB(TextBox* tb)
 PlayerController* GameManager::getPlayer()
 {
     return player;
-}
-
-std::vector<EnemyController*> GameManager::getEnemies() {
-    return enemies;
 }
 
 TextBox* GameManager::getTB()

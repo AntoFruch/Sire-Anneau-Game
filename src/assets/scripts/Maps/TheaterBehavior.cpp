@@ -5,6 +5,7 @@
 #include "TheaterBehavior.h"
 
 #include "scripts/GameManager.h"
+#include "scripts/entities/BossFightManager.h"
 
 
 void TheaterBehavior::Start()
@@ -12,15 +13,18 @@ void TheaterBehavior::Start()
     Component::Start();
     if (!GameManager::checkFlag("theater"))
     {
-        auto boss = SceneManager::instantiate("resources/prefabs/boss1.xml");
-        boss->transform.setLocalPosition({0,0});
-
-        // instancier les spawners etc
+        BossFightManager::init(14, 8, 4, 4.f);
     }
 }
 void TheaterBehavior::Update(const sf::Time& elapsedTime)
 {
     Component::Update(elapsedTime);
+    if (!BossFightManager::hasBossSpawned() && BossFightManager::getNbEnemiesToKillBeforeBoss() == 0)
+    {
+        auto boss = SceneManager::instantiate("resources/prefabs/boss1.xml");
+        boss->transform.setLocalPosition({0,0});
+        BossFightManager::setBossSpawned();
+    }
 }
 
 

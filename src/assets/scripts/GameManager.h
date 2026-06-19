@@ -11,7 +11,6 @@
 
 class GameManager {
     static PlayerController* player;
-    static std::vector<EnemyController*> enemies;
 
     static TextBox* textBox;
 
@@ -20,12 +19,9 @@ class GameManager {
 public:
     static void registerPlayer(PlayerController*);
     static void unregisterPlayer(PlayerController*);
-    static void registerEnemy(EnemyController*);
-    static void unregisterEnemy(const EnemyController*);
     static void registerTB(TextBox*);
     static void unregisterTB(TextBox*);
 
-    static std::vector<EnemyController*> getEnemies();
     static PlayerController* getPlayer();
     static TextBox* getTB();
 
