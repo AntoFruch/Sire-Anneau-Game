@@ -4,5 +4,6 @@
         <Component name="HealthBar"/>
         <Component name="PauseMenu"/>
         <Component name="GameOverMenu"/>
+        <Component name="TextBox"/>
     </Components>
 </GameObject>

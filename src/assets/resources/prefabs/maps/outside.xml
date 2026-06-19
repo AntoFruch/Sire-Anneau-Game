@@ -43,6 +43,20 @@
                        doorId="2"
                        spawnX="-50" spawnY="0"/>
         </Components>
+        <GameObject label="DangerZone"
+                    x="-30" y="0">
+            <Components>
+                <Component name="Collider" x="0" y="0"
+                           width="30" height="60"
+                           trigger="true"/>
+                <Component name="DangerZone"
+                           flag="theater"
+                           respawnX="-30" respawnY="0">
+                    <Line text="Vous ne pouvez pas aller ici pour le moment,"/>
+                    <Line text="Allez à l'Hotel de Bourgogne"/>
+                </Component>
+            </Components>
+        </GameObject>
     </GameObject>
 
     <GameObject label="ArrasDoorTrigger"

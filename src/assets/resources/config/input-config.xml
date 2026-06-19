@@ -16,4 +16,7 @@
     <Action label="Pause" type="Button">
         <binding bind="Escape"/>
     </Action>
+    <Action label="TextBoxNext" type="Button">
+        <binding bind="Enter"/>
+    </Action>
 </InputActions>

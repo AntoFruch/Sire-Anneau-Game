@@ -4,15 +4,6 @@
     <Prefab src="resources/prefabs/maps/outside.xml"
             sx="1" sy="1"/>
 
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="0" y="100" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="100" y="100" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="200" y="100" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="-100" y="100" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="0" y="200" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="100" y="200" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="200" y="200" sx="1" sy="1" active="true"/>
-    <Prefab label="Soldier" src="resources/prefabs/soldier.xml" x="-100" y="200" sx="1" sy="1" active="true"/>
-
     <Prefab label="Player" src="resources/prefabs/player.xml"
             x="0" y="0"
             angle="0"
