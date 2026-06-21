@@ -2,7 +2,7 @@
 <GameObject sx="2" sy="2">
     <Components>
         <Component name="BossFightController"
-                   completionFlag="theater"
+                   completionFlag="arras"
                    bossPrefab="resources/prefabs/bosses/commandant.xml"
                    bossX="0" bossY="0"
                    totalEnemiesToSpawn="30"

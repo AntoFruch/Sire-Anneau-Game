@@ -11,7 +11,7 @@ TextBox* GameManager::textBox{nullptr};
 std::unordered_map<std::string, bool> GameManager::flags{
     {"theater", false},
     {"balcony", false},
-    {"other", false},
+    {"arras", false},
 };
 
 void GameManager::registerPlayer(PlayerController* player)
