@@ -9,10 +9,9 @@
 #include "Managers/Scene/ComponentFactory.h"
 #include <string>
 
-class BossController;
-class EnemyController;
-class EnemySpawner;
-class EntityController;
+#include "scripts/entities/BossController.h"
+#include "scripts/entities/EnemyController.h"
+#include "scripts/entities/EnemySpawner.h"
 
 class BossFightController : public Component
 {
@@ -65,6 +64,10 @@ public:
 
     static BossFightController* getActiveFight();
     void registerSpawner(EnemySpawner* spawner);
+    int getTotalEnemies() const;
+    int getKilledEnemies() const;
+
+    bool isCompleted() const;
 
 private:
     void updateWaves();

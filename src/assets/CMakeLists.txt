@@ -32,6 +32,8 @@ add_library(lib_assets
         scripts/UI/HUD/TextBox.cpp
         scripts/UI/EnemyHealthBar.cpp
         scripts/UI/EnemyHealthBar.h
+        scripts/UI/HUD/BossFightHUD.h
+        scripts/UI/HUD/BossFightHUD.cpp
 )
 target_include_directories(lib_assets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(lib_assets PUBLIC lib_engine pugixml sfml-graphics tgui)

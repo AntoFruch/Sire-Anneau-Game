@@ -88,6 +88,21 @@ void BossFightController::registerSpawner(EnemySpawner* spawner)
     spawners.push_back(spawner);
 }
 
+int BossFightController::getTotalEnemies() const
+{
+    return totalEnemiesToSpawn;
+}
+
+int BossFightController::getKilledEnemies() const
+{
+    return killedEnemiesBeforeBoss + killedEnemiesAfterBoss;
+}
+
+bool BossFightController::isCompleted() const
+{
+    return state == State::Completed;
+}
+
 void BossFightController::updateWaves()
 {
     trySpawnEnemy();
@@ -171,6 +186,7 @@ void BossFightController::completeFight()
 {
     GameManager::setFlag(completionFlag);
     state = State::Completed;
+
     auto tb = GameManager::getTB();
     tb->setBuffer(textOnComplete);
     tb->open();
@@ -199,3 +215,5 @@ void BossFightController::onBossDeath()
 {
     bossDead = true;
 }
+
+
