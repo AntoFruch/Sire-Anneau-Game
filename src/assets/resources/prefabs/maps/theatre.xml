@@ -7,9 +7,10 @@
                    bossX="0" bossY="0"
                    totalEnemiesToSpawn="16"
                    killsBeforeBoss="8"
-                   killsAfterBoss="6"
                    maxAliveEnemies="4"
-                   spawnInterval="4.0"/>
+                   spawnInterval="4.0">
+            <Line text="Vous avez vaincu le Comte de Valvert et ses sbires !"/>
+        </Component>
         <Component name="Renderer"
                    src="resources/textures/maps/theater/theater.png"
                    sprite_w="640"

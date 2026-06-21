@@ -4,8 +4,8 @@
 
 #include "BossController.h"
 
-BossController::BossController(float speed, int max_hp, int strength)
-    : EnemyController(speed, max_hp, strength)
+BossController::BossController(float speed, int max_hp, int strength, float attackSpeed, float attackRange, float chasingRange)
+    : EnemyController(speed, max_hp, strength, attackSpeed, attackRange, chasingRange)
 {
 
 }

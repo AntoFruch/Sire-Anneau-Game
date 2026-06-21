@@ -8,7 +8,10 @@
         <Component name="EnemyController"
                    speed="60"
                    max_hp="60"
-                   strength="20"/>
+                   strength="20"
+                   attackSpeed="1.25"
+                   attackRange="40"
+                   chasingRange="200"/>
         <Component name="Collider" x="0" y="0" width="8" height="8"/>
         <Component name="EnemyHealthBar"/>
     </Components>

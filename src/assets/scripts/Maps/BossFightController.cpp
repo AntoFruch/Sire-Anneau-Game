@@ -14,20 +14,20 @@ BossFightController* BossFightController::activeFight{nullptr};
 
 BossFightController::BossFightController(
     std::string_view completionFlag,
+    const std::vector<std::string>& textOnComplete,
     std::string_view bossPrefab,
     float bossX,
     float bossY,
     int totalEnemiesToSpawn,
     int killsBeforeBoss,
-    int killsAfterBoss,
     int maxAliveEnemies,
     float spawnInterval)
     : completionFlag(completionFlag),
+      textOnComplete(textOnComplete),
       bossPrefab(bossPrefab),
       bossSpawnPosition(bossX, bossY),
       totalEnemiesToSpawn(totalEnemiesToSpawn),
       killsBeforeBoss(killsBeforeBoss),
-      killsAfterBoss(killsAfterBoss),
       maxAliveEnemies(maxAliveEnemies),
       spawnInterval(spawnInterval)
 {
@@ -101,12 +101,15 @@ void BossFightController::updateWaves()
 
 void BossFightController::updateBoss()
 {
-    trySpawnEnemy();
-
-    if (bossDead && killedEnemiesAfterBoss >= killsAfterBoss)
+    if (bossDead &&
+        killedEnemiesBeforeBoss + killedEnemiesAfterBoss >= totalEnemiesToSpawn &&
+        aliveEnemies.empty())
     {
         completeFight();
+        return;
     }
+
+    trySpawnEnemy();
 }
 
 void BossFightController::trySpawnEnemy()
@@ -168,6 +171,9 @@ void BossFightController::completeFight()
 {
     GameManager::setFlag(completionFlag);
     state = State::Completed;
+    auto tb = GameManager::getTB();
+    tb->setBuffer(textOnComplete);
+    tb->open();
 }
 
 void BossFightController::onEnemyDeath(EnemyController* enemy)

@@ -16,6 +16,7 @@ class EntityController;
 
 class BossFightController : public Component
 {
+    std::vector<std::string> textOnComplete;
     enum class State
     {
         Inactive,
@@ -32,7 +33,6 @@ class BossFightController : public Component
 
     int totalEnemiesToSpawn;
     int killsBeforeBoss;
-    int killsAfterBoss;
     int maxAliveEnemies;
     float spawnInterval;
 
@@ -49,12 +49,12 @@ class BossFightController : public Component
 public:
     BossFightController(
         std::string_view completionFlag,
+        const std::vector<std::string>& textOnComplete,
         std::string_view bossPrefab,
         float bossX,
         float bossY,
         int totalEnemiesToSpawn,
         int killsBeforeBoss,
-        int killsAfterBoss,
         int maxAliveEnemies,
         float spawnInterval);
 
@@ -78,14 +78,19 @@ private:
     static inline bool s_registered = ComponentFactory::Register("BossFightController",
         [](const pugi::xml_node& node) -> std::unique_ptr<Component>
         {
+            std::vector<std::string> textOnComplete{};
+            for (const auto& line : node.children("Line"))
+            {
+                textOnComplete.push_back(line.attribute("text").as_string());
+            }
             return std::make_unique<BossFightController>(
                 node.attribute("completionFlag").as_string(),
+                textOnComplete,
                 node.attribute("bossPrefab").as_string(),
                 node.attribute("bossX").as_float(),
                 node.attribute("bossY").as_float(),
                 node.attribute("totalEnemiesToSpawn").as_int(),
                 node.attribute("killsBeforeBoss").as_int(),
-                node.attribute("killsAfterBoss").as_int(),
                 node.attribute("maxAliveEnemies").as_int(),
                 node.attribute("spawnInterval").as_float()
             );

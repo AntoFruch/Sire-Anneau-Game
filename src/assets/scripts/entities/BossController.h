@@ -12,7 +12,7 @@
 class BossController : public EnemyController
 {
 public:
-    BossController(float speed, int max_hp, int strength);
+    BossController(float speed, int max_hp, int strength, float attackSpeed, float attackRange, float chasingRange);
     ~BossController();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
@@ -26,7 +26,10 @@ private:
                  return std::make_unique<BossController>(
                     node.attribute("speed").as_float(),
                     node.attribute("max_hp").as_int(),
-                    node.attribute("strength").as_int()
+                    node.attribute("strength").as_int(),
+                    node.attribute("attackSpeed").as_float(),
+                    node.attribute("attackRange").as_float(),
+                    node.attribute("chasingRange").as_float()
                     );
              });
 };

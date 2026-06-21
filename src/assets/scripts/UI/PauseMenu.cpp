@@ -62,6 +62,7 @@ void PauseMenu::createResumeButton()
 
     resumeButton->onPress([this]() {
         hide();
+        SceneManager::unfreeze();
     });
     resumeButton->onMouseEnter([resumeButton]() {
         resumeButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");

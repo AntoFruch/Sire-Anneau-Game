@@ -4,7 +4,10 @@
         <Component name="BossController"
                    speed="100"
                    max_hp="200"
-                   strength="40"/>
+                   strength="40"
+                   attackSpeed="1"
+                   attackRange="50"
+                   chasingRange="200"/>
         <Component name="Collider" x="0" y="0" width="8" height="8"/>
 
         <Component name="Renderer" src="resources/textures/characters/Mage-Cyan.png"

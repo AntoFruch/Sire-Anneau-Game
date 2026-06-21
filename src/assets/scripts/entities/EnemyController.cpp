@@ -8,8 +8,14 @@
 
 #include "scripts/GameManager.h"
 
-EnemyController::EnemyController(float speed, int max_hp, int strength)
-    : EntityController(speed, max_hp, strength)
+EnemyController::EnemyController(float speed, int max_hp, int strength,
+    float attackSpeed,
+    float attackRange,
+    float chasingRange)
+    : EntityController(speed, max_hp, strength),
+        chasingDistance(chasingRange),
+        attackTime(1/attackSpeed),
+        attackDistance(attackRange)
 {
 }
 

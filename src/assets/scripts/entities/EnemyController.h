@@ -14,8 +14,8 @@ class EnemyController : public EntityController {
     enum State { Wander, Chasing, Attack };
     State currentState {Wander};
 
-    float wanderClock;
     float wanderTime{2.f};
+    float wanderClock{wanderTime};
     sf::Vector2f headingDirection;
 
     float chasingDistance{200};
@@ -25,7 +25,7 @@ class EnemyController : public EntityController {
     float attackDistance{40};
 
 public:
-    EnemyController(float speed, int max_hp, int strength);
+    EnemyController(float speed, int max_hp, int strength, float attackSpeed, float attackRange, float chasingRange);
     ~EnemyController() override;
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
@@ -35,7 +35,10 @@ private:
         return std::make_unique<EnemyController>(
             node.attribute("speed").as_float(),
             node.attribute("max_hp").as_int(),
-            node.attribute("strength").as_int()
+            node.attribute("strength").as_int(),
+            node.attribute("attackSpeed").as_float(),
+            node.attribute("attackRange").as_float(),
+            node.attribute("chasingRange").as_float()
         );
     });
 };
