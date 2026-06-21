@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2.5" sy="2.5">
+    <Components>
+        <Component name="Animator" src="resources/animations/enemy/EnemyAnimationTree.xml"/>
+        <Component name="Renderer" src="resources/textures/characters/Human-Worker-Cyan.png"
+                   sprite_w="32" sprite_h="32"
+                   anchorX="0" anchorY="3"/>
+        <Component name="EnemyController"
+                   speed="60"
+                   max_hp="60"
+                   strength="20"
+                   attackSpeed="1.25"
+                   attackRange="40"
+                   chasingRange="400"/>
+        <Component name="Collider" x="0" y="0" width="8" height="8"/>
+        <Component name="EnemyHealthBar"/>
+    </Components>
+    <GameObject label="AttackTrigger" x="0" y="0" angle="0" sx="1" sy="1" active="false">
+        <Components>
+            <Component name="Collider" x="0" y="0" width="8" height="8" trigger="true"/>
+        </Components>
+    </GameObject>
+</GameObject>

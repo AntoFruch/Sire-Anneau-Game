@@ -29,6 +29,7 @@ void PauseMenu::Update(const sf::Time& elapsedTime)
         if (hidden)
         {
             show();
+            moveToFront();
             SceneManager::freeze();
         } else
         {

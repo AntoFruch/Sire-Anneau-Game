@@ -3,7 +3,7 @@
     <Components>
         <Component name="BossFightController"
                    completionFlag="theater"
-                   bossPrefab="resources/prefabs/boss1.xml"
+                   bossPrefab="resources/prefabs/bosses/valvert.xml"
                    bossX="0" bossY="0"
                    totalEnemiesToSpawn="16"
                    killsBeforeBoss="8"
@@ -12,6 +12,7 @@
             <Line text="Vous avez vaincu le Comte de Valvert et ses sbires !"/>
         </Component>
         <Component name="BossFightHUD"/>
+
         <Component name="Renderer"
                    src="resources/textures/maps/theater/theater.png"
                    sprite_w="640"
@@ -67,6 +68,6 @@
             />
         </Components>
     </GameObject>
-    <Prefab label="soldierSpawner1" src="resources/prefabs/soldierSpawner.xml" x="200" y="100"/>
-    <Prefab label="soldierSpawner2" src="resources/prefabs/soldierSpawner.xml" x="-200" y="100"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy2_spawner.xml" x="200" y="100"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy2_spawner.xml" x="-200" y="100"/>
 </GameObject>

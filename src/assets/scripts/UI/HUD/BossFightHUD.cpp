@@ -14,7 +14,7 @@ void BossFightHUD::Start()
 
     auto bg = tgui::Picture::create("resources/UI/textbox.png");
     bg->setPosition("50% - width/2", "2%");
-    bg->setSize("42%", "14%");
+    bg->setSize("60%", "14%");
     addElement(bg, "BossFight_bg");
 
     text = tgui::Label::create();
@@ -42,7 +42,7 @@ void BossFightHUD::Update(const sf::Time& elapsedTime)
         show();
     }
 
-    text->setText(std::format("Enemies killed : {} / {}",
+    text->setText(std::format("Ennemis térassés : {} / {}",
         fight->getKilledEnemies(), fight->getTotalEnemies()));
 }
 

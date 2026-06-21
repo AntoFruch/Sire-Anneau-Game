@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject label="Capitaine" x="0" y="0" angle="0" sx="3" sy="3">
+    <Components>
+        <Component name="BossController"
+                   speed="100"
+                   max_hp="300"
+                   strength="40"
+                   attackSpeed="1"
+                   attackRange="50"
+                   chasingRange="200"/>
+        <Component name="Collider" x="0" y="0" width="8" height="8"/>
+
+        <Component name="Renderer" src="resources/textures/characters/Soldier-Blue.png"
+                   anchorX="0" anchorY="3"
+                   sprite_w="32" sprite_h="32"/>
+
+        <Component name="Animator"
+                   src="resources/animations/player/PlayerAnimationTree.xml"/>
+
+        <Component name="BossHealthBar"/>
+    </Components>
+    <GameObject label="AttackTrigger"
+                x="0" y="0" angle="0"
+                sx="1" sy="1"
+                active="false">
+        <Components>
+            <Component name="Collider"
+                       x="0" y="0"
+                       width="8" height="8"
+                       trigger="true"/>
+        </Components>
+    </GameObject>
+</GameObject>

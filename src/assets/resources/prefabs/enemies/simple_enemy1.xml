@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject sx="2.5" sy="2.5">
     <Components>
-        <Component name="Animator" src="resources/animations/enemy/EnemyAnimationTree.xml"/>
-        <Component name="Renderer" src="resources/textures/characters/RedSoldier.png"
+        <Component name="Animator" src="resources/animations/player/PlayerAnimationTree.xml"/>
+        <Component name="Renderer" src="resources/textures/characters/Soldier-Yellow.png"
                    sprite_w="32" sprite_h="32"
                    anchorX="0" anchorY="3"/>
         <Component name="EnemyController"
@@ -11,7 +11,7 @@
                    strength="20"
                    attackSpeed="1.25"
                    attackRange="40"
-                   chasingRange="200"/>
+                   chasingRange="400"/>
         <Component name="Collider" x="0" y="0" width="8" height="8"/>
         <Component name="EnemyHealthBar"/>
     </Components>

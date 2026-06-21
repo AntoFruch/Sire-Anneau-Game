@@ -2,7 +2,7 @@
 <GameObject label="SoldierSpawner" sx="2" sy="2">
     <Components>
         <Component name="EnemySpawner"
-                   ennemyName="resources/prefabs/soldier.xml"
+                   ennemyName="resources/prefabs/enemies/simple_enemy1.xml"
                    intervalle="4.0"
         />
         <Component name="Collider"

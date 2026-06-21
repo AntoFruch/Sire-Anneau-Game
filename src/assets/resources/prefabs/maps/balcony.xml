@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject sx="2" sy="2">
     <Components>
+        <Component name="BossFightController"
+                   completionFlag="balcony"
+                   bossPrefab="resources/prefabs/bosses/capitaine.xml"
+                   bossX="0" bossY="0"
+                   totalEnemiesToSpawn="22"
+                   killsBeforeBoss="12"
+                   maxAliveEnemies="6"
+                   spawnInterval="3.0">
+            <Line text="Vous avez vaincu le Capitaine et ses sbires !"/>
+        </Component>
+        <Component name="BossFightHUD"/>
+
         <Component name="Renderer"
                    src="resources/textures/maps/balcony/Balcony.png"
                    sprite_w="320" sprite_h="320"/>
     </Components>
+
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="-100" y="-100"/>
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="100" y="-100"/>
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="0" y="100"/>
+
     <GameObject label="ExitDoor"
                 x="-150" y="0">
         <Components>
@@ -15,21 +35,6 @@
                        targetDoorId="2"
                        doorId="1"
                        spawnX="50" spawnY="0"/>
-        </Components>
-    </GameObject>
-
-    <GameObject label="House"
-                x="0" y="-100"
-                sx="2" sy="2">
-        <Components>
-            <Component name="Renderer"
-                       src="resources/textures/maps/balcony/balconyhouse.png"
-                       sprite_w="64" sprite_h="64"/>
-
-            <Component name="Collider"
-                       x="0" y="12"
-                       width="56" height="40"
-                       trigger="false"/>
         </Components>
     </GameObject>
 

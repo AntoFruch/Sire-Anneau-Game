@@ -30,6 +30,7 @@ void GameOverMenu::Update(const sf::Time& elapsedTime)
         if (PlayerController* player = GameManager::getPlayer(); player && player->isGameOver())
         {
             show();
+            moveToFront();
             SceneManager::freeze();
         }
     }
