@@ -4,6 +4,7 @@
 
 #include "MainMenu.h"
 
+#include "scripts/Maps/LoadingZoneManager.h"
 #include "TGUI/Widgets/Button.hpp"
 #include "TGUI/Widgets/Picture.hpp"
 
@@ -30,6 +31,7 @@ void MainMenu::createPlayButton()
     playButton->setTextSize(40);
 
     playButton->onPress([this]() {
+        LoadingZoneManager::reset();
         SceneManager::requestLoading("resources/scenes/outside.xml");
     });
     playButton->onMouseEnter([playButton]() {

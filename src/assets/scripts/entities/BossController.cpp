@@ -4,8 +4,6 @@
 
 #include "BossController.h"
 
-#include "scripts/GameManager.h"
-
 BossController::BossController(float speed, int max_hp, int strength)
     : EnemyController(speed, max_hp, strength)
 {
@@ -28,5 +26,4 @@ void BossController::Update(const sf::Time& elapsedTime)
 void BossController::die()
 {
     EntityController::die();
-    GameManager::setFlag("theater");
 }

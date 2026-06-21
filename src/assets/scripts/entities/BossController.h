@@ -16,7 +16,7 @@ public:
     ~BossController();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
-    void die();
+    void die() override;
 
 private:
     static inline bool s_registered =

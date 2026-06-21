@@ -18,6 +18,7 @@ protected:
     int current_hp;
     bool invulnerable = false;
     bool dead{false};
+    bool deathHandled{false};
 
     sf::Vector2f facing{0,1}; // facing bottom by default
 
@@ -26,6 +27,7 @@ protected:
     // Callback called when attacking successfully
     // void(*attackCallback)(const std::vector<Collider*>&, Collider*);
     std::function<void(const std::vector<Collider*>&, Collider*)> attackCallback;
+    std::function<void(EntityController*)> deathCallback;
 
     GameObject* attackTriggerGO;
 
@@ -49,6 +51,7 @@ public:
      */
     virtual void takeDamage(int amount);
     virtual void die();
+    void setDeathCallback(std::function<void(EntityController*)> callback);
     float getHealthRatio() const;
 };
 

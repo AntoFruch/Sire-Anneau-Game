@@ -20,8 +20,8 @@ add_library(lib_assets
         scripts/entities/BossController.cpp
         scripts/UI/BossHealthBar.cpp
         scripts/UI/BossHealthBar.h
-        scripts/Maps/TheaterBehavior.cpp
-        scripts/Maps/TheaterBehavior.h
+        scripts/Maps/BossFightController.cpp
+        scripts/Maps/BossFightController.h
         scripts/entities/EnemySpawner.h
         scripts/entities/EnemySpawner.cpp
         scripts/UI/GameOverMenu.h
@@ -32,9 +32,6 @@ add_library(lib_assets
         scripts/UI/HUD/TextBox.cpp
         scripts/UI/EnemyHealthBar.cpp
         scripts/UI/EnemyHealthBar.h
-        scripts/entities/BossFightManager.cpp
-        scripts/entities/BossFightManager.h
 )
 target_include_directories(lib_assets PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(lib_assets PUBLIC lib_engine pugixml sfml-graphics tgui)
-

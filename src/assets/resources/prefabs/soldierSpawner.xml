@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject label="SoldierSpawner" sx="2" sy="2">
     <Components>
-        <Component name="EnnemySpawner"
+        <Component name="EnemySpawner"
                    ennemyName="resources/prefabs/soldier.xml"
                    intervalle="4.0"
         />

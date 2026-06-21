@@ -6,7 +6,7 @@
 
 std::unordered_map<int, LoadingZone*> LoadingZoneManager::loadingZones;
 
-unsigned int LoadingZoneManager::currentDoorId{0};
+int LoadingZoneManager::currentDoorId{-1};
 
 void LoadingZoneManager::requestLoading(std::string_view sceneToLoad, unsigned int targetDoorId)
 {
@@ -17,7 +17,7 @@ void LoadingZoneManager::requestLoading(std::string_view sceneToLoad, unsigned i
 
 bool LoadingZoneManager::defaultSpawn()
 {
-    return !loadingZones.contains(currentDoorId);
+    return currentDoorId == -1 || !loadingZones.contains(currentDoorId);
 }
 
 const sf::Vector2f& LoadingZoneManager::getSpawnPointFromCurrentDoorId()
@@ -35,3 +35,8 @@ void LoadingZoneManager::unregisterLZ(int doorId)
     loadingZones.erase(doorId);
 }
 
+void LoadingZoneManager::reset()
+{
+    loadingZones.clear();
+    currentDoorId = -1;
+}

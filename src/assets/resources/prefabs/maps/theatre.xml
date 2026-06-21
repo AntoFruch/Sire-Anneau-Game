@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameObject label="Theater" x="0" y="0" angle="0" sx="1" sy="1">
     <Components>
-        <Component name="TheaterBehavior"/>
+        <Component name="BossFightController"
+                   completionFlag="theater"
+                   bossPrefab="resources/prefabs/boss1.xml"
+                   bossX="0" bossY="0"
+                   totalEnemiesToSpawn="16"
+                   killsBeforeBoss="8"
+                   killsAfterBoss="6"
+                   maxAliveEnemies="4"
+                   spawnInterval="4.0"/>
         <Component name="Renderer"
                    src="resources/textures/maps/theater/theater.png"
                    sprite_w="640"

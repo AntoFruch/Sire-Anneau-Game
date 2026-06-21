@@ -4,10 +4,9 @@
 
 #include "EnemySpawner.h"
 
-#include "BossFightManager.h"
+#include "scripts/Maps/BossFightController.h"
 #include "EnemyController.h"
 #include "Managers/Collisions/CollisionsManager.h"
-#include "scripts/GameManager.h"
 
 EnemySpawner::EnemySpawner(std::string_view ennemyName, float intervalle) {
   this->ennemyName = ennemyName;
@@ -16,27 +15,39 @@ EnemySpawner::EnemySpawner(std::string_view ennemyName, float intervalle) {
 
 void EnemySpawner::Start() {
   Component::Start();
+  static int cnt = 0;
+  std::cout << std::format("init spawner {}\n", ++cnt);
   this->triggerZone = gameObject->getComponent<Collider>();
+  if (auto* bossFight = BossFightController::getActiveFight())
+  {
+    bossFight->registerSpawner(this);
+  }
 }
 
 void EnemySpawner::Update(const sf::Time &elapsedTime) {
   Component::Update(elapsedTime);
-  if (!BossFightManager::isInFight()) return;
-
   SpawnClock += elapsedTime.asSeconds();
-
-  if (SpawnClock >= BossFightManager::getEnemiesSpawnRate()) {
-    std::vector<Collider*> triggerers = CollisionsManager::checkTrigger(*this->triggerZone);
-
-    if (triggerers.empty()) {
-      GameObject* Ennemy = SceneManager::instantiate(ennemyName);
-      BossFightManager::registerEnemy(Ennemy->getComponent<EnemyController>());
-      Transform spawnerTransform = gameObject->transform;
-      sf::Vector2f spawnPosition = spawnerTransform.getWorldPosition();
-      Ennemy->transform.setLocalPosition(spawnPosition);
-
-      SpawnClock = 0;
-    }
-  }
 }
 
+bool EnemySpawner::isReady(float spawnInterval) const
+{
+  return SpawnClock >= spawnInterval;
+}
+
+bool EnemySpawner::isFree() const
+{
+  return CollisionsManager::checkTrigger(*triggerZone).empty();
+}
+
+GameObject* EnemySpawner::spawn()
+{
+  GameObject* enemy = SceneManager::instantiate(ennemyName);
+  const sf::Vector2f spawnPosition = gameObject->transform.getWorldPosition();
+  enemy->transform.setLocalPosition(spawnPosition);
+  return enemy;
+}
+
+void EnemySpawner::resetClock()
+{
+  SpawnClock = 0;
+}

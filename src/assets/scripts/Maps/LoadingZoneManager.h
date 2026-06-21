@@ -15,7 +15,7 @@ class LoadingZoneManager {
     static std::unordered_map<int, LoadingZone*> loadingZones;
 
     // la porte d'où on vient dans la scene actuelle
-    static unsigned int currentDoorId;
+    static int currentDoorId;
 
 public:
     void static requestLoading(std::string_view sceneToLoad, unsigned int targetDoorId);
@@ -23,6 +23,8 @@ public:
     static void registerLZ(LoadingZone* lz);
     static void unregisterLZ(int doorId);
     static bool defaultSpawn();
+
+    static void reset();
 };
 
 

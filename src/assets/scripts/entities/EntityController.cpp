@@ -5,6 +5,7 @@
 #include "EntityController.h"
 
 #include <iostream>
+#include <utility>
 
 EntityController::EntityController(float speed, int max_hp, int strength)
     : speed(speed), max_hp(max_hp), current_hp(max_hp), strength(strength)
@@ -39,7 +40,15 @@ void EntityController::Start()
 void EntityController::Update(const sf::Time& elapsedTime)
 {
     CharacterController::Update(elapsedTime);
-    if (dead) die();
+    if (dead && !deathHandled)
+    {
+        deathHandled = true;
+        die();
+        if (deathCallback)
+        {
+            deathCallback(this);
+        }
+    }
 }
 
 
@@ -102,6 +111,11 @@ void EntityController::die()
 {
     std::cout << std::format("{} is dead !", gameObject->getLabel()) << std::endl;
     animator->setParam("dead", true);
+}
+
+void EntityController::setDeathCallback(std::function<void(EntityController*)> callback)
+{
+    deathCallback = std::move(callback);
 }
 
 float EntityController::getHealthRatio() const {
