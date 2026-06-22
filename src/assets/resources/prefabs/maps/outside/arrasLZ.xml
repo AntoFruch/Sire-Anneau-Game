@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject label="ArrasDoorTrigger">
+    <Components>
+        <Component name="Collider" x="0" y="0"
+                   width="80" height="30"
+                   trigger="true"/>
+        <Component name="LoadingZone" sceneToLoad="resources/scenes/arras.xml"
+                   targetDoorId="1"
+                   doorId="3"
+                   spawnX="0" spawnY="-100"/>
+    </Components>
+    <GameObject label="DangerZone"
+                x="0" y="-23">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="80" height="15"
+                       trigger="true"/>
+            <Component name="DangerZone"
+                       flag="balcony"
+                       respawnX="0" respawnY="-30">
+                <Line text="Vous ne pouvez pas aller ici pour le moment,"/>
+                <Line text="Allez chez Roxanne"/>
+            </Component>
+        </Components>
+    </GameObject>
+</GameObject>

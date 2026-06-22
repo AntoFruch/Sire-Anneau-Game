@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject>
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/outside/Fontaine.png"
+                   sprite_h="160" sprite_w="160"
+                   layer="1" sortOffsetY="100z"/>
+        <Component name="Collider"
+                   x="0" y="42"
+                   width="100" height="40"/>
+        <Component name="Collider"
+                   x="0" y="42"
+                   width="40" height="50"/>
+        <Component name="Collider"
+                   x="0" y="42"
+                   width="120" height="17"/>
+    </Components>
+</GameObject>

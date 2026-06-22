@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject label="Theater" x="0" y="0" angle="0" sx="1" sy="1">
+    <Components>
+        <Component name="BossFightController"
+                   completionFlag="theater"
+                   bossPrefab="resources/prefabs/bosses/valvert.xml"
+                   bossX="0" bossY="-150"
+                   totalEnemiesToSpawn="16"
+                   killsBeforeBoss="8"
+                   maxAliveEnemies="4"
+                   spawnInterval="4.0">
+            <Line text="Vous avez vaincu le Comte de Valvert et ses sbires !"/>
+        </Component>
+        <Component name="BossFightHUD"/>
+
+        <Component name="Renderer"
+                   src="resources/textures/maps/theater/Theatre.png"
+                   sprite_w="640"
+                   sprite_h="640"
+        />
+    </Components>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy2_spawner.xml" x="280" y="-180"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy2_spawner.xml" x="-280" y="-180"/>
+
+    <GameObject label="DoorTrigger" x="-85" y="322">
+        <Components>
+            <Component name="Collider"
+                       x="0"
+                       y="0"
+                       width="70"
+                       height="35"
+                       trigger="true"
+            />
+            <Component name="LoadingZone"
+                       sceneToLoad="resources/scenes/outside.xml"
+                       targetDoorId="1"
+                       doorId="1"
+                       spawnX="0"
+                       spawnY="-80"
+            />
+        </Components>
+    </GameObject>
+    <GameObject label="Mur et scene">
+        <Components>
+            <Component name="Collider" x="-220" y="320" width="200" height="32"/>
+
+            <Component name="Collider" x="135" y="320" width="370" height="32"/>
+            <Component name="Collider"
+                       x="0"
+                       y="-247"
+                       width="640"
+                       height="100"
+            />
+            <Component name="Collider"
+                       x="320"
+                       y="0"
+                       width="32"
+                       height="640"
+            />
+            <Component name="Collider"
+                       x="-320"
+                       y="0"
+                       width="32"
+                       height="640"
+            />
+        </Components>
+    </GameObject>
+    <GameObject label="Sieges">
+        <Components>
+            <Component name="Collider"
+                       x="150" y="120"
+                       width="400" height="370"/>
+            <Component name="Collider"
+                       x="-221" y="120"
+                       width="200" height="370"/>
+        </Components>
+    </GameObject>
+
+
+</GameObject>

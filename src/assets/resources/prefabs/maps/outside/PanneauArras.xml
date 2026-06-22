@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject>
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/outside/Panneau2.png"
+                   sprite_w="64" sprite_h="64"
+                   layer="1"/>
+    </Components>
+</GameObject>

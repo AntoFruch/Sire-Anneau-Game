@@ -4,7 +4,8 @@
         <Component name="Animator" src="resources/animations/player/PlayerAnimationTree.xml"/>
         <Component name="Renderer" src="resources/textures/characters/Soldier-Yellow.png"
                    sprite_w="32" sprite_h="32"
-                   anchorX="0" anchorY="3"/>
+                   anchorX="0" anchorY="3"
+                   layer="1"/>
         <Component name="EnemyController"
                    speed="60"
                    max_hp="60"

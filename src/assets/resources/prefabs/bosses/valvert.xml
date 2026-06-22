@@ -12,7 +12,7 @@
 
         <Component name="Renderer" src="resources/textures/characters/Mage-Cyan.png"
                    anchorX="0" anchorY="3"
-                   sprite_w="32" sprite_h="32"/>
+                   sprite_w="32" sprite_h="32" layer="1"/>
 
         <Component name="Animator"
                    src="resources/animations/player/PlayerAnimationTree.xml"/>

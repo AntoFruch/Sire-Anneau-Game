@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2" sy="2">
+    <Components>
+
+        <Component name="BossFightHUD"/>
+
+        <Component name="Renderer"
+                   src="resources/textures/maps/arras/ArrasFond.png"
+                   sprite_w="640" sprite_h="640"
+                   layer="0"/>
+    </Components>
+
+    <GameObject label="Overlay">
+        <GameObject name="HDV"
+                    x="-157" y="-100">
+            <Components>
+                <Component name="Renderer"
+                           src="resources/textures/maps/arras/HotelDeVille.png"
+                           sprite_w="320" sprite_h="192"
+                           layer="2"/>
+            </Components>
+        </GameObject>
+
+        <GameObject name="Batiments Bas"
+                    x="0" y="320">
+            <Components>
+                <Component name="Renderer"
+                           src="resources/textures/maps/arras/MaisonsDuBas.png"
+                           sprite_w="640" sprite_h="320"
+                           layer="2"/>
+            </Components>
+        </GameObject>
+    </GameObject>
+
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+            x="100" y="-100"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+            x="-100" y="-100"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+            x="100" y="100"/>
+    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+            x="-100" y="100"/>
+
+    <GameObject label="ExitDoor"
+                x="-227z" y="-220">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="52" height="20"
+                       trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/outside.xml"
+                       targetDoorId="3"
+                       doorId="1"
+                       spawnX="0" spawnY="50"/>
+        </Components>
+    </GameObject>
+
+    <GameObject>
+        <Components>
+            <Component name="Collider"
+                       x="-283" y="-200"
+                       width="60" height="300"/>
+            <Component name="Collider"
+                       x="-171" y="-257"
+                       width="60" height="250"/>
+            <Component name="Collider"
+                       x="60" y="-182"
+                       width="400" height="100"/>
+            <Component name="Collider"
+                       x="0" y="290"
+                       width="640" height="100"/>
+            <Component name="Collider"
+                       x="302" y="0"
+                       width="100" height="640"/>
+            <Component name="Collider"
+                       x="-240" y="58"
+                       width="300" height="280"/>
+            <Component name="Collider"
+                       x="-280" y="220"
+                       width="50" height="100"/>
+            <Component name="Collider"
+                       x="-94" y="58"
+                       width="100" height="196"/>
+            <Component name="Collider"
+                       x="-101" y="173"
+                       width="30" height="50"/>
+        </Components>
+    </GameObject>
+
+</GameObject>

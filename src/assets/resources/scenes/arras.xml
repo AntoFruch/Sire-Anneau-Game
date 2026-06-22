@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scene>
     <Prefab src="resources/prefabs/HUD.xml"/>
-    <Prefab src="resources/prefabs/maps/arras.xml"
+    <Prefab src="resources/prefabs/maps/arras/arras.xml"
             x="0" y="0"
             angle="0"
             sx="1.2" sy="1.2"/>
 
-    <Prefab src="resources/prefabs/player.xml" x="0" y="330" angle="0" sx="1" sy="1" active="true"/>
+    <Prefab src="resources/prefabs/player.xml" x="300" y="-200" angle="0" sx="1" sy="1" active="true"/>
 </Scene>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="2" sy="2">
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/outside/SireAnneauMain.png"
+                   sprite_w="640" sprite_h="640"/>
+    </Components>
+    <Prefab src="resources/prefabs/maps/outside/fountain.xml"
+            x="0" y="-30"/>
+
+    <Prefab src="resources/prefabs/maps/outside/hotel.xml"
+            label="Hotel de Bourgogne"
+            x="-203" y="-200"
+            sx="1.4" sy="1.4"/>
+
+    <Prefab src="resources/prefabs/maps/outside/PanneauRoxanne.xml"
+            label="Panneau Rox"
+            x="250" y="-15"
+            sx="0.5" sy="0.5"/>
+    <Prefab src="resources/prefabs/maps/outside/roxanneLZ.xml"
+            x="305" y="30"/>
+
+    <Prefab src="resources/prefabs/maps/outside/PanneauArras.xml"
+            label="Panneau Arras"
+            x="-85" y="250"
+            sx="0.7" sy="0.7"/>
+    <Prefab src="resources/prefabs/maps/outside/arrasLZ.xml"
+            x="-25" y="310"/>
+
+    <GameObject label="Colliders">
+        <Components>
+            <Component name="Collider"
+                       x="0" y="-280"
+                       width="640" height="100"/>
+
+            <Component name="Collider" x="-192.5" y="340" width="255" height="100"/>
+            <Component name="Collider" x="167.5" y="340" width="305" height="100"/>
+
+            <Component name="Collider"
+                       x="-340" y="0"
+                       width="100" height="640"/>
+
+            <Component name="Collider" x="340" y="-160" width="100" height="320"/>
+            <Component name="Collider" x="340" y="190" width="100" height="260"/>
+        </Components>
+    </GameObject>
+
+</GameObject>

@@ -7,7 +7,9 @@
                    strength="20"/>
         <Component name="Collider" x="0" y="0" width="8" height="8"/>
 
-        <Component name="Renderer" src="resources/textures/characters/Archer-Purple.png" anchorX="0" anchorY="3" sprite_w="32" sprite_h="32"/>
+        <Component name="Renderer" src="resources/textures/characters/Archer-Purple.png"
+                   anchorX="0" anchorY="3"
+                   sprite_w="32" sprite_h="32" layer="1"/>
 
         <Component name="Animator" src="resources/animations/player/PlayerAnimationTree.xml"/>
     </Components>

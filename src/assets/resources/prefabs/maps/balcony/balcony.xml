@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject sx="1" sy="1">
+    <Components>
+        <Component name="BossFightController"
+                   completionFlag="balcony"
+                   bossPrefab="resources/prefabs/bosses/capitaine.xml"
+                   bossX="0" bossY="0"
+                   totalEnemiesToSpawn="22"
+                   killsBeforeBoss="12"
+                   maxAliveEnemies="6"
+                   spawnInterval="3.0">
+            <Line text="Vous avez vaincu le Capitaine et ses sbires !"/>
+        </Component>
+        <Component name="BossFightHUD"/>
+
+        <Component name="Renderer"
+                   src="resources/textures/maps/balcony/ChezRoxanne.png"
+                   sprite_w="640" sprite_h="640" layer="1"/>
+    </Components>
+
+
+
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="-100" y="-100"/>
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="100" y="-100"/>
+    <Prefab src="resources/prefabs/enemies/simple_enemy1_spawner.xml"
+            x="0" y="100"/>
+
+    <GameObject label="House"
+                x="120" y="-260"
+                sx="3" sy="3">
+        <Components>
+            <Component name="Renderer"
+                       src="resources/textures/maps/balcony/balconyhouse.png"
+                       sprite_w="64" sprite_h="64"/>
+            <Component name="Collider"
+                       x="0" y="12"
+                       width="62" height="40"/>
+        </Components>
+    </GameObject>
+
+    <GameObject label="ExitDoor"
+                x="-300" y="-9">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="40" height="80"
+                       trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/outside.xml"
+                       targetDoorId="2"
+                       doorId="1"
+                       spawnX="50" spawnY="0"/>
+        </Components>
+    </GameObject>
+
+    <GameObject>
+        <Components>
+            <Component name="Collider"
+                       x="0" y="-310"
+                       width="640" height="100"/>
+
+            <Component name="Collider"
+                       x="335" y="0"
+                       width="100" height="640"/>
+
+            <Component name="Collider"
+                       x="-320" y="-210"
+                       width="50" height="320"/>
+            <Component name="Collider"
+                       x="-320" y="160"
+                       width="50" height="260"/>
+
+            <Component name="Collider"
+                       x="-180" y="270"
+                       width="500" height="120"/>
+
+            <Component name="Collider"
+                       x="-277" y="233"
+                       width="100" height="300"/>
+
+            <Component name="Collider"
+                       x="0" y="335"
+                       width="640" height="100"/>
+        </Components>
+    </GameObject>
+
+</GameObject>

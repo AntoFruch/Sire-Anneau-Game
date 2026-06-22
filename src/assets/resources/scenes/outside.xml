@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scene>
     <Prefab src="resources/prefabs/HUD.xml"/>
-    <Prefab src="resources/prefabs/maps/outside.xml"
+    <Prefab src="resources/prefabs/maps/outside/outside.xml"
+            label="OutsideMap"
             sx="1" sy="1"/>
 
     <Prefab label="Player" src="resources/prefabs/player.xml"
-            x="0" y="0"
+            x="0" y="100"
             angle="0"
             sx="1" sy="1"/>
 </Scene>
