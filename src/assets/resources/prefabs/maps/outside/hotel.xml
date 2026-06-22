@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameObject label="Theater">
+    <Components>
+        <Component name="Renderer"
+                   src="resources/textures/maps/outside/theatre_outside.png"
+                   sprite_w="128" sprite_h="128"
+                   layer="1"/>
+
+        <Component name="Collider"
+                   x="0" y="14"
+                   width="128" height="100"
+                   trigger="false"/>
+    </Components>
+    <GameObject label="DoorTrigger"
+                x="0" y="60">
+        <Components>
+            <Component name="Collider" x="0" y="0"
+                       width="20" height="10"
+                       trigger="true"/>
+            <Component name="LoadingZone" sceneToLoad="resources/scenes/theater.xml"
+                       targetDoorId="1"
+                       doorId="1"
+                       spawnX="0" spawnY="60"/>
+        </Components>
+    </GameObject>
+</GameObject>
