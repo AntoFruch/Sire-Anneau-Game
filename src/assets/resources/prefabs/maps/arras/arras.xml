@@ -32,14 +32,16 @@
         </GameObject>
     </GameObject>
 
-    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-            x="100" y="-100"/>
-    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-            x="-100" y="-100"/>
-    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-            x="100" y="100"/>
-    <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-            x="-100" y="100"/>
+    <GameObject sx="0.5" sy="0.5">
+        <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+                x="-20" y="-20"/>
+        <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+                x="-20" y="200"/>
+        <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+                x="230" y="100"/>
+        <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
+                x="230" y="-120"/>
+    </GameObject>
 
     <GameObject label="ExitDoor"
                 x="-227z" y="-220">
