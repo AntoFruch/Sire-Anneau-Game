@@ -3,6 +3,16 @@
     <Components>
 
         <Component name="BossFightHUD"/>
+        <Component name="BossFightController"
+                   completionFlag="arras"
+                   bossPrefab="resources/prefabs/bosses/commandant.xml"
+                   bossX="0" bossY="0"
+                   totalEnemiesToSpawn="30"
+                   killsBeforeBoss="15"
+                   maxAliveEnemies="12"
+                   spawnInterval="2.0">
+            <Line text="Vous avez vaincu le Commandant des troupes ennemies et ses sbires !"/>
+        </Component>
 
         <Component name="Renderer"
                    src="resources/textures/maps/arras/ArrasFond.png"
