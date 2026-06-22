@@ -25,7 +25,7 @@ protected:
 
     sf::Vector2f facing{0,1};   // direction dans laquelle regarde l'entité, vers le bas par default
 
-    Animator* animator;     //pointeur vers le composant Animator, pour gérer le déclenchement d'animations
+    Animator* animator{nullptr};     //pointeur vers le composant Animator, pour gérer le déclenchement d'animations
 
     TriggerCallback attackCallback; // callback appelé quand l'attaque touche une autre entité
     EventCallback deathCallback;    // callback appelé à la fin de l'animation de mort, settable avec setDeathCallback(), pratique pour les ennemis qui sont géré par un manager de combat qui doit savoir quand ils meurent
