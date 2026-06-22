@@ -1,0 +1,90 @@
+@startuml
+!pragma layout smetana
+title Architecture moteur - Scene, GameObject et Component
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+class Game {
+  - scene : unique_ptr<Scene>
+  + run()
+}
+
+class SceneManager <<static>> {
+  - scene : Scene*
+  - loadingReq : bool
+  - reqPath : string
+  + init(Scene*)
+  + Update(Time)
+  + requestLoading(path)
+  + instantiate(prefab) : GameObject*
+  + freeze()
+  + unfreeze()
+  + getGui() : tgui::Gui*
+}
+
+class Scene {
+  - mObjects : vector<unique_ptr<GameObject>>
+  - requestedGOs : vector<unique_ptr<GameObject>>
+  - mGui : tgui::Gui
+  - frozen : bool
+  + load(scenePath)
+  + unload()
+  + Start()
+  + Update(Time)
+  + requestInstantiate(prefabPath) : GameObject*
+  - build_go(xml) : unique_ptr<GameObject>
+  - build_prefab(xml) : unique_ptr<GameObject>
+}
+
+class GameObject {
+  - label : string
+  - components : vector<unique_ptr<Component>>
+  - children : vector<unique_ptr<GameObject>>
+  - active : bool
+  - waitingDestruction : bool
+  + transform : Transform
+  + addComponent(Component)
+  + getComponent<T>() : T*
+  + addChild(GameObject)
+  + start()
+  + update(Time)
+  + destroySelf()
+}
+
+class Transform {
+  + getWorldPosition()
+  + getWorldRotation()
+  + getWorldScale()
+}
+
+abstract class Component {
+  + gameObject : GameObject*
+  + Start()
+  + Update(Time)
+  + setParent(GameObject*)
+}
+
+class ComponentFactory <<static>> {
+  + Register(name, Creator) : bool
+  + Create(name, xml) : unique_ptr<Component>
+}
+
+Game *-- Scene
+SceneManager --> Scene : pilote
+Scene *-- "0..*" GameObject : objets racine
+Scene ..> ComponentFactory : appelle en passant un noeud XML
+Scene ..> GameObject : build_go / prefab
+GameObject *-- Transform
+GameObject *-- "0..*" Component
+GameObject *-- "0..*" GameObject : enfants
+Component --> GameObject : parent
+ComponentFactory ..> Component : instancie
+
+note right of ComponentFactory
+  Les composants s'enregistrent eux-memes
+  avec ComponentFactory::Register("Nom", ...)
+  puis les scenes XML utilisent <Component name="Nom"/>.
+end note
+
+@enduml

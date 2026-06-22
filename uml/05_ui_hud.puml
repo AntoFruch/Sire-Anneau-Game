@@ -1,0 +1,122 @@
+@startuml
+!pragma layout smetana
+title UI et HUD
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+abstract class Component {
+  + Start()
+  + Update(Time)
+}
+
+class UIDocument {
+  - gui : tgui::Gui*
+  # elements : vector<tgui::Widget>
+  # hidden : bool
+  + addElement(widget, name)
+  + hide()
+  + show()
+  + moveToFront()
+  + moveToBack()
+}
+
+class HealthBar {
+  - foregroundBar : tgui::Panel
+  - playerTarget : PlayerController*
+  - lastRatio : float
+  + setHealthRatio(ratio)
+}
+
+class EnemyHealthBar {
+  - backgroundBar : tgui::Panel
+  - foregroundBar : tgui::Panel
+  - target : EnemyController*
+  + setHealthRatio(ratio)
+}
+
+class BossHealthBar {
+  - foregroundBar : tgui::Panel
+  - target : BossController*
+  - lastRatio : float
+  - setHealthRatio(ratio)
+}
+
+class BossFightHUD {
+  - text : tgui::Label
+}
+
+class TextBox {
+  - nextAction : InputAction*
+  - buffer : vector<string>
+  - currentIndex : int
+  - text : tgui::Label
+  + open()
+  + next()
+  + setBuffer(buffer)
+}
+
+class PauseMenu {
+  - pauseAction : InputAction*
+  + Start()
+  + Update(Time)
+  - createResumeButton()
+  - createQuitButton()
+}
+
+class GameOverMenu {
+  + Start()
+  + Update(Time)
+  - createRetryButton()
+  - createQuitButton()
+}
+
+class MainMenu {
+  + Start()
+  + Update(Time)
+  - createPlayButton()
+  - createQuitButton()
+}
+
+class SceneManager <<static>> {
+  + getGui() : tgui::Gui*
+  + freeze()
+  + unfreeze()
+  + requestLoading(path)
+}
+
+class GameManager <<static>> {
+  + getPlayer() : PlayerController*
+  + registerTB(TextBox*)
+  + getTB() : TextBox*
+}
+
+class PlayerController
+class EnemyController
+class BossController
+class BossFightController
+class InputAction
+
+Component <|-- UIDocument
+UIDocument <|-- HealthBar
+UIDocument <|-- EnemyHealthBar
+UIDocument <|-- BossHealthBar
+UIDocument <|-- BossFightHUD
+UIDocument <|-- TextBox
+UIDocument <|-- PauseMenu
+UIDocument <|-- GameOverMenu
+UIDocument <|-- MainMenu
+
+UIDocument --> SceneManager : recupere tgui::Gui
+HealthBar --> PlayerController : observe vie
+HealthBar ..> GameManager : trouve joueur
+EnemyHealthBar --> EnemyController : observe vie
+BossHealthBar --> BossController : observe vie
+BossFightHUD ..> BossFightController : affiche progression
+TextBox --> GameManager : s'enregistre
+PauseMenu --> InputAction : action Pause
+PauseMenu ..> SceneManager : freeze / unfreeze
+GameOverMenu ..> SceneManager : reload / menu
+MainMenu ..> SceneManager : lance une scene
+
+@enduml

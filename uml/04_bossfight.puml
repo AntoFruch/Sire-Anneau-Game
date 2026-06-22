@@ -1,0 +1,102 @@
+@startuml
+!pragma layout smetana
+title Systeme de bossfight
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+abstract class Component {
+  + Start()
+  + Update(Time)
+}
+
+class BossFightController {
+  - activeFight : BossFightController*
+  - state : State
+  - completionFlag : string
+  - bossPrefab : string
+  - totalEnemiesToSpawn : int
+  - killsBeforeBoss : int
+  - maxAliveEnemies : int
+  - spawnInterval : float
+  - spawners : vector<EnemySpawner*>
+  - aliveEnemies : vector<EnemyController*>
+  - boss : BossController*
+  - killedEnemies : int
+  + getActiveFight() : BossFightController*
+  + registerSpawner(EnemySpawner*)
+  + getTotalEnemies() : int
+  + getKilledEnemies() : int
+  + isCompleted() : bool
+  - trySpawnEnemy()
+  - spawnBoss()
+  - completeFight()
+}
+
+class EnemySpawner {
+  - ennemyName : string
+  - triggerZone : Collider*
+  - SpawnClock : float
+  + isReady(spawnInterval) : bool
+  + isFree() : bool
+  + spawn() : GameObject*
+  + resetClock()
+}
+
+class EnemyController {
+  + setDeathCallback(callback)
+  + getHealthRatio() : float
+}
+
+class BossController {
+  + getHealthRatio() : float
+}
+
+class BossFightHUD {
+  - text : tgui::Label
+  + Update(Time)
+}
+
+class GameManager <<static>> {
+  + setFlag(name)
+  + checkFlag(name) : bool
+  + getTB() : TextBox*
+}
+
+class SceneManager <<static>> {
+  + instantiate(prefab) : GameObject*
+}
+
+class GameObject {
+  + getComponent<T>() : T*
+}
+
+class Collider
+class TextBox
+
+Component <|-- BossFightController
+Component <|-- EnemySpawner
+Component <|-- BossFightHUD
+EnemyController <|-- BossController
+
+BossFightController --> "0..*" EnemySpawner : controle
+BossFightController --> "0..*" EnemyController : ennemis vivants
+BossFightController --> "0..1" BossController : boss courant
+BossFightController ..> SceneManager : instancie ennemis/boss
+BossFightController ..> GameManager : flags + texte de fin
+
+EnemySpawner --> Collider : zone libre
+EnemySpawner ..> SceneManager : instantiate(ennemyName)
+EnemySpawner ..> BossFightController : registerSpawner()
+EnemySpawner ..> GameObject : retourne l'objet cree
+
+BossFightHUD ..> BossFightController : lit progression
+GameManager --> TextBox : affiche dialogue
+SceneManager ..> GameObject : cree prefab
+
+note right of BossFightController
+  State :
+  Inactive -> Waves -> Boss -> Completed
+end note
+
+@enduml

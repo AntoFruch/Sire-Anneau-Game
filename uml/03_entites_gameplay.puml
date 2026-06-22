@@ -1,0 +1,96 @@
+@startuml
+!pragma layout smetana
+title Entites gameplay - joueur, ennemis et boss
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+abstract class Component {
+  + Start()
+  + Update(Time)
+}
+
+class CharacterController {
+  - collider : Collider*
+  + move(delta)
+}
+
+class EntityController {
+  - speed : float
+  - max_hp : int
+  - strength : int
+  # current_hp : int
+  # dead : bool
+  # facing : Vector2f
+  # animator : Animator*
+  # attackTriggerGO : GameObject*
+  + moveEntity(direction, elapsedTime)
+  + attack()
+  + endAttack()
+  + takeDamage(amount)
+  + die()
+  + setDeathCallback(callback)
+  + getHealthRatio() : float
+}
+
+class PlayerController {
+  - moveAction : InputAction*
+  - attackAction : InputAction*
+  - gameOver : bool
+  + takeDamage(amount)
+  + isGameOver() : bool
+}
+
+class EnemyController {
+  - currentState : State
+  - chasingDistance : float
+  - attackTime : float
+  - attackDistance : float
+}
+
+class BossController {
+  + Start()
+  + Update(Time)
+}
+
+class GameManager <<static>> {
+  - player : PlayerController*
+  - textBox : TextBox*
+  - flags : map<string, bool>
+  + registerPlayer(PlayerController*)
+  + getPlayer() : PlayerController*
+  + setFlag(name)
+  + checkFlag(name) : bool
+}
+
+class InputAction {
+  + ReadValue<T>()
+  + wasPressedThisFrame()
+}
+
+class Animator
+class Collider
+class GameObject
+class TextBox
+
+Component <|-- CharacterController
+CharacterController <|-- EntityController
+EntityController <|-- PlayerController
+EntityController <|-- EnemyController
+EnemyController <|-- BossController
+
+CharacterController --> Collider : utilise
+EntityController --> Animator : pilote animations
+EntityController --> GameObject : AttackTrigger
+PlayerController --> InputAction : lit inputs
+PlayerController --> GameManager : s'enregistre
+EnemyController ..> GameManager : cible le joueur
+GameManager --> PlayerController : joueur courant
+GameManager --> TextBox : dialogue courant
+
+note right of EnemyController
+  State interne :
+  Wander, Chasing, Attack
+end note
+
+@enduml
