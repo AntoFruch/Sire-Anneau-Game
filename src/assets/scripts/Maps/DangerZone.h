@@ -8,11 +8,15 @@
 
 #include "Engine.h"
 
+/**
+ * Composant qui doit être allié à un composant Collider en mode trigger.
+ * Permet de bloquer le passage et d'afficher une boite de dialogue.
+ */
 class DangerZone : public Component
 {
-    std::string flag;
-    std::vector<std::string> lines;
-    sf::Vector2f respawnPoint;
+    std::string flag;               // flag qui desactive la zone
+    std::vector<std::string> lines; // texte à afficher
+    sf::Vector2f respawnPoint;      // point de respawn relatif après avoir touché la boite de collision
 
 public:
     DangerZone(const std::string& flag, const std::vector<std::string>& lines, const sf::Vector2f& respawnPoint);

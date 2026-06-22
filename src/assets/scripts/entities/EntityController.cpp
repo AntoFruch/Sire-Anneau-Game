@@ -16,7 +16,6 @@ EntityController::EntityController(float speed, int max_hp, int strength)
         {
             if (auto controller = hit->gameObject->getComponent<EntityController>(); controller && controller != this)
             {
-                std::cout << "Attacker : " << trigger->gameObject->getLabel() << std::endl;
                 controller->takeDamage(this->strength); // tester si ça marche avec des ennemis
             }
         }
@@ -92,8 +91,6 @@ void EntityController::attack()
 
 void EntityController::endAttack() {
     attackTriggerGO->setActive(false);
-    std::cout << "end of attack" << std::endl;
-
 }
 
 void EntityController::takeDamage(int amount) {
@@ -101,7 +98,6 @@ void EntityController::takeDamage(int amount) {
 
     current_hp -= amount;
 
-    std::cout << gameObject->getLabel() << " took " << amount << "damages" << std::endl;
     invulnerable = true;
     animator->setParam("hit", true);
     if (current_hp <= 0) dead=true;
@@ -109,7 +105,6 @@ void EntityController::takeDamage(int amount) {
 
 void EntityController::die()
 {
-    std::cout << std::format("{} is dead !", gameObject->getLabel()) << std::endl;
     animator->setParam("dead", true);
 }
 

@@ -22,8 +22,3 @@ void BossController::Update(const sf::Time& elapsedTime)
 {
     EnemyController::Update(elapsedTime);
 }
-
-void BossController::die()
-{
-    EntityController::die();
-}

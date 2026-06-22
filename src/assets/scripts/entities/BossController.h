@@ -9,6 +9,9 @@
 #include "EnemyController.h"
 #include "Engine.h"
 
+/**
+ * Controlleur de boss, ne fais rien de plus qu'un ennemi normal, (mais devrait)
+ */
 class BossController : public EnemyController
 {
 public:
@@ -16,7 +19,6 @@ public:
     ~BossController();
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
-    void die() override;
 
 private:
     static inline bool s_registered =

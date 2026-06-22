@@ -13,37 +13,40 @@
 #include "scripts/entities/EnemyController.h"
 #include "scripts/entities/EnemySpawner.h"
 
+/** @brief Composant qui sert à gèrer un combat de boss
+ *
+ */
 class BossFightController : public Component
 {
-    std::vector<std::string> textOnComplete;
     enum class State
     {
         Inactive,
-        Waves,
-        Boss,
-        Completed
+        Waves,      // ennemis seuls
+        Boss,       // ennemis + boss
+        Completed   // une fois les ennemis vaincu
     };
 
-    static BossFightController* activeFight;
+    static BossFightController* activeFight;    // singleton simple
 
-    std::string completionFlag;
-    std::string bossPrefab;
-    sf::Vector2f bossSpawnPosition;
+    std::string completionFlag;     // le flag a set si victoire
+    std::string bossPrefab;         // le chemin du prefab du boss
+    sf::Vector2f bossSpawnPosition; // position de spawn du boss
 
-    int totalEnemiesToSpawn;
-    int killsBeforeBoss;
-    int maxAliveEnemies;
-    float spawnInterval;
+    int totalEnemiesToSpawn;    // nombre d'ennemis à tuer en tout
+    int killsBeforeBoss;        // nombre d'ennemis à tuer avant que boss ne spawn
+    int maxAliveEnemies;        // nombre d'ennemis vivants en même temps
+    float spawnInterval;        // intervalle de temps entre deux spawn d'ennemis sur un même spawner
 
-    State state{State::Inactive};
-    std::vector<EnemySpawner*> spawners;
-    std::vector<EnemyController*> aliveEnemies;
-    BossController* boss{nullptr};
+    State state{State::Inactive};                   // Etat du fight
+    std::vector<EnemySpawner*> spawners;            // liste des spawner pour ce fight
+    std::vector<EnemyController*> aliveEnemies;     // liste des ennemis en vie
+    BossController* boss{nullptr};                  // boss
 
-    int spawnedEnemies{0};
-    int killedEnemiesBeforeBoss{0};
-    int killedEnemiesAfterBoss{0};
-    bool bossDead{false};
+    int spawnedEnemies{0};      // compteur d'ennemis apparus
+    int killedEnemies{0};       // compteur d'ennemis tués
+    bool bossDead{false};       // boss mort ?
+
+    std::vector<std::string> textOnComplete;   // texte à afficher dans la boite de dialogue une fois le combat gagné
 
 public:
     BossFightController(
@@ -62,8 +65,17 @@ public:
     void Start() override;
     void Update(const sf::Time& elapsedTime) override;
 
+    /**
+     * Donne un pointeur veers le combat actif
+     * @return le combat actif
+     */
     static BossFightController* getActiveFight();
+    /**
+     * @brief enregistre le spawner dans la liste.
+     * @param spawner
+     */
     void registerSpawner(EnemySpawner* spawner);
+
     int getTotalEnemies() const;
     int getKilledEnemies() const;
 

@@ -53,7 +53,7 @@ void PlayerController::Update(const sf::Time& elapsedTime)
 
 void PlayerController::takeDamage(int amount)
 {
-    EntityController::takeDamage(amount); // la logique des dégâts subis
+    EntityController::takeDamage(amount);
 }
 
 void PlayerController::attack()

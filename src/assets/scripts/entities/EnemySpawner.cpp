@@ -8,9 +8,8 @@
 #include "EnemyController.h"
 #include "Managers/Collisions/CollisionsManager.h"
 
-EnemySpawner::EnemySpawner(std::string_view ennemyName, float intervalle) {
+EnemySpawner::EnemySpawner(std::string_view ennemyName) {
   this->ennemyName = ennemyName;
-  this->intervalle = intervalle;
 }
 
 void EnemySpawner::Start() {

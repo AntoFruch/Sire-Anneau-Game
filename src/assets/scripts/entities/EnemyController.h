@@ -10,19 +10,21 @@
 #include "Managers/Scene/ComponentFactory.h"
 #include "EntityController.h"
 
+/**
+ * @brief Controller d'ennemi, le comportement est géré par une machine à états dans Update
+ */
 class EnemyController : public EntityController {
     enum State { Wander, Chasing, Attack };
     State currentState {Wander};
 
-    float wanderTime{2.f};
+    float wanderTime{2.f};          // temps avant changement de direction potentiel
     float wanderClock{wanderTime};
-    sf::Vector2f headingDirection;
 
-    float chasingDistance{200};
+    float chasingDistance;     // range pour que l'ennemi poursuive le joueur
 
     float attackClock;
-    float attackTime{0.8f};
-    float attackDistance{40};
+    float attackTime;         // 1 coup tous les attackTime (1/attackspeed)
+    float attackDistance;     // Range d'attaque
 
 public:
     EnemyController(float speed, int max_hp, int strength, float attackSpeed, float attackRange, float chasingRange);

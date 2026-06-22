@@ -9,14 +9,14 @@
 #include "EntityController.h"
 
 /**
- * @brief Controlleur du joueur, gere le lien entre inputs et mouvement/attaque
+ * @brief Controlleur du joueur, gère le lien entre inputs et mouvement/attaque
  *
  */
 class PlayerController : public EntityController {
-    InputAction* moveAction;
-    InputAction* attackAction;
+    InputAction* moveAction;    // Action de mouvement (ZQSD)
+    InputAction* attackAction;  // Action d'attaque (P)
 
-    bool gameOver{false};
+    bool gameOver{false};       //
 public:
     PlayerController(float speed, int max_hp, int strength);
     ~PlayerController();
