@@ -33,7 +33,7 @@
         <Components>
             <Component name="Renderer"
                        src="resources/textures/maps/balcony/balconyhouse.png"
-                       sprite_w="64" sprite_h="64"/>
+                       sprite_w="64" sprite_h="64" layer="1"/>
             <Component name="Collider"
                        x="0" y="12"
                        width="62" height="40"/>
