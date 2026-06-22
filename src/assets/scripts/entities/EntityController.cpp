@@ -29,10 +29,14 @@ void EntityController::Start()
     attackTriggerGO->getComponent<Collider>()->setTriggerCallback(attackCallback);
 
     animator = gameObject->getComponent<Animator>();
-    animator->registerAnimationEvent("Slash", 3, [this]() {
+    if (deathCallback)
+    {
+        animator->registerAnimationEvent("Death", -1, deathCallback);
+    }
+    animator->registerAnimationEvent("Slash", -1, [this]() {
         this->endAttack();
     });
-    animator->registerAnimationEvent("Hit", 0, [this]() {
+    animator->registerAnimationEvent("Hit", -1, [this]() {
         this->invulnerable = false;
     });
 }
@@ -44,10 +48,6 @@ void EntityController::Update(const sf::Time& elapsedTime)
     {
         deathHandled = true;
         die();
-        if (deathCallback)
-        {
-            deathCallback(this);
-        }
     }
 }
 
@@ -113,9 +113,13 @@ void EntityController::die()
     animator->setParam("dead", true);
 }
 
-void EntityController::setDeathCallback(std::function<void(EntityController*)> callback)
+void EntityController::setDeathCallback(EventCallback callback)
 {
-    deathCallback = std::move(callback);
+    if (animator)
+    {
+        animator->registerAnimationEvent("Death", -1, callback);
+    }
+    deathCallback = callback;
 }
 
 float EntityController::getHealthRatio() const {

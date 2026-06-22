@@ -7,7 +7,9 @@
 #include "Engine.h"
 #include <functional>
 
-
+/**
+ * @brief Controlleur d'entité, c'est la brique de base pour
+ */
 class EntityController : public CharacterController {
     float speed;
     int max_hp;
@@ -25,9 +27,8 @@ protected:
     Animator* animator;
 
     // Callback called when attacking successfully
-    // void(*attackCallback)(const std::vector<Collider*>&, Collider*);
     std::function<void(const std::vector<Collider*>&, Collider*)> attackCallback;
-    std::function<void(EntityController*)> deathCallback;
+    EventCallback deathCallback;
 
     GameObject* attackTriggerGO;
 
@@ -51,7 +52,7 @@ public:
      */
     virtual void takeDamage(int amount);
     virtual void die();
-    void setDeathCallback(std::function<void(EntityController*)> callback);
+    void setDeathCallback(EventCallback callback);
     float getHealthRatio() const;
 };
 

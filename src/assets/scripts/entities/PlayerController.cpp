@@ -29,7 +29,7 @@ void PlayerController::Start()
         gameObject->transform.setLocalPosition(LoadingZoneManager::getSpawnPointFromCurrentDoorId());
     }
 
-    animator->registerAnimationEvent("Death", 3, [this]()
+    animator->registerAnimationEvent("Death", -1, [this]()
     {
         this->gameOver=true;
     });

@@ -160,9 +160,19 @@ void BossFightController::trySpawnEnemy()
         spawnedEnemies++;
         spawner->resetClock();
 
-        enemy->setDeathCallback([this](EntityController* deadEnemy)
+        enemy->setDeathCallback([this, enemy]()
         {
-            onEnemyDeath(dynamic_cast<EnemyController*>(deadEnemy));
+            std::erase(aliveEnemies, enemy);
+
+            if (state == State::Boss)
+            {
+                killedEnemiesAfterBoss++;
+            }
+            else
+            {
+                killedEnemiesBeforeBoss++;
+            }
+            enemy->gameObject->destroySelf();
         });
     }
 }
@@ -175,9 +185,10 @@ void BossFightController::spawnBoss()
 
     if (boss != nullptr)
     {
-        boss->setDeathCallback([this](EntityController*)
+        boss->setDeathCallback([this]()
         {
-            onBossDeath();
+            bossDead = true;
+            boss->gameObject->destroySelf();
         });
     }
 }
@@ -190,30 +201,6 @@ void BossFightController::completeFight()
     auto tb = GameManager::getTB();
     tb->setBuffer(textOnComplete);
     tb->open();
-}
-
-void BossFightController::onEnemyDeath(EnemyController* enemy)
-{
-    if (enemy == nullptr)
-    {
-        return;
-    }
-
-    std::erase(aliveEnemies, enemy);
-
-    if (state == State::Boss)
-    {
-        killedEnemiesAfterBoss++;
-    }
-    else
-    {
-        killedEnemiesBeforeBoss++;
-    }
-}
-
-void BossFightController::onBossDeath()
-{
-    bossDead = true;
 }
 
 

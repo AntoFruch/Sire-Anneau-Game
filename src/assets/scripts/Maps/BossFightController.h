@@ -75,8 +75,6 @@ private:
     void trySpawnEnemy();
     void spawnBoss();
     void completeFight();
-    void onEnemyDeath(EnemyController* enemy);
-    void onBossDeath();
 
     static inline bool s_registered = ComponentFactory::Register("BossFightController",
         [](const pugi::xml_node& node) -> std::unique_ptr<Component>

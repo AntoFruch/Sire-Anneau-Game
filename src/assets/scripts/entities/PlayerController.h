@@ -8,6 +8,10 @@
 #include "Managers/Scene/ComponentFactory.h"
 #include "EntityController.h"
 
+/**
+ * @brief Controlleur du joueur, gere le lien entre inputs et mouvement/attaque
+ *
+ */
 class PlayerController : public EntityController {
     InputAction* moveAction;
     InputAction* attackAction;

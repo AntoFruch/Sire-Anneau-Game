@@ -28,9 +28,6 @@ void EnemyController::Start()
     EntityController::Start();
     static int cnt=0;
     std::cout << ++cnt<< std::endl;
-    animator->registerAnimationEvent("Death", 2, [this]() {
-        gameObject->destroySelf();
-    });
 }
 
 sf::Vector2f random_vector2f_minus1_to_1() {
