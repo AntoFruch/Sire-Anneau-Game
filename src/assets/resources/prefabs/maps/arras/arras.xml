@@ -34,13 +34,13 @@
 
     <GameObject sx="0.5" sy="0.5">
         <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-                x="-20" y="-20"/>
+                x="-200" y="-190"/>
         <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-                x="-20" y="200"/>
+                x="-100" y="323"/>
         <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-                x="230" y="100"/>
+                x="492" y="323"/>
         <Prefab label="spawner" src="resources/prefabs/enemies/simple_enemy3_spawner.xml"
-                x="230" y="-120"/>
+                x="492" y="-190"/>
     </GameObject>
 
     <GameObject label="ExitDoor"
