@@ -62,9 +62,9 @@ void EnemyController::Update(const sf::Time& elapsedTime)
         if (wanderClock >= wanderTime)
         {
             wanderClock = 0;
-            headingDirection = random_vector2f_minus1_to_1();
+            facing = random_vector2f_minus1_to_1();
         }
-        moveEntity(headingDirection, elapsedTime);
+        moveEntity(facing, elapsedTime);
         if (distanceSquared <= chasingDistance*chasingDistance) currentState = Chasing;
         break;
     case Chasing:

@@ -95,7 +95,7 @@ int BossFightController::getTotalEnemies() const
 
 int BossFightController::getKilledEnemies() const
 {
-    return killedEnemiesBeforeBoss + killedEnemiesAfterBoss;
+    return killedEnemies;
 }
 
 bool BossFightController::isCompleted() const
@@ -107,7 +107,7 @@ void BossFightController::updateWaves()
 {
     trySpawnEnemy();
 
-    if (killedEnemiesBeforeBoss >= killsBeforeBoss)
+    if (killedEnemies >= killsBeforeBoss)
     {
         spawnBoss();
         state = State::Boss;
@@ -117,7 +117,7 @@ void BossFightController::updateWaves()
 void BossFightController::updateBoss()
 {
     if (bossDead &&
-        killedEnemiesBeforeBoss + killedEnemiesAfterBoss >= totalEnemiesToSpawn &&
+        killedEnemies >= totalEnemiesToSpawn &&
         aliveEnemies.empty())
     {
         completeFight();
@@ -164,14 +164,7 @@ void BossFightController::trySpawnEnemy()
         {
             std::erase(aliveEnemies, enemy);
 
-            if (state == State::Boss)
-            {
-                killedEnemiesAfterBoss++;
-            }
-            else
-            {
-                killedEnemiesBeforeBoss++;
-            }
+            killedEnemies++;
             enemy->gameObject->destroySelf();
         });
     }
