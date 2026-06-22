@@ -1,37 +1,61 @@
-# 🤺 Projet : Sire Anneau – Aide mon Roast en
-(Titre alternatif : Serrano de Bergerac)
+# Sire-Anneau Game
 
-## 📜 Le Concept (1 vs 100)
-Un jeu d'action dynamique de type Hack 'n' Slash / Beat 'em up. Le joueur incarne Cyrano et doit repousser des vagues massives d'ennemis (1 contre 100) à travers les décors emblématiques de l'œuvre d'Edmond Rostand. Chaque niveau se clôture par un affrontement épique contre un Boss de scène.
+Sire-Anneau Game est un jeu d'action en 2D inspire de Cyrano de Bergerac. Le joueur incarne Cyrano et traverse plusieurs scenes emblematiques en affrontant des vagues d'ennemis, puis un boss propre a chaque lieu.
 
-### ⚔️ Arme Légendaire : La « Nezpée »
-(Une arme aiguisée comme son esprit, avec une garde aussi proéminente que son nez)
+Le projet repose sur un moteur maison oriente composants : les scenes, prefabs, entites, collisions, animations, interfaces et comportements de gameplay sont assembles principalement depuis des fichiers XML.
 
-Mécanique signature : Le panache au combat. À chaque coup porté (ou lors des combos), une légère insulte ou un bon mot apparaît à l'écran, liant viscéralement la joute verbale à la joute physique.
+## Apercu
 
-## 🌍 Les Mondes & Déroulé du Jeu
-### 🎭 Monde 1 : Le Théâtre (L'Hôtel de Bourgogne)
-L'ambiance : Une salle en ébullition, des bancs renversés, un public en délire. Cyrano nettoie la salle des gêneurs et des marquis arrogants.
+![Menu principal](docs/images/menu-principal.png)
 
-Le Boss : Montfleury (ou Valvert).
+![Combat dans le theatre](docs/images/devant-theatre.png)
 
-Animation de fin : Le combat s'achève magistralement avec l'animation de la Tirade du Nez (ou la Ballade du Duel), assénant le coup de grâce au boss final exactement à la fin de l'envoi.
+![Bossfight a Arras](docs/images/combat-theatre.png)
 
-### 🌙 Monde 2 : Le Balcon de Roxane
-L'ambiance : Un combat nocturne dans les ruelles sombres. Cyrano doit repousser les sbires et les gardes en silence pour ne pas éveiller les soupçons, tout en protégeant l'accès au balcon.
+## Concept
 
-Le Boss : Le Capitaine des gardes (ou De Guiche en embuscade).
+Le jeu melange beat'em up, hack'n slash leger et progression par scenes. Chaque zone propose une ambiance differente, des ennemis adaptes et un combat final.
 
-Animation de fin : Le calme revient. Cyrano, caché dans l'ombre, déclame ses vers envoûtants à Roxane sous la lumière de la lune.
+Le ton du jeu reprend l'esprit de Cyrano : panache, duels, theatre, tirades et affrontements exageres.
 
-### 💥 Monde 3 : Le Siège d'Arras
-L'ambiance : Le chaos total du champ de bataille. La faim, la boue, et les troupes espagnoles qui déferlent de toutes parts. L'ultime test d'endurance (le vrai 1 vs 100).
+## Scenes principales
 
-Le Boss : Le Commandant des troupes ennemies.
+### Theatre
 
-Animation de fin : Une transition poignante au milieu du désastre : la remise de l'anneau et le mariage, unissant l'amour et le tragique de la guerre.
+Premiere arene du jeu. Cyrano affronte les ennemis dans une salle de theatre avant de combattre le boss Valvert.
 
+### Balcon de Roxane
 
-## Structure du projet 
+Scene plus intime et nocturne, centree autour du balcon de Roxane. Le joueur y affronte des vagues d'ennemis avant le combat contre le Capitaine.
 
-Projet orienté composants.
+### Siege d'Arras
+
+Grande scene de bataille. Le joueur doit survivre a une pression plus forte, avec davantage d'ennemis simultanes, avant d'affronter le Commandant.
+
+## Fonctionnalites
+
+- Moteur 2D base sur des `GameObject` et des `Component`.
+- Scenes et prefabs declaratifs en XML.
+- Systeme de collisions, triggers et zones de chargement.
+- Animation par arbres d'animation et parametres.
+- Controleur joueur, ennemis, boss et spawners.
+- Bossfights avec vagues d'ennemis, compteur de progression et HUD dedie.
+- Interface TGUI : menu principal, pause, game over, barre de vie et boite de dialogue.
+
+## Structure
+
+- `src/engine/` : moteur de jeu maison.
+- `src/assets/scripts/` : scripts gameplay, UI, ennemis, boss et zones.
+- `src/assets/resources/` : scenes, prefabs, textures, animations, polices et configuration.
+- `src/test/` : tests unitaires du moteur et des systemes principaux.
+- `uml/` : diagrammes PlantUML et exports.
+
+## Galerie
+
+Ajoutez ici les captures finales du projet.
+
+![Exploration exterieure](docs/images/exterieur.png)
+
+![Interface de dialogue](docs/images/dialogue.png)
+
+![Diagramme moteur](docs/images/diagramme-moteur.png)
