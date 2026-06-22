@@ -1,0 +1,103 @@
+@startuml
+!pragma layout smetana
+title Composants moteur principaux
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+abstract class Component {
+  + gameObject : GameObject*
+  + Start()
+  + Update(Time)
+}
+
+class Renderer {
+  - texture : sf::Texture
+  - layer : int
+  - sortOffsetY : float
+  + render(window)
+  + setCutRectPos(x, y)
+  + getLayer() : int
+  + getSortY() : float
+}
+
+class Collider {
+  - hitbox : sf::RectangleShape
+  - trigger : bool
+  - callback : TriggerCallback
+  + isTrigger() : bool
+  + setTriggerCallback(callback)
+  - intersects(other) : bool
+}
+
+class CharacterController {
+  - collider : Collider*
+  + move(delta)
+}
+
+class Animator {
+  - renderer : Renderer*
+  - graph : AnimatorGraph*
+  - m_currentState : AnimationState*
+  - m_parameters : map<string, Parameter>
+  + setParam(label, value)
+  + registerAnimationEvent(state, frame, callback)
+  - makeTransition()
+  - applyToRenderer()
+}
+
+class Camera {
+  - m_view : sf::View
+  + getView()
+}
+
+class UIDocument {
+  - gui : tgui::Gui*
+  # elements : vector<tgui::Widget>
+  # hidden : bool
+  + addElement(widget, name)
+  + hide()
+  + show()
+  + moveToFront()
+  + moveToBack()
+}
+
+class RenderManager <<static>> {
+  - mRenderers : vector<Renderer*>
+  - mainCamera : Camera*
+  + registerRenderer(Renderer*)
+  + unregisterRenderer(Renderer*)
+  + renderAll(window)
+  + setMainCamera(Camera*)
+}
+
+class CollisionsManager <<static>> {
+  - solidColliders : vector<Collider*>
+  - triggersColliders : vector<Collider*>
+  + registerCollider(Collider*)
+  + unRegisterCollider(Collider*)
+  + move(Collider, delta)
+  + checkTrigger(Collider)
+}
+
+class AnimatorGraph
+class AnimatorTreeLoader <<static>>
+class SceneManager <<static>>
+
+Component <|-- Renderer
+Component <|-- Collider
+Component <|-- CharacterController
+Component <|-- Animator
+Component <|-- Camera
+Component <|-- UIDocument
+
+Renderer --> RenderManager : s'enregistre
+Camera --> RenderManager : main camera
+Collider --> CollisionsManager : s'enregistre
+CharacterController --> Collider : deplace en pensant à 
+Animator --> Renderer : change les frames
+Animator --> AnimatorGraph : lit
+AnimatorTreeLoader ..> AnimatorGraph : charge depuis XML
+UIDocument --> SceneManager : recupere Gui
+
+@enduml
