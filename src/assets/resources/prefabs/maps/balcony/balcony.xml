@@ -15,7 +15,7 @@
 
         <Component name="Renderer"
                    src="resources/textures/maps/balcony/ChezRoxanne.png"
-                   sprite_w="640" sprite_h="640" layer="1"/>
+                   sprite_w="640" sprite_h="640" layer="0"/>
     </Components>
 
 
