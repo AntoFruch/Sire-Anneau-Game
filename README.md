@@ -4,6 +4,13 @@ Sire-Anneau Game est un jeu d'action en 2D inspire de Cyrano de Bergerac. Le jou
 
 Le projet repose sur un moteur maison oriente composants : les scenes, prefabs, entites, collisions, animations, interfaces et comportements de gameplay sont assembles principalement depuis des fichiers XML.
 
+## Commande a executer apres pull !
+
+```bash
+git submodule update --init --recursive
+```
+permet de pull le submodule qu'est `engine/`.
+
 ## Apercu
 
 ![Menu principal](docs/images/menu-principal.png)
