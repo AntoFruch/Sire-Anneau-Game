@@ -184,7 +184,7 @@ TEST(GameObjectLifecycle, DestroySelfMarksObjectForDestruction)
 TEST(GameObjectLifecycle, SceneRemovesDestroyedObjectsOnUpdate)
 {
     Scene scene;
-    GameObject* gameObject = scene.requestInstantiate(TEST_RESOURCES_DIR "/scene_parser/prefabs/base_prefab.xml");
+    GameObject* gameObject = scene.requestInstantiate(TEST_RESOURCES_DIR "/prefabs/base_prefab.xml");
     ASSERT_NE(gameObject, nullptr);
 
     scene.Update(sf::Time::Zero);

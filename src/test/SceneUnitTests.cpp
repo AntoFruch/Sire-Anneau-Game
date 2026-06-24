@@ -11,6 +11,7 @@
 namespace {
 
 constexpr auto kRoot = TEST_RESOURCES_DIR "/scene_parser/";
+constexpr auto kPrefabRoot = TEST_RESOURCES_DIR "/prefabs/";
 
 class SceneParserProbeComponent : public Component {
     int value;
@@ -211,7 +212,7 @@ TEST(SceneParsing, RequestInstantiateValidPrefabReturnsPointer)
     auto scene = makeScene();
 
     GameObject* instantiated = nullptr;
-    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/base_prefab.xml"));
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kPrefabRoot} + "base_prefab.xml"));
     ASSERT_NE(instantiated, nullptr);
     EXPECT_EQ(instantiated->getLabel(), "BasePrefab");
 }
@@ -221,7 +222,7 @@ TEST(SceneParsing, RequestInstantiateMissingPrefabThrows)
     auto scene = makeScene();
 
     expectIllegalOperationWithMessage(
-        [&] { scene.requestInstantiate(std::string{kRoot} + "prefabs/missing_prefab.xml"); },
+        [&] { scene.requestInstantiate(std::string{kPrefabRoot} + "missing_prefab.xml"); },
         "Could not open prefab because");
 }
 
@@ -239,7 +240,7 @@ TEST(SceneParsing, GameObjectTransformXmlAttributesAreApplied)
     auto scene = makeScene();
 
     GameObject* instantiated = nullptr;
-    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/transform_prefab.xml"));
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kPrefabRoot} + "transform_prefab.xml"));
     ASSERT_NE(instantiated, nullptr);
 
     EXPECT_EQ(instantiated->getLabel(), "TransformedPrefab");
@@ -255,7 +256,7 @@ TEST(SceneParsing, GameObjectMissingXmlAttributesUseDefaults)
     auto scene = makeScene();
 
     GameObject* instantiated = nullptr;
-    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/default_gameobject_prefab.xml"));
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kPrefabRoot} + "default_gameobject_prefab.xml"));
     ASSERT_NE(instantiated, nullptr);
 
     EXPECT_EQ(instantiated->getLabel(), "DefaultsOnly");
@@ -271,7 +272,7 @@ TEST(SceneParsing, PrefabKeepsItsChildrenAndComponents)
     auto scene = makeScene();
 
     GameObject* instantiated = nullptr;
-    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/prefab_with_child_and_component.xml"));
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kPrefabRoot} + "prefab_with_child_and_component.xml"));
     ASSERT_NE(instantiated, nullptr);
 
     auto probe = instantiated->getComponent<SceneParserProbeComponent>();
@@ -292,7 +293,7 @@ TEST(SceneParsing, RequestInstantiateAddsObjectOnlyOnNextUpdate)
     ASSERT_EQ(scene.dump(), "Scene :\n");
 
     GameObject* instantiated = nullptr;
-    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kRoot} + "prefabs/base_prefab.xml"));
+    ASSERT_NO_THROW(instantiated = scene.requestInstantiate(std::string{kPrefabRoot} + "base_prefab.xml"));
     ASSERT_NE(instantiated, nullptr);
     EXPECT_EQ(scene.dump(), "Scene :\n");
 
