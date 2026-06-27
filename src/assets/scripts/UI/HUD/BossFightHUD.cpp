@@ -37,12 +37,9 @@ void BossFightHUD::Update(const sf::Time& elapsedTime)
         hide();
         return;
     }
-    else
-    {
-        show();
-    }
 
-    text->setText(std::format("Ennemis térassés : {} / {}",
+    show();
+    text->setText(std::format("Ennemis terrassés : {} / {}",
         fight->getKilledEnemies(), fight->getTotalEnemies()));
 }
 
