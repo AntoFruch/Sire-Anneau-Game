@@ -65,11 +65,12 @@ void PauseMenu::createResumeButton()
         hide();
         SceneManager::unfreeze();
     });
-    resumeButton->onMouseEnter([resumeButton]() {
-        resumeButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto resumeButtonWeak = resumeButton.get();
+    resumeButton->onMouseEnter([resumeButtonWeak]() {
+        resumeButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    resumeButton->onMouseLeave([resumeButton]() {
-        resumeButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    resumeButton->onMouseLeave([resumeButtonWeak]() {
+        resumeButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
     addElement(resumeButton,"Resume");
@@ -96,14 +97,15 @@ void PauseMenu::createQuitButton()
     quitButton->setText("Quit");
     quitButton->setTextSize(40);
 
-    quitButton->onPress([this]() {
+    quitButton->onPress([]() {
         SceneManager::requestLoading("resources/scenes/main_menu.xml");
     });
-    quitButton->onMouseEnter([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto quitButtonWeak = quitButton.get();
+    quitButton->onMouseEnter([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    quitButton->onMouseLeave([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    quitButton->onMouseLeave([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
     addElement(quitButton,"Quit");

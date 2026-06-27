@@ -61,11 +61,12 @@ void GameOverMenu::createRetryButton()
     retryButton->onPress([this]() {
         SceneManager::requestLoading("resources/scenes/outside.xml");
     });
-    retryButton->onMouseEnter([retryButton]() {
-        retryButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto retryButtonWeak = retryButton.get();
+    retryButton->onMouseEnter([retryButtonWeak]() {
+        retryButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    retryButton->onMouseLeave([retryButton]() {
-        retryButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    retryButton->onMouseLeave([retryButtonWeak]() {
+        retryButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
     addElement(retryButton,"Retry");
@@ -93,14 +94,15 @@ void GameOverMenu::createQuitButton()
     quitButton->setText("Quit");
     quitButton->setTextSize(40);
 
-    quitButton->onPress([this]() {
+    quitButton->onPress([]() {
         SceneManager::requestLoading("resources/scenes/main_menu.xml");
     });
-    quitButton->onMouseEnter([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto quitButtonWeak = quitButton.get();
+    quitButton->onMouseEnter([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    quitButton->onMouseLeave([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    quitButton->onMouseLeave([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
     addElement(quitButton,"GO_Quit");

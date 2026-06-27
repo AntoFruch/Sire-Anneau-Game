@@ -30,15 +30,16 @@ void MainMenu::createPlayButton()
     playButton->setText("Play");
     playButton->setTextSize(40);
 
-    playButton->onPress([this]() {
+    playButton->onPress([]() {
         LoadingZoneManager::reset();
         SceneManager::requestLoading("resources/scenes/outside.xml");
     });
-    playButton->onMouseEnter([playButton]() {
-        playButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto playButtonWeak = playButton.get();
+    playButton->onMouseEnter([playButtonWeak]() {
+        playButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    playButton->onMouseLeave([playButton]() {
-        playButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    playButton->onMouseLeave([playButtonWeak]() {
+        playButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
 
@@ -67,14 +68,15 @@ void MainMenu::createQuitButton()
     quitButton->setText("Quit");
     quitButton->setTextSize(40);
 
-    quitButton->onPress([this]() {
-        exit(0);
+    quitButton->onPress([]() {
+        RenderManager::closeWindow();
     });
-    quitButton->onMouseEnter([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
+    auto quitButtonWeak = quitButton.get();
+    quitButton->onMouseEnter([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButtonHover.png");
     });
-    quitButton->onMouseLeave([quitButton]() {
-        quitButton->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
+    quitButton->onMouseLeave([quitButtonWeak]() {
+        quitButtonWeak->getRenderer()->setTexture("resources/UI/MainMenu/MenuButton.png");
     });
 
     addElement(quitButton,"Quit");
@@ -112,4 +114,3 @@ void MainMenu::Update(const sf::Time& elapsedTime)
 {
     UIDocument::Update(elapsedTime);
 }
-
